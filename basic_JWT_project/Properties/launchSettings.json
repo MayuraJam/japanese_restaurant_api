@@ -16,7 +16,7 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "DBConnection": "Server=DESKTOP-6FE6PEL;Initial Catalog=dbtest;Persist Security Info=False;User ID=sa;Password=Nisenji#20;MultipleActiveResultSets=False;TrustServerCertificate=true;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;"
+        "DBConnection": "Server=DESKTOP-6FE6PEL;Initial Catalog=DB_restaurant;Persist Security Info=False;User ID=sa;Password=Nisenji#20;MultipleActiveResultSets=False;TrustServerCertificate=true;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7202;http://localhost:5096"

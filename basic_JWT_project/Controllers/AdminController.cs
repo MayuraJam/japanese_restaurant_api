@@ -16,14 +16,14 @@ namespace basic_JWT_project.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController : Controller
+    public class AdminController : Microsoft.AspNetCore.Mvc.Controller
     {
         public static User user = new User(); //response model
         private readonly IConfiguration _configuration;
-        private readonly ILogger<AuthController> _logger;
-        serviceFactory _service;
+        private readonly ILogger<AdminController> _logger;
+        ServiceFactory _service;
 
-        public AuthController(IConfiguration configuration,ILogger<AuthController>logger, serviceFactory service)
+        public AdminController(IConfiguration configuration,ILogger<AdminController>logger, ServiceFactory service)
         {
         
             _configuration = configuration;

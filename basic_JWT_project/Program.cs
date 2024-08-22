@@ -26,7 +26,7 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<AuthService>();
 
 // Register ServiceFactory
-builder.Services.AddSingleton<serviceFactory>();
+builder.Services.AddSingleton<ServiceFactory>();
 
 //builder.Services.AddIdentityAoiEndpoint<IdentityUser>().AddEntityFrameworkStores<DataContext>();
 builder.Services.AddLogging();
