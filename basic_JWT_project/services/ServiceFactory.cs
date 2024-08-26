@@ -20,5 +20,9 @@ namespace basic_JWT_project.services
         {
             return new TestService();
         }
+        public ICustomer CustomerService()
+        {
+            return new CustomerService();
+        }
     }
 }

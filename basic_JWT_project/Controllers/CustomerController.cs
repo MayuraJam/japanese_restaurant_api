@@ -10,6 +10,7 @@ using basic_JWT_project.model.response;
 using basic_JWT_project.services;
 using Dapper;
 using japanese_resturant_project.model.response;
+using japanese_resturant_project.model.request.customerRequest;
 
 namespace japanese_resturant_project.Controllers
 {
@@ -19,8 +20,8 @@ namespace japanese_resturant_project.Controllers
     {
         private readonly ServiceFactory _service;
 
-        public CustomerController(ServiceFactory service) { 
-          _service = service;
+        public CustomerController(ServiceFactory service) {
+            _service = service;
         }
 
         [HttpGet("GetFoodData")]
@@ -28,6 +29,20 @@ namespace japanese_resturant_project.Controllers
         public async Task<IActionResult> GetMenuData()
         {
             var response = await _service.TestService().GetMenuData();
+            return Ok(response);
+        }
+
+        [HttpPut("OpenTable")]
+        public async Task<IActionResult> OpenTable(OpenTableRequest request)
+        {
+            var response = await _service.CustomerService().OpenTable(request);
+            return Ok(response);
+        }
+
+        [HttpPut("CloseTable")]
+        public async Task<IActionResult> CloseTable(OpenTableRequest request)
+        {
+            var response = await _service.CustomerService().CloseTable(request);
             return Ok(response);
         }
     }

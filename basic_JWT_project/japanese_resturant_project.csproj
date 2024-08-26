@@ -24,10 +24,8 @@
 
   <ItemGroup>
     <Folder Include="model\request\adminRequest\" />
-    <Folder Include="model\request\customerRequest\" />
     <Folder Include="model\request\testRequest\" />
     <Folder Include="model\response\adminResponse\" />
-    <Folder Include="model\response\customerResponse\" />
     <Folder Include="model\response\NewFolder\" />
   </ItemGroup>
 
