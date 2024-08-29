@@ -1,4 +1,4 @@
-﻿namespace basic_JWT_project.model.response
+﻿namespace japanese_resturant_project.model.response
 {
     public class User
     {

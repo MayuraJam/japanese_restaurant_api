@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 
-namespace basic_JWT_project.services
+namespace japanese_resturant_project.services
 {
     public abstract class Bases
     {

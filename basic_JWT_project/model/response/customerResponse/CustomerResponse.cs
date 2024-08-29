@@ -6,5 +6,6 @@ namespace japanese_resturant_project.model.response.customerResponse
     public class CustomerResponse : Message
     {
         public Table_tb table {get;set;}
-  }
+        
+    }
 }

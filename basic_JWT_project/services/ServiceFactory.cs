@@ -1,12 +1,8 @@
-﻿using basic_JWT_project.services.implement;
-using basic_JWT_project.services.Interfaces;
-using japanese_resturant_project.services;
-using japanese_resturant_project.services.implement;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+﻿using japanese_resturant_project.services.implement;
+using japanese_resturant_project.services.Interfaces;
 
 
-namespace basic_JWT_project.services
+namespace japanese_resturant_project.services
 {
 
     public class ServiceFactory

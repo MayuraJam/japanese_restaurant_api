@@ -1,4 +1,4 @@
-﻿namespace basic_JWT_project.model.request
+﻿namespace japanese_resturant_project.model.request
 {
     public class UserRequestModel
     {

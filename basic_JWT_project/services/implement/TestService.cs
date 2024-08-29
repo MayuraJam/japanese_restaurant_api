@@ -2,7 +2,7 @@
 using japanese_resturant_project.model.DatabaseModel;
 using japanese_resturant_project.model.response;
 using Dapper;
-using basic_JWT_project.services;
+using japanese_resturant_project.services;
 
 namespace japanese_resturant_project.services.implement
 {

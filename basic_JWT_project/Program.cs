@@ -2,8 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
-using basic_JWT_project.services;
-using basic_JWT_project.services.implement;
+using japanese_resturant_project.services;
+using japanese_resturant_project.services.implement;
 
 //IConfiguration configuration = new ConfigurationBuilder()
 //                            .AddJsonFile("appsettings.json")

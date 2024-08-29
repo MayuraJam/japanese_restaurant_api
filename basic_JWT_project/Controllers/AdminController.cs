@@ -1,18 +1,17 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using basic_JWT_project.model.request;
-using BCrypt.Net;
-using Microsoft.AspNetCore.Authentication.OAuth.Claims;
+using japanese_resturant_project.model.request;
+//using japanese_resturant_project.model.request;
 using System.Security.Claims;
 using System.Linq;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
-using basic_JWT_project.model.response;
-using basic_JWT_project.services;
+using japanese_resturant_project.model.response;
+using japanese_resturant_project.services;
 using Dapper;
 
-namespace basic_JWT_project.Controllers
+namespace japanese_resturant_project.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
