@@ -12,5 +12,7 @@
         public string email { get; set; }
         public string password { get; set; }
         public string roleName {  get; set; }
+        public string accountStatus { get; set; }
+
     }
 }

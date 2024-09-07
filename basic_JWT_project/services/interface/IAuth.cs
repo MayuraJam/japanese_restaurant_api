@@ -9,6 +9,11 @@ namespace japanese_resturant_project.services.Interfaces
         // public Task<UserResponseModel> RegiterPost(UserRequestModel request);
         public Task<UserResponseModel> AddRegister(RegisterRequest request);
 
+        public Task<UserResponseModel> GetMember([FromBody] string roleName);
+
+        public Task<UserResponseModel> ToLogin(Login request); //แก้ไข
+        public Task<UserResponseModel> LoginStaft(LoginStaftRequestModel request);
+
 
     }
 }

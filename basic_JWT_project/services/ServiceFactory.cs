@@ -20,5 +20,9 @@ namespace japanese_resturant_project.services
         {
             return new CustomerService();
         }
+        public IAdmin AdminService()
+        {
+            return new AdminService();
+        }
     }
 }

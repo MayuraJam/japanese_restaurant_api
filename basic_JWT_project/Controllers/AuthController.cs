@@ -13,6 +13,7 @@ using Dapper;
 
 using Microsoft.AspNetCore.Mvc;
 using japanese_resturant_project.model.request;
+using Azure.Core;
 
 namespace japanese_resturant_project.Controllers
 {
@@ -33,5 +34,25 @@ namespace japanese_resturant_project.Controllers
             var reponse = await _service.AuthService().AddRegister(request);
             return Ok(reponse);
         }
+        [HttpPost("GetMember")]
+        public async Task<IActionResult> GetMember([FromBody] string roleName)
+        {
+            var reponse = await _service.AuthService().GetMember(roleName);
+            return Ok(reponse);
+        }
+        [HttpPost("Login")]
+        public async Task<IActionResult> ToLogin(Login request)
+        {
+            var reponse = await _service.AuthService().ToLogin(request);
+            return Ok(reponse);
+        }
+        [HttpPost("LoginStaft")]
+        public async Task<IActionResult> LoginStaft(LoginStaftRequestModel request)
+
+        {
+            var reponse = await _service.AuthService().LoginStaft(request);
+            return Ok(reponse);
+        }
+
     }
 }

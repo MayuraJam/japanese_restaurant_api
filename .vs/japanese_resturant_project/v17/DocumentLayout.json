@@ -3,44 +3,56 @@
   "WorkspaceRootPath": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|c:\\users\\home\\desktop\\4.1\\workshop_2\\project_backend_c#\\japanese_resturant_api\\basic_jwt_project\\model\\response\\userresponsemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|solutionrelative:basic_jwt_project\\model\\response\\userresponsemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|c:\\users\\home\\desktop\\4.1\\workshop_2\\project_backend_c#\\japanese_resturant_api\\basic_jwt_project\\services\\interface\\iadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|solutionrelative:basic_jwt_project\\services\\interface\\iadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|c:\\users\\home\\desktop\\4.1\\workshop_2\\project_backend_c#\\japanese_resturant_api\\basic_jwt_project\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|solutionrelative:basic_jwt_project\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|c:\\users\\home\\desktop\\4.1\\workshop_2\\project_backend_c#\\japanese_resturant_api\\basic_jwt_project\\services\\implement\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|solutionrelative:basic_jwt_project\\services\\implement\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|c:\\users\\home\\desktop\\4.1\\workshop_2\\project_backend_c#\\japanese_resturant_api\\basic_jwt_project\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|solutionrelative:basic_jwt_project\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|c:\\users\\home\\desktop\\4.1\\workshop_2\\project_backend_c#\\japanese_resturant_api\\basic_jwt_project\\services\\servicefactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|solutionrelative:basic_jwt_project\\services\\servicefactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|c:\\users\\home\\desktop\\4.1\\workshop_2\\project_backend_c#\\japanese_resturant_api\\basic_jwt_project\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|solutionrelative:basic_jwt_project\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|c:\\users\\home\\desktop\\4.1\\workshop_2\\project_backend_c#\\japanese_resturant_api\\basic_jwt_project\\services\\interface\\itest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|solutionrelative:basic_jwt_project\\services\\interface\\itest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|c:\\users\\home\\desktop\\4.1\\workshop_2\\project_backend_c#\\japanese_resturant_api\\basic_jwt_project\\services\\implement\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|solutionrelative:basic_jwt_project\\services\\implement\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|c:\\users\\home\\desktop\\4.1\\workshop_2\\project_backend_c#\\japanese_resturant_api\\basic_jwt_project\\model\\response\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|solutionrelative:basic_jwt_project\\model\\response\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|c:\\users\\home\\desktop\\4.1\\workshop_2\\project_backend_c#\\japanese_resturant_api\\basic_jwt_project\\model\\request\\registerrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|solutionrelative:basic_jwt_project\\model\\request\\registerrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|c:\\users\\home\\desktop\\4.1\\workshop_2\\project_backend_c#\\japanese_resturant_api\\basic_jwt_project\\model\\request\\adminrequest\\optionrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|solutionrelative:basic_jwt_project\\model\\request\\adminrequest\\optionrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|c:\\users\\home\\desktop\\4.1\\workshop_2\\project_backend_c#\\japanese_resturant_api\\basic_jwt_project\\model\\request\\userrequestmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|solutionrelative:basic_jwt_project\\model\\request\\userrequestmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|c:\\users\\home\\desktop\\4.1\\workshop_2\\project_backend_c#\\japanese_resturant_api\\basic_jwt_project\\model\\request\\adminrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|solutionrelative:basic_jwt_project\\model\\request\\adminrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|c:\\users\\home\\desktop\\4.1\\workshop_2\\project_backend_c#\\japanese_resturant_api\\basic_jwt_project\\model\\databasemodel\\staft_authentication_tb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|solutionrelative:basic_jwt_project\\model\\databasemodel\\staft_authentication_tb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|c:\\users\\home\\desktop\\4.1\\workshop_2\\project_backend_c#\\japanese_resturant_api\\basic_jwt_project\\services\\interface\\iauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|solutionrelative:basic_jwt_project\\services\\interface\\iauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|c:\\users\\home\\desktop\\4.1\\workshop_2\\project_backend_c#\\japanese_resturant_api\\basic_jwt_project\\services\\interface\\iadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|solutionrelative:basic_jwt_project\\services\\interface\\iadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|c:\\users\\home\\desktop\\4.1\\workshop_2\\project_backend_c#\\japanese_resturant_api\\basic_jwt_project\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|solutionrelative:basic_jwt_project\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|c:\\users\\home\\desktop\\4.1\\workshop_2\\project_backend_c#\\japanese_resturant_api\\basic_jwt_project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|solutionrelative:basic_jwt_project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|c:\\users\\home\\desktop\\4.1\\workshop_2\\project_backend_c#\\japanese_resturant_api\\basic_jwt_project\\model\\databasemodel\\menu_tb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|solutionrelative:basic_jwt_project\\model\\databasemodel\\menu_tb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|c:\\users\\home\\desktop\\4.1\\workshop_2\\project_backend_c#\\japanese_resturant_api\\basic_jwt_project\\model\\response\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E1F8787-3797-40A3-A8C4-516C739F78B5}|basic_JWT_project\\japanese_resturant_project.csproj|solutionrelative:basic_jwt_project\\model\\response\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -49,8 +61,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 62,
-          "SelectedChildIndex": 12,
+          "DockedWidth": 75,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,43 +78,72 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\appsettings.json",
-              "RelativeDocumentMoniker": "basic_JWT_project\\appsettings.json",
-              "ToolTip": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\appsettings.json",
-              "RelativeToolTip": "basic_JWT_project\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-08-29T18:10:13.167Z"
+              "DocumentIndex": 4,
+              "Title": "UserRequestModel.cs",
+              "DocumentMoniker": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\model\\request\\UserRequestModel.cs",
+              "RelativeDocumentMoniker": "basic_JWT_project\\model\\request\\UserRequestModel.cs",
+              "ToolTip": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\model\\request\\UserRequestModel.cs",
+              "RelativeToolTip": "basic_JWT_project\\model\\request\\UserRequestModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T21:22:16.935Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ServiceFactory.cs",
-              "DocumentMoniker": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\services\\ServiceFactory.cs",
-              "RelativeDocumentMoniker": "basic_JWT_project\\services\\ServiceFactory.cs",
-              "ToolTip": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\services\\ServiceFactory.cs",
-              "RelativeToolTip": "basic_JWT_project\\services\\ServiceFactory.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAA1AAAA",
+              "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "basic_JWT_project\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "basic_JWT_project\\Controllers\\AuthController.cs",
+              "ViewState": "AQIAACIAAAAAAAAAAAAqwDAAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-29T18:09:39.172Z"
+              "WhenOpened": "2024-09-03T07:50:19.341Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Itest.cs",
-              "DocumentMoniker": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\services\\interface\\Itest.cs",
-              "RelativeDocumentMoniker": "basic_JWT_project\\services\\interface\\Itest.cs",
-              "ToolTip": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\services\\interface\\Itest.cs",
-              "RelativeToolTip": "basic_JWT_project\\services\\interface\\Itest.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "Staft_Authentication_tb.cs",
+              "DocumentMoniker": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\model\\DatabaseModel\\Staft_Authentication_tb.cs",
+              "RelativeDocumentMoniker": "basic_JWT_project\\model\\DatabaseModel\\Staft_Authentication_tb.cs",
+              "ToolTip": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\model\\DatabaseModel\\Staft_Authentication_tb.cs",
+              "RelativeToolTip": "basic_JWT_project\\model\\DatabaseModel\\Staft_Authentication_tb.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-29T18:09:31.827Z"
+              "WhenOpened": "2024-09-04T19:37:03.733Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\Program.cs",
+              "RelativeDocumentMoniker": "basic_JWT_project\\Program.cs",
+              "ToolTip": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\Program.cs",
+              "RelativeToolTip": "basic_JWT_project\\Program.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAAC8AAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T08:52:19.354Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IAuth.cs",
+              "DocumentMoniker": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\services\\interface\\IAuth.cs",
+              "RelativeDocumentMoniker": "basic_JWT_project\\services\\interface\\IAuth.cs",
+              "ToolTip": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\services\\interface\\IAuth.cs",
+              "RelativeToolTip": "basic_JWT_project\\services\\interface\\IAuth.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T07:50:38.29Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\model\\response\\User.cs",
               "RelativeDocumentMoniker": "basic_JWT_project\\model\\response\\User.cs",
@@ -110,79 +151,104 @@
               "RelativeToolTip": "basic_JWT_project\\model\\response\\User.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-29T18:08:37.79Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "basic_JWT_project\\Controllers\\AdminController.cs",
-              "ToolTip": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\Controllers\\AdminController.cs",
-              "RelativeToolTip": "basic_JWT_project\\Controllers\\AdminController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-29T17:50:00.26Z"
-            },
+              "WhenOpened": "2024-08-29T18:08:37.79Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 49,
+          "SelectedChildIndex": 0,
+          "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "IAdmin.cs",
-              "DocumentMoniker": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\services\\interface\\IAdmin.cs",
-              "RelativeDocumentMoniker": "basic_JWT_project\\services\\interface\\IAdmin.cs",
-              "ToolTip": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\services\\interface\\IAdmin.cs",
-              "RelativeToolTip": "basic_JWT_project\\services\\interface\\IAdmin.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAtAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-29T17:47:20.261Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "AuthService.cs",
               "DocumentMoniker": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\services\\implement\\AuthService.cs",
               "RelativeDocumentMoniker": "basic_JWT_project\\services\\implement\\AuthService.cs",
               "ToolTip": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\services\\implement\\AuthService.cs",
               "RelativeToolTip": "basic_JWT_project\\services\\implement\\AuthService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "ViewState": "AQIAAHoBAAAAAAAAAAAuwJQBAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-29T17:46:25.267Z"
+              "WhenOpened": "2024-09-03T07:51:13.343Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
+              "Title": "RegisterRequest.cs",
+              "DocumentMoniker": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\model\\request\\RegisterRequest.cs",
+              "RelativeDocumentMoniker": "basic_JWT_project\\model\\request\\RegisterRequest.cs",
+              "ToolTip": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\model\\request\\RegisterRequest.cs",
+              "RelativeToolTip": "basic_JWT_project\\model\\request\\RegisterRequest.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAkwBQAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T08:44:58.747Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AdminRequest.cs",
+              "DocumentMoniker": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\model\\request\\AdminRequest.cs",
+              "RelativeDocumentMoniker": "basic_JWT_project\\model\\request\\AdminRequest.cs",
+              "ToolTip": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\model\\request\\AdminRequest.cs",
+              "RelativeToolTip": "basic_JWT_project\\model\\request\\AdminRequest.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAIwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T21:22:35.463Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Menu_tb.cs",
+              "DocumentMoniker": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\model\\DatabaseModel\\Menu_tb.cs",
+              "RelativeDocumentMoniker": "basic_JWT_project\\model\\DatabaseModel\\Menu_tb.cs",
+              "ToolTip": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\model\\DatabaseModel\\Menu_tb.cs",
+              "RelativeToolTip": "basic_JWT_project\\model\\DatabaseModel\\Menu_tb.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwA4AAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T08:13:07.138Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "basic_JWT_project\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "basic_JWT_project\\Controllers\\AdminController.cs",
+              "ViewState": "AQIAAIcAAAAAAAAAAAAUwJoAAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T23:16:16.541Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IAdmin.cs",
+              "DocumentMoniker": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\services\\interface\\IAdmin.cs",
+              "RelativeDocumentMoniker": "basic_JWT_project\\services\\interface\\IAdmin.cs",
+              "ToolTip": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\services\\interface\\IAdmin.cs",
+              "RelativeToolTip": "basic_JWT_project\\services\\interface\\IAdmin.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAA5AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T13:02:38.483Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "AdminService.cs",
               "DocumentMoniker": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\services\\implement\\AdminService.cs",
               "RelativeDocumentMoniker": "basic_JWT_project\\services\\implement\\AdminService.cs",
               "ToolTip": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\services\\implement\\AdminService.cs",
               "RelativeToolTip": "basic_JWT_project\\services\\implement\\AdminService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAFAAAA",
+              "ViewState": "AQIAAHcAAAAAAAAAAAAgwIMAAABJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-29T17:45:46.601Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "OptionRequest.cs",
-              "DocumentMoniker": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\model\\request\\adminRequest\\OptionRequest.cs",
-              "RelativeDocumentMoniker": "basic_JWT_project\\model\\request\\adminRequest\\OptionRequest.cs",
-              "ToolTip": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\model\\request\\adminRequest\\OptionRequest.cs",
-              "RelativeToolTip": "basic_JWT_project\\model\\request\\adminRequest\\OptionRequest.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-29T16:52:40.58Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserResponseModel.cs",
-              "DocumentMoniker": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\model\\response\\UserResponseModel.cs",
-              "RelativeDocumentMoniker": "basic_JWT_project\\model\\response\\UserResponseModel.cs",
-              "ToolTip": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\model\\response\\UserResponseModel.cs",
-              "RelativeToolTip": "basic_JWT_project\\model\\response\\UserResponseModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-28T22:42:41.404Z",
+              "WhenOpened": "2024-09-01T09:58:49.653Z",
               "EditorCaption": ""
             }
           ]

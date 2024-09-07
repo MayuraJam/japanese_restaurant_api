@@ -21,6 +21,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddAuthentication();
 builder.Services.AddControllers();
+
+ builder.Services.AddCors(options =>
+ {
+    options.AddPolicy("AllowLocalhost3000", builder => builder.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader());
+ });
 //builder.Services.AddScoped<serviceFactory>();
 // Register AuthService
 builder.Services.AddScoped<AuthService>();
@@ -39,10 +44,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 //app.MapIdentityApi<IdentityUser>();
 app.UseHttpsRedirection();
-
+//app.UseCors(options => options.WithOrigins(http://localhost:3000).AllowAnyMethod().AllowAnyHeader());
+app.UseCors("AllowLocalhost3000");
 app.UseAuthorization();
 
 app.MapControllers();

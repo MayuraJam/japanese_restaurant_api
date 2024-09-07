@@ -81,3 +81,4 @@ C:\Users\HOME\Desktop\4.1\workshop_2\project_backend_C#\japanese_resturant_api\b
 C:\Users\HOME\Desktop\4.1\workshop_2\project_backend_C#\japanese_resturant_api\basic_JWT_project\obj\Debug\net7.0\japanese_resturant_project.pdb
 C:\Users\HOME\Desktop\4.1\workshop_2\project_backend_C#\japanese_resturant_api\basic_JWT_project\obj\Debug\net7.0\japanese_resturant_project.genruntimeconfig.cache
 C:\Users\HOME\Desktop\4.1\workshop_2\project_backend_C#\japanese_resturant_api\basic_JWT_project\obj\Debug\net7.0\ref\japanese_resturant_project.dll
+C:\Users\HOME\Desktop\4.1\workshop_2\project_backend_C#\japanese_resturant_api\basic_JWT_project\bin\Debug\net7.0\japanese_resturant_project.staticwebassets.runtime.json
