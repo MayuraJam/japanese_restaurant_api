@@ -26,7 +26,6 @@
   <ItemGroup>
     <Folder Include="model\request\testRequest\" />
     <Folder Include="model\response\NewFolder\" />
-    <Folder Include="image\" />
   </ItemGroup>
 
 </Project>

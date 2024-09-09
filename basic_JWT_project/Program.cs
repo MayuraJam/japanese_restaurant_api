@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using japanese_resturant_project.services;
 using japanese_resturant_project.services.implement;
+using Microsoft.Extensions.FileProviders;
 
 //IConfiguration configuration = new ConfigurationBuilder()
 //                            .AddJsonFile("appsettings.json")
@@ -48,6 +49,12 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 //app.UseCors(options => options.WithOrigins(http://localhost:3000).AllowAnyMethod().AllowAnyHeader());
 app.UseCors("AllowLocalhost3000");
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads")),
+    RequestPath = "/Image"
+});
 app.UseAuthorization();
 
 app.MapControllers();

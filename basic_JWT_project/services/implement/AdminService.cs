@@ -10,6 +10,9 @@ using System.Text;
 using Dapper;
 using japanese_resturant_project.model.DatabaseModel;
 using japanese_resturant_project.model.response.adminResponse;
+using Microsoft.Extensions.Options;
+using Azure.Core;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace japanese_resturant_project.services.implement
 {
@@ -210,17 +213,20 @@ namespace japanese_resturant_project.services.implement
         }
 
         //getMenu
-        public async Task<AdminResponse> GetMenuList()
+        public async Task<AdminResponse> GetMenuList2()
         {
             var Response = new AdminResponse()
             {
                 menuList = new List<Menu_tb>()
             };
-
+            //function ในการเปลี่ยนจาก imagePath => imageFile
+            
             try
             {
                 using (var dbConnection = CreateSQLConnection()) // Establish database connection
                 {
+
+                    //ภาพขึ้นล่ะ ถ้าใช้เป็นformat https://localhost:7202/Image/16aba539-bbd5-472d-bd14-31ab4227c4ec_food.jpg อันนี้เป็นตัวอย่าง
                     var sql = @"
                 SELECT 
                  m.menuID,
@@ -239,15 +245,36 @@ namespace japanese_resturant_project.services.implement
                  LEFT JOIN
                    option_tb o ON o.optionID = m.optionID
                  ";
-                    var menuValue = await dbConnection.QueryAsync<Menu_tb>(sql);
+                    var menuValue = await dbConnection.QueryAsync(sql);
 
                     // Check if any reservations were found
                     if (menuValue != null&& menuValue.Any())
                     {
                         // Populate the booking response with the reservations
-           
+                        //ดึง imageName จาก database
+                        //ใส่ function  แปลงในตรงนี้ แล้วก็นำไปใส่ในตัว Menu_tb
+                        //image path from database => get file => get to front end
+                        //Response.menuList = menuValue.ToList();
 
-                        Response.menuList = menuValue.ToList();
+                        Response.menuList = menuValue.Select(x => new Menu_tb()
+                        {
+                            menuID = x.menuID,
+                            menuName = x.menuName,
+                            menuDescription = x.menuDescription,
+                            unitPrice = x.unitPrice,
+                            categoryName = x.categoryName,
+                            optionID = x.optionID,
+                            createDate = x.createDate,
+                            updateDate = x.createDate,
+                            rating = x.rating,
+                            imageName = x.imageName,
+                            optionName = x.optionName,
+                            value = x.value,
+                            imageSrc = String.Format("https://localhost:7202/Image/{0}", x.imageName)
+                            
+                        }).ToList();
+                        //ดึงข้อมูลออกมา
+
                         Response.message = "successfully.";
                         Response.success = true;
 
