@@ -239,6 +239,7 @@ namespace japanese_resturant_project.services.implement
                  m.updateDate,
                  m.rating,
                  m.imageName,
+                 m.quantity,
                  o.optionName,
                  o.value
                  FROM  menu_tb m
@@ -270,8 +271,9 @@ namespace japanese_resturant_project.services.implement
                             imageName = x.imageName,
                             optionName = x.optionName,
                             value = x.value,
-                            imageSrc = String.Format("https://localhost:7202/Image/{0}", x.imageName)
-                            
+                            imageSrc = String.Format("https://localhost:7202/Image/{0}", x.imageName),
+                            quantity = x.quantity,
+
                         }).ToList();
                         //ดึงข้อมูลออกมา
 
@@ -294,6 +296,87 @@ namespace japanese_resturant_project.services.implement
                 Console.WriteLine($"An error occurred: {ex.Message}");
                 // Set error message in the bookingResponse
                 Response.message = $"An error occurred while fetching the reservations: {ex.Message}";
+                Response.success = false;
+            }
+
+            return Response;
+        }
+        public async Task<AdminResponse> GetMenuByID(Guid menuID)
+        {
+            var Response = new AdminResponse()
+            {
+                menuitem = new Menu_tb()
+            };
+            //function ในการเปลี่ยนจาก imagePath => imageFile
+
+            try
+            {
+                using (var dbConnection = CreateSQLConnection())
+                {
+
+                    //ภาพขึ้นล่ะ ถ้าใช้เป็นformat https://localhost:7202/Image/16aba539-bbd5-472d-bd14-31ab4227c4ec_food.jpg อันนี้เป็นตัวอย่าง
+                    var sql = @"
+                SELECT 
+                 m.menuID,
+                 m.menuName,
+                 m.menuDescription,
+                 m.unitPrice,
+                 m.categoryName,
+                 m.optionID,
+                 m.createDate,
+                 m.updateDate,
+                 m.rating,
+                 m.imageName,
+                 m.quantity,
+                 o.optionName,
+                 o.value
+                 FROM  menu_tb m
+                 LEFT JOIN
+                   option_tb o ON o.optionID = m.optionID
+                 WHERE m.menuID = @menuID
+                 ";
+                    var menuValue = await dbConnection.QueryFirstOrDefaultAsync(sql, new { menuID = menuID });
+                    if (menuValue != null)
+                    {
+
+                        Response.menuitem = new Menu_tb()
+                        {
+                            menuID = menuValue.menuID,
+                            menuName = menuValue.menuName,
+                            menuDescription = menuValue.menuDescription,
+                            unitPrice = menuValue.unitPrice,
+                            categoryName = menuValue.categoryName,
+                            optionID = menuValue.optionID,
+                            createDate = menuValue.createDate,
+                            updateDate = menuValue.createDate,
+                            rating = menuValue.rating,
+                            imageName = menuValue.imageName,
+                            optionName = menuValue.optionName,
+                            value = menuValue.value,
+                            imageSrc = String.Format("https://localhost:7202/Image/{0}", menuValue.imageName),
+                            quantity = menuValue.quantity,
+
+                        };
+                        //ดึงข้อมูลออกมา
+
+                        Response.message = "successfully.";
+                        Response.success = true;
+
+                    }
+                    else
+                    {
+                        // Handle case where no reservations were found
+                        Response.message = "ไม่พบเจอข้อมูลอาหาร";
+                        Response.success = false;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions here, e.g., log the error
+                // Set error message in the bookingResponse
+                Response.message = $"{ex.Message}";
                 Response.success = false;
             }
 
@@ -325,8 +408,8 @@ namespace japanese_resturant_project.services.implement
 
             }
             //ฐานข้อมูลเข้าแล้ว
-            var sql = @"INSERT INTO menu_tb (menuID,menuName,menuDescription,unitPrice,categoryName,optionID,createDate,updateDate,rating,imageName)
-                        VALUES (@menuID,@menuName,@menuDescription,@unitPrice,@categoryName,@optionID,@createDate,@updateDate,@rating,@imageName)";
+            var sql = @"INSERT INTO menu_tb (menuID,menuName,menuDescription,unitPrice,categoryName,optionID,createDate,updateDate,rating,imageName,quantity)
+                        VALUES (@menuID,@menuName,@menuDescription,@unitPrice,@categoryName,@optionID,@createDate,@updateDate,@rating,@imageName,@quantity)";
             try
             {
                 using (var dbConnection = CreateSQLConnection())
@@ -342,8 +425,9 @@ namespace japanese_resturant_project.services.implement
                         updateDate = DateTime.Now,
                         optionID = request.optionID,
                         imageName = relativeFilePath, //ชื่อไฟล์
-                        rating =  0//ต้องอิงตามค่าที่ได้ทำการกดให้คะแนนตามจำนวนลูกค้า
-                                  
+                        rating =  0,//ต้องอิงตามค่าที่ได้ทำการกดให้คะแนนตามจำนวนลูกค้า
+                        quantity = request.quantity,
+
                     };
                     var menuValue = await dbConnection.ExecuteAsync(sql,parameters);
                     if (menuValue > 0)

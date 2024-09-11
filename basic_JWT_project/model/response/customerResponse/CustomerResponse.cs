@@ -6,6 +6,9 @@ namespace japanese_resturant_project.model.response.customerResponse
     public class CustomerResponse : Message
     {
         public Table_tb table {get;set;}
+        public List<Cart_tb> cartList {get;set;}
+        public Cart_tb cartItem { get;set;}
         
     }
+
 }

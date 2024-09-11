@@ -1,11 +1,21 @@
 ﻿using japanese_resturant_project.model.request.customerRequest;
 using japanese_resturant_project.model.response;
+using japanese_resturant_project.model.response.adminResponse;
 using japanese_resturant_project.model.response.customerResponse;
+using Microsoft.AspNetCore.Mvc;
 namespace japanese_resturant_project.services
 {
     public interface ICustomer
     {
         public Task<CustomerResponse> OpenTable(OpenTableRequest request);
         public Task<CustomerResponse> CloseTable(OpenTableRequest request);
+        public Task<CustomerResponse> GetCartBytableID(Guid tableID);
+
+        public Task<CustomerResponse> AddCart(AddCartRequest request);
+
+        public Task<CustomerResponse> UpdateCart(UpdateCartRequest request);
+
+        public Task<CustomerResponse> DeleteCartItem(Guid cartID);
+
     }
 }

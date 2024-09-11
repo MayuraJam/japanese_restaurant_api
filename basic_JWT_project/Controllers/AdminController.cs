@@ -241,6 +241,12 @@ namespace japanese_resturant_project.Controllers
             var response = await _service.AdminService().GetMenuList2();
             return Ok(response);
         }
+        [HttpPost("GetMenuByID/{menuID}")]
+        public async Task<AdminResponse> GetMenuByID(Guid menuID)
+        {
+            var response = await _service.AdminService().GetMenuByID(menuID);
+            return response;
+        }
 
         [HttpPost("AddMenu")]
         public async Task<IActionResult> AddMenu([FromForm] MenuRequest request)

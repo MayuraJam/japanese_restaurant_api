@@ -25,7 +25,8 @@ builder.Services.AddControllers();
 
  builder.Services.AddCors(options =>
  {
-    options.AddPolicy("AllowLocalhost3000", builder => builder.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader());
+     //options.AddPolicy("AllowLocalhost3000", builder => builder.WithOrigins("http://localhost:3003").AllowAnyMethod().AllowAnyHeader());
+     options.AddPolicy("AllowLocalhost3001", builder => builder.WithOrigins("http://localhost:3001").AllowAnyMethod().AllowAnyHeader());
  });
 //builder.Services.AddScoped<serviceFactory>();
 // Register AuthService
@@ -48,7 +49,7 @@ if (app.Environment.IsDevelopment())
 //app.MapIdentityApi<IdentityUser>();
 app.UseHttpsRedirection();
 //app.UseCors(options => options.WithOrigins(http://localhost:3000).AllowAnyMethod().AllowAnyHeader());
-app.UseCors("AllowLocalhost3000");
+app.UseCors("AllowLocalhost3001");
 
 app.UseStaticFiles(new StaticFileOptions
 {

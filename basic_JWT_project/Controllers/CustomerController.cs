@@ -23,14 +23,6 @@ namespace japanese_resturant_project.Controllers
             _service = service;
         }
 
-        [HttpGet("GetFoodData")]
-
-        public async Task<IActionResult> GetMenuData()
-        {
-            var response = await _service.TestService().GetMenuData();
-            return Ok(response);
-        }
-
         [HttpPut("OpenTable")]
         public async Task<IActionResult> OpenTable(OpenTableRequest request)
         {
@@ -42,6 +34,24 @@ namespace japanese_resturant_project.Controllers
         public async Task<IActionResult> CloseTable(OpenTableRequest request)
         {
             var response = await _service.CustomerService().CloseTable(request);
+            return Ok(response);
+        }
+        [HttpPost("GetCart/{tableID}")]
+        public async Task<IActionResult> GetCartBytableID(Guid tableID)
+        {
+            var response = await _service.CustomerService().GetCartBytableID(tableID);
+            return Ok(response);
+        }
+        [HttpPost("AddCart")]
+        public async Task<IActionResult> AddCart(AddCartRequest request)
+        {
+            var response = await _service.CustomerService().AddCart(request);
+            return Ok(response);
+        }
+        [HttpDelete("DeleteCart/{cartID}")]
+        public async Task<IActionResult> DeleteCartItem(Guid cartID)
+        {
+            var response = await _service.CustomerService().DeleteCartItem(cartID);
             return Ok(response);
         }
     }
