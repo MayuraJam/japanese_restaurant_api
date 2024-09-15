@@ -24,7 +24,7 @@ namespace japanese_resturant_project.model.request
 
         [NotMapped]
         public IFormFile imageFile { get; set; }
-        public int quantity { get; set; }
+        public int stockQuantity { get; set; }
     }
     public class MenuUpdate
     {
@@ -38,7 +38,7 @@ namespace japanese_resturant_project.model.request
         //public byte[]? image { get; set; }
         [NotMapped]
         public IFormFile imageFile { get; set; }
-        public int quantity { get; set; }
+        public int stockQuantity { get; set; }
 
     }
 

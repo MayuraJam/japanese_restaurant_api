@@ -15,6 +15,8 @@ namespace japanese_resturant_project.services
         public Task<AdminResponse> GetMenuByID(Guid menuID);
         public Task<AdminResponse> AddMenu([FromForm] MenuRequest request);
         public Task<AdminResponse> UpdateMenu([FromForm] MenuUpdate request);
-        public Task<AdminResponse> DeleteMenu([FromBody] Guid menuID);
+        public Task<AdminResponse> DeleteMenu(Guid menuID);
+        public Task<AdminResponse> GetTableList();
+
     }
 }

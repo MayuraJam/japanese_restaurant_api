@@ -141,101 +141,7 @@ namespace japanese_resturant_project.Controllers
             var response = await _service.AdminService().DeleteOption(optionID);
             return Ok(response);
         }
-
         [HttpGet("GetMenu")]
-        public async Task<IActionResult> GetMenuList()
-        {
-            //var response = await _service.AdminService().GetMenuList();
-            //return Ok(response);
-            var Response = new AdminResponse()
-            {
-                menuList = new List<Menu_tb>()
-            };
-            //function ในการเปลี่ยนจาก imagePath => imageFile
-            
-            try
-            {
-                if (string.IsNullOrEmpty(_connection))
-                {
-                    return BadRequest("Database connecting string is not");
-                }
-                using (var dbConnection = new SqlConnection(_connection))
-                {
-                    await dbConnection.OpenAsync();
-                    //ภาพขึ้นล่ะ ถ้าใช้เป็นformat https://localhost:7202/Image/16aba539-bbd5-472d-bd14-31ab4227c4ec_food.jpg อันนี้เป็นตัวอย่าง
-                    var sql = @"
-                SELECT 
-                 m.menuID,
-                 m.menuName,
-                 m.menuDescription,
-                 m.unitPrice,
-                 m.categoryName,
-                 m.optionID,
-                 m.createDate,
-                 m.updateDate,
-                 m.rating,
-                 m.imageName,
-                 o.optionName,
-                 o.value
-                 FROM  menu_tb m
-                 LEFT JOIN
-                   option_tb o ON o.optionID = m.optionID
-                 ";
-                    var menuValue = await dbConnection.QueryAsync<Menu_tb>(sql);
-
-                    // Check if any reservations were found
-                    if (menuValue != null && menuValue.Any())
-                    {
-                        // Populate the booking response with the reservations
-                        //ดึง imageName จาก database
-                        //ใส่ function  แปลงในตรงนี้ แล้วก็นำไปใส่ในตัว Menu_tb
-                        //image path from database => get file => get to front end
-                        //Response.menuList = menuValue.ToList();
-
-                        Response.menuList.Select(x => new Menu_tb()
-                        {
-                            menuID = x.menuID,
-                            menuName = x.menuName,
-                            menuDescription = x.menuDescription,
-                            unitPrice = x.unitPrice,
-                            categoryName = x.categoryName,
-                            optionID = x.optionID,
-                            createDate = x.createDate,
-                            updateDate = x.createDate,
-                            rating = x.rating,
-                            imageName = x.imageName,
-                            optionName = x.optionName,
-                            value = x.value,
-                            imageSrc = String.Format("{0}://{1}{2}/Image/{3}",Request.Scheme, Request.Host,Request.PathBase,x.imageName)
-
-                        }).ToList();
-                        //ดึงข้อมูลออกมา
-
-                        Response.message = "successfully.";
-                        Response.success = true;
-
-                    }
-                    else
-                    {
-                        // Handle case where no reservations were found
-                        Response.message = "Not found data 404.";
-                        Response.success = false;
-
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle exceptions here, e.g., log the error
-                Console.WriteLine($"An error occurred: {ex.Message}");
-                // Set error message in the bookingResponse
-                Response.message = $"An error occurred while fetching the reservations: {ex.Message}";
-                Response.success = false;
-            }
-
-            return Ok(Response);
-        }
-        [HttpGet("GetMenu2")]
         public async Task<IActionResult> GetMenuList2()
         {
             var response = await _service.AdminService().GetMenuList2();
@@ -260,8 +166,8 @@ namespace japanese_resturant_project.Controllers
             var response = await _service.AdminService().UpdateMenu(request);
             return Ok(response);
         }
-        [HttpDelete("DeleteMenu")]
-        public async Task<IActionResult> DeleteMenu([FromBody]  Guid menuID)
+        [HttpDelete("DeleteMenu/{menuID}")]
+        public async Task<IActionResult> DeleteMenu(Guid menuID)
         {
             var response = await _service.AdminService().DeleteMenu(menuID);
             return Ok(response);
@@ -276,6 +182,12 @@ namespace japanese_resturant_project.Controllers
                 await imageFile.CopyToAsync(fileStream);
             }
             //return imageFile.Name;
+        }
+        [HttpGet("GetTable")]
+        public async Task<IActionResult> GetTableList()
+        {
+            var response = await _service.AdminService().GetTableList();
+            return Ok(response);
         }
     }
 }

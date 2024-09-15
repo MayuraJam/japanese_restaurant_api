@@ -15,6 +15,7 @@ namespace japanese_resturant_project.model.DatabaseModel
         public string tableID { get; set; }
         public int quantity { get; set; }
         public string? optionValue {  get; set; }
+        public decimal? netprice { get; set; }
 
     }
 }

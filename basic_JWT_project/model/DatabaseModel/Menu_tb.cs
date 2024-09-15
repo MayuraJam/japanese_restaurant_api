@@ -24,7 +24,7 @@ namespace japanese_resturant_project.model.DatabaseModel
         // public byte[]? image { get; set; }
         [NotMapped]
         public string imageSrc { get; set; }
-        public int quantity { get; set; }
+        public int stockQuantity { get; set; }
 
 
     }

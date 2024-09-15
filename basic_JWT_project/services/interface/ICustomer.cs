@@ -9,13 +9,17 @@ namespace japanese_resturant_project.services
     {
         public Task<CustomerResponse> OpenTable(OpenTableRequest request);
         public Task<CustomerResponse> CloseTable(OpenTableRequest request);
-        public Task<CustomerResponse> GetCartBytableID(Guid tableID);
+        public Task<CustomerResponse> GetCartBytableID(string tableID);
 
         public Task<CustomerResponse> AddCart(AddCartRequest request);
 
         public Task<CustomerResponse> UpdateCart(UpdateCartRequest request);
 
         public Task<CustomerResponse> DeleteCartItem(Guid cartID);
+        public Task<CustomerResponse> AddOrder(AddOrderRequest request);
+        public Task<CustomerResponse> GetOrderDetail(string orderID);
+
+
 
     }
 }

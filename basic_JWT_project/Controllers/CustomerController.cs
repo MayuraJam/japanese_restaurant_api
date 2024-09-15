@@ -10,6 +10,8 @@ using japanese_resturant_project.services;
 using Dapper;
 using japanese_resturant_project.model.response;
 using japanese_resturant_project.model.request.customerRequest;
+using japanese_resturant_project.model.response.customerResponse;
+using Azure.Core;
 
 namespace japanese_resturant_project.Controllers
 {
@@ -37,7 +39,7 @@ namespace japanese_resturant_project.Controllers
             return Ok(response);
         }
         [HttpPost("GetCart/{tableID}")]
-        public async Task<IActionResult> GetCartBytableID(Guid tableID)
+        public async Task<IActionResult> GetCartBytableID(string tableID)
         {
             var response = await _service.CustomerService().GetCartBytableID(tableID);
             return Ok(response);
@@ -48,11 +50,32 @@ namespace japanese_resturant_project.Controllers
             var response = await _service.CustomerService().AddCart(request);
             return Ok(response);
         }
+        [HttpPut("UpdateCart")]
+        public async Task<IActionResult> UpdateCart(UpdateCartRequest request)
+        {
+            var response = await _service.CustomerService().UpdateCart(request);
+            return Ok(response);
+        }
         [HttpDelete("DeleteCart/{cartID}")]
         public async Task<IActionResult> DeleteCartItem(Guid cartID)
         {
             var response = await _service.CustomerService().DeleteCartItem(cartID);
             return Ok(response);
         }
+
+        [HttpPost("AddOrder")]
+        public async Task<IActionResult> AddOrder(AddOrderRequest request)
+        {
+            var response = await _service.CustomerService().AddOrder(request);
+            return Ok(response);
+        }
+
+        [HttpGet("GetOrderDetail/{orderID}")]
+        public async Task<CustomerResponse> GetOrderDetail(string orderID)
+        {
+            var response = await _service.CustomerService().GetOrderDetail(orderID);
+            return response;
+        }
+
     }
 }

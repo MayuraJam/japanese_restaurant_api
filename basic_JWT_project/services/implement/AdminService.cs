@@ -239,7 +239,7 @@ namespace japanese_resturant_project.services.implement
                  m.updateDate,
                  m.rating,
                  m.imageName,
-                 m.quantity,
+                 m.stockQuantity,
                  o.optionName,
                  o.value
                  FROM  menu_tb m
@@ -272,7 +272,7 @@ namespace japanese_resturant_project.services.implement
                             optionName = x.optionName,
                             value = x.value,
                             imageSrc = String.Format("https://localhost:7202/Image/{0}", x.imageName),
-                            quantity = x.quantity,
+                            stockQuantity = x.stockQuantity,
 
                         }).ToList();
                         //ดึงข้อมูลออกมา
@@ -327,7 +327,7 @@ namespace japanese_resturant_project.services.implement
                  m.updateDate,
                  m.rating,
                  m.imageName,
-                 m.quantity,
+                 m.stockQuantity,
                  o.optionName,
                  o.value
                  FROM  menu_tb m
@@ -354,7 +354,7 @@ namespace japanese_resturant_project.services.implement
                             optionName = menuValue.optionName,
                             value = menuValue.value,
                             imageSrc = String.Format("https://localhost:7202/Image/{0}", menuValue.imageName),
-                            quantity = menuValue.quantity,
+                            stockQuantity = menuValue.stockQuantity,
 
                         };
                         //ดึงข้อมูลออกมา
@@ -408,8 +408,8 @@ namespace japanese_resturant_project.services.implement
 
             }
             //ฐานข้อมูลเข้าแล้ว
-            var sql = @"INSERT INTO menu_tb (menuID,menuName,menuDescription,unitPrice,categoryName,optionID,createDate,updateDate,rating,imageName,quantity)
-                        VALUES (@menuID,@menuName,@menuDescription,@unitPrice,@categoryName,@optionID,@createDate,@updateDate,@rating,@imageName,@quantity)";
+            var sql = @"INSERT INTO menu_tb (menuID,menuName,menuDescription,unitPrice,categoryName,optionID,createDate,updateDate,rating,imageName,stockQuantity)
+                        VALUES (@menuID,@menuName,@menuDescription,@unitPrice,@categoryName,@optionID,@createDate,@updateDate,@rating,@imageName,@stockQuantity)";
             try
             {
                 using (var dbConnection = CreateSQLConnection())
@@ -426,7 +426,7 @@ namespace japanese_resturant_project.services.implement
                         optionID = request.optionID,
                         imageName = relativeFilePath, //ชื่อไฟล์
                         rating =  0,//ต้องอิงตามค่าที่ได้ทำการกดให้คะแนนตามจำนวนลูกค้า
-                        quantity = request.quantity,
+                        stockQuantity = request.stockQuantity,
 
                     };
                     var menuValue = await dbConnection.ExecuteAsync(sql,parameters);
@@ -479,7 +479,7 @@ namespace japanese_resturant_project.services.implement
                 using (var dbConnection = CreateSQLConnection()) // Establish database connection
                 {
                     var sql = @"UPDATE menu_tb
-                        SET menuName=@menuName,menuDescription=@menuDescription,unitPrice=@unitPrice,categoryName=@categoryName,optionID=@optionID,updateDate=@updateDate,rating = @rating,imageName = @imageName
+                        SET menuName=@menuName,menuDescription=@menuDescription,unitPrice=@unitPrice,categoryName=@categoryName,optionID=@optionID,updateDate=@updateDate,rating = @rating,imageName = @imageName,stockQuantity=@stockQuantity
                         WHERE menuID = @menuID";
 
                     // Use parameterized query to prevent SQL injection
@@ -493,7 +493,8 @@ namespace japanese_resturant_project.services.implement
                         updateDate = DateTime.Now,
                         optionID = request.optionID,
                         imageName = relativeFilePath, //ชื่อไฟล์
-                        rating = 0//ต้องอิงตามค่าที่ได้ทำการกดให้คะแนนตามจำนวนลูกค้า
+                        rating = 0,//ต้องอิงตามค่าที่ได้ทำการกดให้คะแนนตามจำนวนลูกค้า
+                        stockQuantity = request.stockQuantity,
                     };
 
                     // Execute the query
@@ -523,7 +524,7 @@ namespace japanese_resturant_project.services.implement
             return response;
         }
         //menuDelete
-        public async Task<AdminResponse> DeleteMenu([FromBody] Guid menuID)
+        public async Task<AdminResponse> DeleteMenu(Guid menuID)
         {
             var response = new AdminResponse();
             try
@@ -564,6 +565,55 @@ namespace japanese_resturant_project.services.implement
             }
 
             return response;
+        }
+
+
+        //getAllTable
+        public async Task<AdminResponse> GetTableList()
+        {
+            var Response = new AdminResponse()
+            {
+                tableList = new List<Table_tb>()
+            };
+
+            try
+            {
+                using (var dbConnection = CreateSQLConnection()) // Establish database connection
+                {
+                    var sql = @"
+                SELECT *
+                 FROM  table_tb
+                 ";
+                    var tablenum = await dbConnection.QueryAsync<Table_tb>(sql);
+
+                    // Check if any reservations were found
+                    if (tablenum != null)
+                    {
+                        // Populate the booking response with the reservations
+                        Response.tableList = tablenum.ToList();
+                        Response.message = "successfully.";
+                        Response.success = true;
+
+                    }
+                    else
+                    {
+                        // Handle case where no reservations were found
+                        Response.message = "Not found data 404.";
+                        Response.success = false;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions here, e.g., log the error
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                // Set error message in the bookingResponse
+                Response.message = $"{ex.Message}";
+                Response.success = false;
+            }
+
+            return Response;
         }
         //orderConfirm
         //chef confirm cooking

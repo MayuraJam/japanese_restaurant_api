@@ -18,4 +18,11 @@ namespace japanese_resturant_project.model.request.customerRequest
         public Guid cartID { get; set; }
         public int quantity { get; set; }
     }
+    public class AddOrderRequest
+    {
+        public string tableID { get; set; } //เปรียบเสมือน customerID
+        public decimal totalPrice { get; set; }
+        public Guid? staftID { get; set; }
+
+    }
 }

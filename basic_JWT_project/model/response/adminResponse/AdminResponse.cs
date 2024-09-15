@@ -9,6 +9,7 @@ namespace japanese_resturant_project.model.response.adminResponse
         public Option_tb_ optionitem { get; set; }
         public Menu_tb menuitem { get; set; }
         public List<Menu_tb> menuList { get; set; }
+        public List<Table_tb> tableList { get; set; }
 
     }
 }
