@@ -19,6 +19,7 @@ namespace japanese_resturant_project.services
         public Task<CustomerResponse> AddOrder(AddOrderRequest request);
         public Task<CustomerResponse> GetOrderDetail(string orderID);
 
+        public Task<CustomerResponse> GetOrder(string tableID);
 
 
     }

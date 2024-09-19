@@ -11,15 +11,10 @@
         public int orderQ {  get; set; }
         //รายการใน order
         public string tableID { get; set; }
+        public string paymentStatus { get; set; }
         public ICollection<OrderDetail_tb>OrderDetailList { get; set; } //เป็นคำสั่งที่หมายถึง ตาราง Orderr เป็นตารางแม่ที่มีคำสั่งซื้อ orderdetail หลายรายการ
         
-        //public string orderDetailStatus { get; set; }
-        //public int quantity { get; set; }
-        //public string? optionValue { get; set; }
-        //public string menuID { get; set; }
-        //public string menuName { get; set; }
-        //public string imageName { get; set; }
-        //public decimal productiPrice { get; set; } //quantity * unitprice
+  
 
 
     }

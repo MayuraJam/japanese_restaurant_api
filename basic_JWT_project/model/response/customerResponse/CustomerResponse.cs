@@ -10,6 +10,7 @@ namespace japanese_resturant_project.model.response.customerResponse
         public Cart_tb cartItem { get;set;}
         public Order_tb orderItem {get;set;}
         public List<OrderDetail_tb> orderList { get; set; }
+        public List<Order_tb> orders { get; set; } 
 
     }
 

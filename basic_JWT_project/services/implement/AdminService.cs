@@ -12,14 +12,12 @@ using japanese_resturant_project.model.DatabaseModel;
 using japanese_resturant_project.model.response.adminResponse;
 using Microsoft.Extensions.Options;
 using Azure.Core;
-using Microsoft.AspNetCore.Http.HttpResults;
+using japanese_resturant_project.model.response.customerResponse;
 
 namespace japanese_resturant_project.services.implement
 {
     public class AdminService : Bases, IAdmin
     {
-
-        //getTable
 
 
         //optionGet
@@ -213,7 +211,7 @@ namespace japanese_resturant_project.services.implement
         }
 
         //getMenu
-        public async Task<AdminResponse> GetMenuList2()
+        public async Task<AdminResponse> GetMenuList2(SearchRequest request)
         {
             var Response = new AdminResponse()
             {
@@ -223,6 +221,7 @@ namespace japanese_resturant_project.services.implement
             
             try
             {
+
                 using (var dbConnection = CreateSQLConnection()) // Establish database connection
                 {
 
@@ -245,8 +244,34 @@ namespace japanese_resturant_project.services.implement
                  FROM  menu_tb m
                  LEFT JOIN
                    option_tb o ON o.optionID = m.optionID
+                 WHERE (@menuName = '' OR m.menuName LIKE '%' + @menuName + '%'OR m.categoryName LIKE '%' + @menuName + '%');
                  ";
-                    var menuValue = await dbConnection.QueryAsync(sql);
+
+                    var sql2 = @"
+                SELECT 
+                 m.menuID,
+                 m.menuName,
+                 m.menuDescription,
+                 m.unitPrice,
+                 m.categoryName,
+                 m.optionID,
+                 m.createDate,
+                 m.updateDate,
+                 m.rating,
+                 m.imageName,
+                 m.stockQuantity,
+                 o.optionName,
+                 o.value
+                 FROM  menu_tb m
+                 LEFT JOIN
+                   option_tb o ON o.optionID = m.optionID;
+                 ";
+
+                    var parameter = new
+                    {
+                        menuName = string.IsNullOrEmpty(request.menuName)? string.Empty : request.menuName,
+                    };
+                    var menuValue = await dbConnection.QueryAsync(sql,parameter);
 
                     // Check if any reservations were found
                     if (menuValue != null&& menuValue.Any())
@@ -283,8 +308,28 @@ namespace japanese_resturant_project.services.implement
                     }
                     else
                     {
+                        var menuValue2 = await dbConnection.QueryAsync(sql2);
+
                         // Handle case where no reservations were found
-                        Response.message = "Not found data 404.";
+                        Response.menuList = menuValue2.Select(x => new Menu_tb()
+                        {
+                            menuID = x.menuID,
+                            menuName = x.menuName,
+                            menuDescription = x.menuDescription,
+                            unitPrice = x.unitPrice,
+                            categoryName = x.categoryName,
+                            optionID = x.optionID,
+                            createDate = x.createDate,
+                            updateDate = x.createDate,
+                            rating = x.rating,
+                            imageName = x.imageName,
+                            optionName = x.optionName,
+                            value = x.value,
+                            imageSrc = String.Format("https://localhost:7202/Image/{0}", x.imageName),
+                            stockQuantity = x.stockQuantity,
+
+                        }).ToList();
+                        Response.message = "ไม่พบข้อมูลที่ท่านต้องการค้นหา";
                         Response.success = false;
 
                     }
@@ -301,7 +346,7 @@ namespace japanese_resturant_project.services.implement
 
             return Response;
         }
-        public async Task<AdminResponse> GetMenuByID(Guid menuID)
+        public async Task<AdminResponse> GetMenuByID(string menuID)
         {
             var Response = new AdminResponse()
             {
@@ -387,7 +432,12 @@ namespace japanese_resturant_project.services.implement
         public async Task<AdminResponse> AddMenu([FromForm] MenuRequest request)
         {
             var response = new AdminResponse();
-            var menuID = Guid.NewGuid();
+            //var menuID = Guid.NewGuid();
+
+            Random random = new Random();
+            int randomID = random.Next(0, 99999);
+            string genMenuID = "M" + randomID.ToString();
+
             string? relativeFilePath = null;
             if (request.imageFile != null)
             {
@@ -416,7 +466,7 @@ namespace japanese_resturant_project.services.implement
                 {
                     var parameters = new
                     {
-                        menuID = menuID,
+                        menuID = genMenuID,
                         menuName = request.menuName,
                         menuDescription = request.menuDescription,
                         unitPrice = request.unitPrice,
@@ -479,7 +529,15 @@ namespace japanese_resturant_project.services.implement
                 using (var dbConnection = CreateSQLConnection()) // Establish database connection
                 {
                     var sql = @"UPDATE menu_tb
-                        SET menuName=@menuName,menuDescription=@menuDescription,unitPrice=@unitPrice,categoryName=@categoryName,optionID=@optionID,updateDate=@updateDate,rating = @rating,imageName = @imageName,stockQuantity=@stockQuantity
+                        SET menuName=@menuName,
+                            menuDescription=@menuDescription,
+                            unitPrice=@unitPrice,
+                            categoryName=@categoryName,
+                            optionID=@optionID,
+                            updateDate=@updateDate,
+                            rating = @rating,
+                            imageName = @imageName,
+                            stockQuantity= stockQuantity + @stockQuantity
                         WHERE menuID = @menuID";
 
                     // Use parameterized query to prevent SQL injection
@@ -524,7 +582,7 @@ namespace japanese_resturant_project.services.implement
             return response;
         }
         //menuDelete
-        public async Task<AdminResponse> DeleteMenu(Guid menuID)
+        public async Task<AdminResponse> DeleteMenu(string menuID)
         {
             var response = new AdminResponse();
             try
@@ -616,6 +674,169 @@ namespace japanese_resturant_project.services.implement
             return Response;
         }
         //orderConfirm
+        public Task<AdminResponse> GetOrderForAdmin()
+        {
+            var Response = new AdminResponse()
+            {
+                orders = new List<Order_tb>()
+            };
+            try
+            {
+                using (var dbConnection = CreateSQLConnection()) // Establish database connection
+                {
+                    var sql = @"
+                SELECT 
+                 o.orderID,
+                 o.tableID,
+                 o.staftID,
+                 o.orderStatus,
+                 o.orderDate,
+                 o.totalPrice,
+                 o.confirmOrder,
+                 o.paymentStatus,
+                 od.menuID,
+                 od.orderDetailStatus,
+                 od.quantity,
+                 od.optionValue,
+                 od.netprice,
+                 m.menuName,
+                 m.unitPrice,
+                 m.imageName
+                 FROM  order_tb o
+                 LEFT JOIN 
+                   orderDetail_tb od ON od.orderID = o.orderID 
+                 LEFT JOIN 
+                   menu_tb m ON m.menuID = od.menuID 
+                 ";
+                   
+                    var Value = dbConnection.Query<Order_tb, OrderDetail_tb, Order_tb>(sql, (order, orderDatail) =>
+                    {
+                        order.OrderDetailList = order.OrderDetailList ?? new List<OrderDetail_tb>();
+                        if (orderDatail != null)
+                        {
+                            orderDatail.imageSrc = String.Format("https://localhost:7202/Image/{0}", orderDatail.imageName);
+                            order.OrderDetailList.Add(orderDatail);
+                        }
+                        return order;
+                    },splitOn: "menuID").GroupBy(o => o.orderID).Select(g =>
+                    {
+                        var groupOrderList = g.First();
+                        groupOrderList.OrderDetailList = g.SelectMany(o => o.OrderDetailList).ToList();
+                        return groupOrderList;
+                    }).ToList();
+
+
+
+                    if (Value != null && Value.Any())
+                    {
+
+                        Response.orders = Value.ToList();
+                        Response.message = "successfully.";
+                        Response.success = true;
+
+                    }
+                    else
+                    {
+                        Response.message = "ไม่พบรายการสั่งของโต๊ะนี้";
+                        Response.success = false;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"An error occurred: {ex.Message}");
+
+                Response.message = $"{ex.Message}";
+                Response.success = false;
+            }
+
+            return Task.FromResult(Response);
+        }
+
+        public Task<AdminResponse> GetOrderByID(string orderID)
+        {
+            var Response = new AdminResponse();
+            
+            try
+            {
+                using (var dbConnection = CreateSQLConnection()) // Establish database connection
+                {
+                    var sql = @"
+                SELECT 
+                 o.orderID,
+                 o.tableID,
+                 o.staftID,
+                 o.orderStatus,
+                 o.orderDate,
+                 o.totalPrice,
+                 o.confirmOrder,
+                 o.paymentStatus,
+                 od.menuID,
+                 od.orderDetailStatus,
+                 od.quantity,
+                 od.optionValue,
+                 od.netprice,
+                 m.menuName,
+                 m.unitPrice,
+                 m.imageName
+                 FROM  order_tb o
+                 LEFT JOIN 
+                   orderDetail_tb od ON od.orderID = o.orderID 
+                 LEFT JOIN 
+                   menu_tb m ON m.menuID = od.menuID 
+                 WHERE o.orderID = @orderID
+                 ";
+                    var parameter = new
+                    {
+                        orderID = orderID
+                    };
+                    var Value = dbConnection.Query<Order_tb, OrderDetail_tb, Order_tb>(sql, (order, orderDatail) =>
+                    {
+                        order.OrderDetailList = order.OrderDetailList ?? new List<OrderDetail_tb>();
+                        if (orderDatail != null)
+                        {
+                            orderDatail.imageSrc = String.Format("https://localhost:7202/Image/{0}", orderDatail.imageName);
+                            order.OrderDetailList.Add(orderDatail);
+                        }
+                        return order;
+                    }, parameter,splitOn: "menuID").GroupBy(o => o.orderID).Select(g =>
+                    {
+                        var groupOrderList = g.First();
+                        groupOrderList.OrderDetailList = g.SelectMany(o => o.OrderDetailList).ToList();
+                        return groupOrderList;
+                    }).ToList();
+
+
+
+                    if (Value != null && Value.Any())
+                    {
+
+                        Response.orderItem = Value.FirstOrDefault();
+                        Response.message = "successfully.";
+                        Response.success = true;
+
+                    }
+                    else
+                    {
+                        Response.message = "ไม่พบรายการสั่งของโต๊ะนี้";
+                        Response.success = false;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"An error occurred: {ex.Message}");
+
+                Response.message = $"{ex.Message}";
+                Response.success = false;
+            }
+
+            return Task.FromResult(Response);
+        }
         //chef confirm cooking
         //QAF answer
     }

@@ -71,7 +71,7 @@
     "Parameters": [
       {
         "Name": "menuID",
-        "Type": "System.Guid",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -97,10 +97,16 @@
     "ContainingType": "japanese_resturant_project.Controllers.AdminController",
     "Method": "GetMenuList2",
     "RelativePath": "api/Admin/GetMenu",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "japanese_resturant_project.model.request.SearchRequest",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -113,7 +119,7 @@
     "Parameters": [
       {
         "Name": "menuID",
-        "Type": "System.Guid",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -128,6 +134,32 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "japanese_resturant_project.Controllers.AdminController",
+    "Method": "GetOrderForAdmin",
+    "RelativePath": "api/Admin/GetOrder",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "japanese_resturant_project.Controllers.AdminController",
+    "Method": "GetOrderByID",
+    "RelativePath": "api/Admin/GetOrderByID/{orderID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderID",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "japanese_resturant_project.Controllers.AdminController",
@@ -211,7 +243,7 @@
     "Parameters": [
       {
         "Name": "menuID",
-        "Type": "System.Guid",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -411,6 +443,32 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "japanese_resturant_project.Controllers.CustomerController",
+    "Method": "GetOrder",
+    "RelativePath": "api/Customer/GetOrder/{tableID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tableID",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "japanese_resturant_project.model.response.customerResponse.CustomerResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "japanese_resturant_project.Controllers.CustomerController",

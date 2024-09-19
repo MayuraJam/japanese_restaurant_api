@@ -77,5 +77,12 @@ namespace japanese_resturant_project.Controllers
             return response;
         }
 
+        [HttpGet("GetOrder/{tableID}")]
+        public async Task<CustomerResponse> GetOrder(string tableID)
+        {
+            var response = await _service.CustomerService().GetOrder(tableID);
+            return response;
+        }
+
     }
 }

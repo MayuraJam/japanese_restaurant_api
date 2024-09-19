@@ -28,7 +28,7 @@ namespace japanese_resturant_project.model.request
     }
     public class MenuUpdate
     {
-        public Guid menuID { get; set; }
+        public string menuID { get; set; }
         public string? menuName { get; set; }
         public string? menuDescription { get; set; }
 
@@ -40,6 +40,10 @@ namespace japanese_resturant_project.model.request
         public IFormFile imageFile { get; set; }
         public int stockQuantity { get; set; }
 
+    }
+    public class SearchRequest
+    {
+        public string? menuName { get; set; }
     }
 
 }

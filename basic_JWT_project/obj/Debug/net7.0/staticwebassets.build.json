@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "sEaF6z51fQQ3hjfJe3F3R8iOhBJsVv2BdDkmmw+xvx0=",
+  "Hash": "mA1v3ZUMOOEuqXX2WsvYZPC52GvqvGGMhTuot4j5p/w=",
   "Source": "japanese_resturant_project",
   "BasePath": "_content/japanese_resturant_project",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\16aba539-bbd5-472d-bd14-31ab4227c4ec_food.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\1b3cfadb-04ac-42ae-b781-63b8717a44cd_sabaFood.jpg",
+      "SourceId": "japanese_resturant_project",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\",
+      "BasePath": "_content/japanese_resturant_project",
+      "RelativePath": "uploads/1b3cfadb-04ac-42ae-b781-63b8717a44cd_sabaFood.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\1b3cfadb-04ac-42ae-b781-63b8717a44cd_sabaFood.jpg"
     },
     {
       "Identity": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\5cb79ee3-0bc5-464b-8595-346f3098a1e8_d9b95ec5a76022f292e5d50524ec57e6.jpg",

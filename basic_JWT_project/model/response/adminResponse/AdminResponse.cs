@@ -10,6 +10,8 @@ namespace japanese_resturant_project.model.response.adminResponse
         public Menu_tb menuitem { get; set; }
         public List<Menu_tb> menuList { get; set; }
         public List<Table_tb> tableList { get; set; }
+        public List<Order_tb> orders {  get; set; }
+        public Order_tb orderItem { get; set; }
 
     }
 }

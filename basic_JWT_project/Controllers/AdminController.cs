@@ -141,14 +141,14 @@ namespace japanese_resturant_project.Controllers
             var response = await _service.AdminService().DeleteOption(optionID);
             return Ok(response);
         }
-        [HttpGet("GetMenu")]
-        public async Task<IActionResult> GetMenuList2()
+        [HttpPost("GetMenu")]
+        public async Task<IActionResult> GetMenuList2(SearchRequest request)
         {
-            var response = await _service.AdminService().GetMenuList2();
+            var response = await _service.AdminService().GetMenuList2(request);
             return Ok(response);
         }
         [HttpPost("GetMenuByID/{menuID}")]
-        public async Task<AdminResponse> GetMenuByID(Guid menuID)
+        public async Task<AdminResponse> GetMenuByID(string menuID)
         {
             var response = await _service.AdminService().GetMenuByID(menuID);
             return response;
@@ -167,7 +167,7 @@ namespace japanese_resturant_project.Controllers
             return Ok(response);
         }
         [HttpDelete("DeleteMenu/{menuID}")]
-        public async Task<IActionResult> DeleteMenu(Guid menuID)
+        public async Task<IActionResult> DeleteMenu(string menuID)
         {
             var response = await _service.AdminService().DeleteMenu(menuID);
             return Ok(response);
@@ -189,5 +189,20 @@ namespace japanese_resturant_project.Controllers
             var response = await _service.AdminService().GetTableList();
             return Ok(response);
         }
+
+        [HttpGet("GetOrder")]
+        public async Task<IActionResult> GetOrderForAdmin()
+        {
+            var response = await _service.AdminService().GetOrderForAdmin();
+            return Ok(response);
+        }
+        [HttpGet("GetOrderByID/{orderID}")]
+        public async Task<IActionResult> GetOrderByID(string orderID)
+        {
+            var response = await _service.AdminService().GetOrderByID(orderID);
+            return Ok(response);
+        }
+
+
     }
 }
