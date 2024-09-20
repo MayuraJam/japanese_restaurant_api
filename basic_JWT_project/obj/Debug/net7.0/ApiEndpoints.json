@@ -63,6 +63,32 @@
   },
   {
     "ContainingType": "japanese_resturant_project.Controllers.AdminController",
+    "Method": "ConfirmOrder",
+    "RelativePath": "api/Admin/ConfirmOrder",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "japanese_resturant_project.model.request.ConfirmRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "japanese_resturant_project.model.response.adminResponse.AdminResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "japanese_resturant_project.Controllers.AdminController",
     "Method": "DeleteMenu",
     "RelativePath": "api/Admin/DeleteMenu/{menuID}",
     "HttpMethod": "DELETE",

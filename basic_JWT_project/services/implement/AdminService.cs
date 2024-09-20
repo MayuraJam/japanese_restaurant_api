@@ -13,6 +13,7 @@ using japanese_resturant_project.model.response.adminResponse;
 using Microsoft.Extensions.Options;
 using Azure.Core;
 using japanese_resturant_project.model.response.customerResponse;
+using japanese_resturant_project.model.request.customerRequest;
 
 namespace japanese_resturant_project.services.implement
 {
@@ -707,6 +708,8 @@ namespace japanese_resturant_project.services.implement
                    orderDetail_tb od ON od.orderID = o.orderID 
                  LEFT JOIN 
                    menu_tb m ON m.menuID = od.menuID 
+                 ORDER BY 
+                  CASE WHEN o.confirmOrder = 'ยังไม่อนุมัติ' THEN 0 ELSE 1 END
                  ";
                    
                     var Value = dbConnection.Query<Order_tb, OrderDetail_tb, Order_tb>(sql, (order, orderDatail) =>
@@ -838,6 +841,92 @@ namespace japanese_resturant_project.services.implement
             return Task.FromResult(Response);
         }
         //chef confirm cooking
+        public async Task<AdminResponse> ConfirmOrder(ConfirmRequest request)
+        {
+            
+            //string genOrderDetailID = "ODT" + randomID.ToString();
+            var response = new AdminResponse();
+            try
+            {
+                var orderSQL = @"UPDATE order_tb
+                        SET confirmOrder = @confirmOrder,
+                         staftID = @staftID
+                        WHERE orderID = @orderID";
+               
+                var upadateorderDetailSQL = @"UPDATE orderDetail_tb
+                        SET orderDetailStatus = @orderDetailStatus
+                        WHERE orderID = @orderID";
+                using (var dbConnection = CreateSQLConnection()) // Establish database connection
+                {
+                    var parameters = new
+                    {
+                        orderID = request.orderID,
+                        confirmOrder = request.confirm,
+                        staftID = request.staftID,
+                    };
+                    var orderValue = await dbConnection.ExecuteAsync(orderSQL, parameters);
+
+                    if (orderValue > 0)
+                    {
+                        response.orderItem = new Order_tb()
+                        {
+                            orderID = request.orderID,
+                            confirmOrder = request.confirm,
+                            staftID = request.staftID,
+                        };
+                        if(request.confirm == "อนุญาติเรียบร้อย")
+                        {
+                                var orderDetailupdate = new 
+                                {
+                                    orderID = request.orderID,
+                                    orderDetailStatus = "กำลังปรุง"
+                                };
+                                var orderDetailData = await dbConnection.ExecuteAsync(upadateorderDetailSQL, orderDetailupdate); 
+                                
+                                if (orderDetailData > 0)
+                                {
+                                    response.message = "แก้ไขข้อมูลลงในรายการการสั่งซื้อสำเร็จ";
+                                }
+                                else
+                                {
+                                    response.message = "แก้ไขข้อมูลลงในรายการการสั่งซื้อไม่สำเร็จ";
+                                }
+                         }else if (request.confirm == "ยกเลิกรายการสั่งนี้")
+                        {
+                            var orderDetailupdate = new
+                            {
+                                orderID = request.orderID,
+                                orderDetailStatus = "เมนูนี้ถูกยกเลิกโดยพนักงานเนื่องจาก มีบางอย่างผิดปกติ"
+                            };
+                            var orderDetailData = await dbConnection.ExecuteAsync(upadateorderDetailSQL, orderDetailupdate);
+
+                            if (orderDetailData > 0)
+                            {
+                                response.message = "แก้ไขข้อมูลลงในรายการการสั่งซื้อสำเร็จ";
+                            }
+                            else
+                            {
+                                response.message = "แก้ไขข้อมูลลงในรายการการสั่งซื้อไม่สำเร็จ";
+                            }
+                        }
+                     }
+                      
+
+                    
+                    else
+                    {
+                        response.message = "เพิ่มข้อมูลการสั่งอาหารไม่สำเร็จ";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                response.message = $"{ex}";
+
+            }
+            return response;
+        }
         //QAF answer
     }
 }

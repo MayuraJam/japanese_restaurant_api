@@ -202,7 +202,12 @@ namespace japanese_resturant_project.Controllers
             var response = await _service.AdminService().GetOrderByID(orderID);
             return Ok(response);
         }
-
+        [HttpPut("ConfirmOrder")]
+        public async Task<AdminResponse> ConfirmOrder(ConfirmRequest request)
+        {
+            var response = await _service.AdminService().ConfirmOrder(request);
+            return response;
+        }
 
     }
 }

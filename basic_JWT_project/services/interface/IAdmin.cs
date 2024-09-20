@@ -20,6 +20,7 @@ namespace japanese_resturant_project.services
         public Task<AdminResponse> GetTableList();
         public Task<AdminResponse> GetOrderForAdmin();
         public Task<AdminResponse> GetOrderByID(string orderID);
+        public Task<AdminResponse> ConfirmOrder(ConfirmRequest request);
 
 
 
