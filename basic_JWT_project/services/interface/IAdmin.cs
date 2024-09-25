@@ -8,6 +8,8 @@ namespace japanese_resturant_project.services
 {
     public interface IAdmin
     {
+        public Task<AdminResponse> GetStaftProfile(string staftID);
+        public Task<AdminResponse> UpdateStaftProfile(UpdateStaftProfileRequest request);
         public Task<AdminResponse> GetOptionList();
         public Task<AdminResponse> AddOption(OptionRequest request);
         public Task<AdminResponse> UpdateOption(Option_tb_ request);
@@ -21,6 +23,8 @@ namespace japanese_resturant_project.services
         public Task<AdminResponse> GetOrderForAdmin();
         public Task<AdminResponse> GetOrderByID(string orderID);
         public Task<AdminResponse> ConfirmOrder(ConfirmRequest request);
+        public Task<AdminResponse> GetOrderDetail();
+        public Task<AdminResponse> updateOrderStatus(UpdateOrderStatusRequest request);
 
 
 

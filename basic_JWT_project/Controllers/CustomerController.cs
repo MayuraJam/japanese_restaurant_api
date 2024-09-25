@@ -83,6 +83,11 @@ namespace japanese_resturant_project.Controllers
             var response = await _service.CustomerService().GetOrder(tableID);
             return response;
         }
-
+        [HttpPut("CancleOrder/{orderID}")]
+        public async Task<IActionResult> CancleOrder(string orderID)
+        {
+            var response = await _service.CustomerService().CancleOrder(orderID);
+            return Ok(response);
+        }
     }
 }

@@ -3,7 +3,7 @@
     public class Customer_Authentication_tb
     {
         public Guid memberID { get; set; }
-        public Guid pointID { get; set; }
+        public string pointID { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string phone { get; set; }

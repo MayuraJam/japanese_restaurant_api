@@ -18,9 +18,8 @@ namespace japanese_resturant_project.services
         public Task<CustomerResponse> DeleteCartItem(Guid cartID);
         public Task<CustomerResponse> AddOrder(AddOrderRequest request);
         public Task<CustomerResponse> GetOrderDetail(string orderID);
-
         public Task<CustomerResponse> GetOrder(string tableID);
-
+        public Task<CustomerResponse> CancleOrder(string orderID);
 
     }
 }

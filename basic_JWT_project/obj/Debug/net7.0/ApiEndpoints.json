@@ -189,6 +189,32 @@
   },
   {
     "ContainingType": "japanese_resturant_project.Controllers.AdminController",
+    "Method": "GetOrderDetail",
+    "RelativePath": "api/Admin/GetOrderStatus",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "japanese_resturant_project.Controllers.AdminController",
+    "Method": "GetStaftProfile",
+    "RelativePath": "api/Admin/GetStaftData",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "staftID",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "japanese_resturant_project.Controllers.AdminController",
     "Method": "GetTableList",
     "RelativePath": "api/Admin/GetTable",
     "HttpMethod": "GET",
@@ -200,7 +226,7 @@
   {
     "ContainingType": "japanese_resturant_project.Controllers.AdminController",
     "Method": "RegiterJWT",
-    "RelativePath": "api/Admin/login",
+    "RelativePath": "api/Admin/loginTest",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -236,7 +262,7 @@
   {
     "ContainingType": "japanese_resturant_project.Controllers.AdminController",
     "Method": "RegiterHash",
-    "RelativePath": "api/Admin/register",
+    "RelativePath": "api/Admin/registerTest",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -258,6 +284,38 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "japanese_resturant_project.Controllers.AdminController",
+    "Method": "updateOrderStatus",
+    "RelativePath": "api/Admin/UpdateOrderStatus",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "japanese_resturant_project.model.request.UpdateOrderStatusRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "japanese_resturant_project.Controllers.AdminController",
+    "Method": "UpdateStaftProfile",
+    "RelativePath": "api/Admin/UpdateStaftData",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "japanese_resturant_project.model.request.UpdateStaftProfileRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "japanese_resturant_project.Controllers.AdminController",
@@ -344,8 +402,8 @@
   },
   {
     "ContainingType": "japanese_resturant_project.Controllers.AuthController",
-    "Method": "ToLogin",
-    "RelativePath": "api/Auth/Login",
+    "Method": "ToLoginCustomer",
+    "RelativePath": "api/Auth/LoginCustomerMember",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -417,6 +475,22 @@
       {
         "Name": "request",
         "Type": "japanese_resturant_project.model.request.customerRequest.AddOrderRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "japanese_resturant_project.Controllers.CustomerController",
+    "Method": "CancleOrder",
+    "RelativePath": "api/Customer/CancleOrder/{orderID}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderID",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],

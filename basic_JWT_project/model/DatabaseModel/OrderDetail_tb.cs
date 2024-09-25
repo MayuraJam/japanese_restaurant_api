@@ -14,6 +14,9 @@
         public decimal? unitPrice { get; set; }
         public int stockQuantity { get; set; }
         public decimal netprice { get; set; } //quantity * unitprice
+        public DateTime orderDate {  get; set; } 
+        public string categoryName { get; set; }
+        public string tableID { get; set; }
         public Order_tb orderMain { get; set; } //เชื่อมโยงคำสั่ง 1 รายการต่อ 1 order
     }
 }

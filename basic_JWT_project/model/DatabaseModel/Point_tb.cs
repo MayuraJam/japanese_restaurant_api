@@ -2,7 +2,7 @@
 {
     public class Point_tb
     {
-        public Guid pointID { get; set; }
+        public string pointID { get; set; }
         public string description { get; set; }
         public int currentPoint { get; set; }
         public DateTime createDate { get; set; }

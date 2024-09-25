@@ -40,10 +40,10 @@ namespace japanese_resturant_project.Controllers
             var reponse = await _service.AuthService().GetMember(roleName);
             return Ok(reponse);
         }
-        [HttpPost("Login")]
-        public async Task<IActionResult> ToLogin(Login request)
+        [HttpPost("LoginCustomerMember")]
+        public async Task<IActionResult> ToLoginCustomer(Login request)
         {
-            var reponse = await _service.AuthService().ToLogin(request);
+            var reponse = await _service.AuthService().ToLoginCustomer(request);
             return Ok(reponse);
         }
         [HttpPost("LoginStaft")]

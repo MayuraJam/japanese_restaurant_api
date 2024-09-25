@@ -15,6 +15,7 @@ using System.Data.Common;
 using Azure;
 using japanese_resturant_project.model.response.adminResponse;
 using System.Reflection.Metadata.Ecma335;
+using System.Reflection.Metadata;
 
 
 namespace japanese_resturant_project.services.implement
@@ -45,9 +46,12 @@ namespace japanese_resturant_project.services.implement
         {
             var response = new UserResponseModel();
             var userID = Guid.NewGuid();
-            var staftID = Guid.NewGuid();
             var memberID = Guid.NewGuid();
-            var pointID = Guid.NewGuid();
+            //var pointID = Guid.NewGuid();
+            Random random = new Random();
+            int randomID = random.Next(0, 99999);
+            string pointID = "P" + randomID.ToString();
+            var staftID = "STAFT"+randomID.ToString();
 
             try
             {
@@ -80,38 +84,23 @@ namespace japanese_resturant_project.services.implement
                             roleName = request.roleName,
 
                         };
-                        dbConnection.Execute(sqlCustomer,parameterCustomer); //นำค่าใส่ตารางลูกค้า
+                       var customer =  dbConnection.Execute(sqlCustomer,parameterCustomer); //นำค่าใส่ตารางลูกค้า
 
-                        var sqlpoint = @"INSERT INTO point_tb (pointID,currentPoint,description,createDate,userID)
-                        VALUES (@pointID,@currentPoint,@description,@createDate,@userID)";
+                        var sqlpoint = @"INSERT INTO point_tb (pointID,currentPoint,description,createDate,memberID)
+                        VALUES (@pointID,@currentPoint,@description,@createDate,@memberID)";
                         // Use parameterized query to prevent SQL injection
                         var parameterpoint = new
                         {
                             pointID = pointID,
                             currentPoint = 10,
-                            description = "ได้รับแต้ม",
+                            description = "ได้รับแต้ม เนื่องจากเป็นสมาชิกใหม่",
                             createDate = DateTime.Now,
-                            userID = userID
+                            memberID = memberID
                         };
                         var customerecord = dbConnection.Execute(sqlpoint,parameterpoint); //นำค่าใส่ตารางคะแนน
 
                         if (customerecord > 0)
                        {
-                        response.member = new Customer_Authentication_tb
-                        {
-                            memberID = memberID,
-                            pointID = pointID,
-                            firstName = request.firstName,
-                            lastName = request.lastName,
-                            phone = request.phone,
-                            currentPoint = 10,
-                            description = "ได้รับแต้ม",
-                            createDate = DateTime.Now,
-                            userID = userID,
-                            email = request.email,
-                            password = request.password,
-                            roleName = request.roleName,
-                        };
                             // Set success message
                             response.message = "เพิ่มข้อมูลสำเร็จ";
                             response.success = true;
@@ -127,8 +116,8 @@ namespace japanese_resturant_project.services.implement
                     else if(request.roleName == "พนักงาน")
                     {
 
-                        var sqlAdmin = @"INSERT INTO staft_tb (staftID,firstName,lastName, phone,createDate,updateDate,userID,email,password,roleName,accountStatus)
-                        VALUES (@staftID, @firstName,@lastName, @phone,@createDate,@updateDate,@userID,@email,@password,@roleName,@accountStatus)";
+                        var sqlAdmin = @"INSERT INTO staft_tb (staftID,firstName,lastName, phone,createDate,updateDate,userID,email,password,roleName,accountStatus,jobType)
+                        VALUES (@staftID, @firstName,@lastName, @phone,@createDate,@updateDate,@userID,@email,@password,@roleName,@accountStatus,@jobType)";
                         // Use parameterized query to prevent SQL injection
                         response.account = new Staft_Authentication_tb
                         {
@@ -142,7 +131,8 @@ namespace japanese_resturant_project.services.implement
                             email = request.email,
                             password = request.password,
                             roleName = request.roleName,
-                            accountStatus = "อยู่ในระบบ"
+                            accountStatus = "อยู่ในระบบ",
+                             jobType = request.jobType,
                         };
                         var adminrecord = await dbConnection.ExecuteAsync(sqlAdmin, response.account);
                         if (adminrecord > 0)
@@ -174,116 +164,69 @@ namespace japanese_resturant_project.services.implement
         }
 
         //login ลูกค้าพร้อมยอดซื้อทั้งหมด & login พนักงาน
-      public async Task<UserResponseModel> ToLogin(Login request)
+      public async Task<UserResponseModel> ToLoginCustomer(Login request)
         {
            var response = new UserResponseModel();
-           var pointID = Guid.NewGuid();
-
-
-            var SqlAutn = @"SELECT * FROM Authentication_tb WHERE email = @email AND password = @password";
-           //ส่วนแสดงข้อมูลของ ตาราง AUthentication 
+            Random random = new Random();
+            int randomID = random.Next(0, 99999);
+            string pointID = "P" + randomID.ToString();
+            //เข้าผ่านของ customer 
+            //var SqlAutn = @"SELECT * FROM Authentication_tb WHERE email = @email AND password = @password";
+            var sqlCustomer = @"SELECT * FROM customer_tb WHERE email = @email AND password = @password AND roleName = @roleName";
+            //ส่วนแสดงข้อมูลของ ตาราง AUthentication 
             using (var dbConnection = CreateSQLConnection())
             {
-                var authValue = await dbConnection.QueryFirstOrDefaultAsync<Authentication_tb>(SqlAutn, new { email = request.email, password = request.password });
+                try
+                {
+                var authValue = await dbConnection.QueryFirstOrDefaultAsync<Customer_tb>(sqlCustomer, new { email = request.email, password = request.password, roleName = request.roleName });
                 if (authValue != null)
                 {
-                   if(authValue.email == request.email && authValue.password == request.password && authValue.roleName =="ลูกค้า")  //ตรวจสอยเงื่อนไขทั้ง 3 
+
+                    //
+                    var sqlPoint = @"
+                                            INSERT INTO point_tb (pointID, currentPoint,description,createDate,memberID)
+                                            VALUES (@pointID, @currentPoint,@description,@createDate,@memberID);";
+
+                    //อัปเดตในส่วนของลูกค้า
+                    var parameterpoint = new
                     {
-                        var sqlCustomer = @"IF NOT EXISTS (
-                                            SELECT @userID
-                                            FROM customer_tb
-                                            WHERE email = @email AND password = @password
-                                            ) 
-                                            BEGIN
-                                            INSERT INTO point_tb (pointID, currentPoint,description,createDate,userID)
-                                            VALUES (@pointID, @currentPoint,@description,@createDate,@userID);
-                                            END;";
+                        email = request.email,
+                        password = request.password,
+                        pointID = pointID,
+                        memberID = authValue.memberID,
+                        currentPoint = 20,
+                        description = "ได้รับแต้ม",
+                        createDate = DateTime.Now,
+                    };
+                    var pointValue = await dbConnection.ExecuteAsync(sqlPoint, parameterpoint);
 
-                        //อัปเดตในส่วนของลูกค้า
-                        var parameterpoint = new
-                        {
-                            email = request.email,
-                            password = request.password,
-                            pointID = pointID,
-                            userID = authValue.userID,
-                            currentPoint = 20,
-                            description = "ได้รับแต้ม",
-                            createDate = DateTime.Now,
-                        };
-                        var pointValue = await dbConnection.ExecuteAsync(sqlCustomer, parameterpoint);
-
-                        if(pointValue > 0)
-                        {
-                           // response.pointitem = pointValue;
-                            response.message = "เพิ่มข้อมูลสำเร็จ";
-                            response.success = true;
-                        }
-                        else
-                        {
-                            response.message = "เพิ่มข้อมูลไม่สำเร็จ";
-                            response.success = false;
-                        }
-
+                    if (pointValue > 0)
+                    {
+                        // response.pointitem = pointValue;
+                        response.message = "เพิ่มข้อมูลสำเร็จ";
+                        response.success = true;
                     }
                     else
                     {
-                        var response2 = new UserResponseModel
-                        {
-                            message = "ไม่พบเจอบัญชีนี้",
-                            success = false
-                        };
-                        return response2;
-                    }
-
-                }
-                else if(authValue.email == request.email && authValue.password == request.password && authValue.roleName == "พนักงาน")
-                {
-                    try
-                    {
-                        
-                            var sql = @"
-                          SELECT 
-                          staftID,firstName,lastName,phone,userID,createDate,updateDate,userID,email,password,roleName
-                          FROM  staft_tb WHERE email = @email AND password = @password AND roleName = @roleName
-                          ";
-                            var parameterStaft = new
-                            {
-                                email = authValue.email,
-                                password = authValue.password,
-                                roleName = authValue.roleName,
-                            };
-                            var memberValue = await dbConnection.QueryFirstAsync<Staft_Authentication_tb>(sql,parameterStaft);
-
-                            // Check if any reservations were found
-                            if (memberValue  != null)
-                            {
-
-
-                                response.account = memberValue;
-                                response.message = "successfully.";
-                                response.success = true;
-
-                            }
-                            else
-                            {
-
-                                // Handle case where no reservations were found
-                                response.message = "Not found data 404.";
-                                response.success = false;
-
-                            }
-                        
-                    }
-                    catch (Exception ex)
-                    {
-                        // Handle case where no reservations were found
-                        response.message = $"{ex}";
+                        response.message = "เพิ่มข้อมูลไม่สำเร็จ";
                         response.success = false;
-
                     }
+
                 }
-            }
+                else
+                {
+                    response.message = "ไม่พบบัญชีผู้ใช้งานรายนี้";
+                    response.success = false;
+                }
+
+                }
+                catch(Exception ex) {
+                 
+                     response.message = ex.Message;
+                    response.success = false;
+                }
                 return response;
+            }
         }
 
         /* static int calculatePoint(decimal totalPrice)
@@ -322,7 +265,7 @@ namespace japanese_resturant_project.services.implement
                         {
                             var sql = @"
                             SELECT 
-                            staftID,firstName,lastName,phone,userID,createDate,updateDate,userID,email,password,roleName,accountStatus
+                            staftID,firstName,lastName,phone,userID,createDate,updateDate,userID,email,password,roleName,accountStatus,jobType
                             FROM  staft_tb WHERE email = @email AND password = @password AND roleName = @roleName
                             ";
                         var parameterShowStaft = new
@@ -402,7 +345,7 @@ namespace japanese_resturant_project.services.implement
 
                 return response;
         }
-        public async Task<UserResponseModel> GetMember([FromBody] string roleName)
+        public Task<UserResponseModel> GetMember([FromBody] string roleName)
         {
 
             var response = new UserResponseModel();
@@ -418,26 +361,32 @@ namespace japanese_resturant_project.services.implement
                           c.memberID,c.firstName,c.lastName,c.phone,c.userID,c.email,c.password,c.roleName,p.pointID,p.currentPoint,p.description,p.createDate,c.userID
                           FROM  customer_tb c
                           LEFT JOIN
-                          point_tb p ON p.userID = c.userID
+                          point_tb p ON p.memberID = c.memberID
                           ";
-                        var memberValue = await dbConnection.QueryAsync<Customer_Authentication_tb>(sql);
-
-                        // Check if any reservations were found
-                        if (memberValue != null && memberValue.Any())
+                        var memberValue = dbConnection.Query<Customer_tb, Point_tb, Customer_tb>(sql, (customer, point) =>
                         {
-                            // Populate the booking response with the reservations
-
-
-                            response.memberList = memberValue.ToList();
+                            customer.pointlList = customer.pointlList?? new List<Point_tb>();
+                            if(point != null)
+                            {
+                                customer.pointlList.Add(point);
+                            }
+                            return customer;
+                        },splitOn: "pointID").GroupBy(o => o.memberID).Select(g =>
+                        {
+                            var groupPointList = g.First();
+                            groupPointList.pointlList = g.SelectMany(o => o.pointlList).ToList();
+                            groupPointList.countOfPoint = g.Count();
+                            return groupPointList;
+                        }).ToList();
+                            if (memberValue != null && memberValue.Any())
+                        {
+                            response.customerList = memberValue.ToList();
                             response.message = "successfully.";
                             response.success = true;
 
                         }
                         else
                         {
-
-
-                            // Handle case where no reservations were found
                             response.message = "Not found data 404.";
                             response.success = false;
 
@@ -465,10 +414,10 @@ namespace japanese_resturant_project.services.implement
                     {
                         var sql = @"
                           SELECT 
-                          staftID,firstName,lastName,phone,userID,createDate,updateDate,userID,email,password,roleName,accountStatus
+                          staftID,firstName,lastName,phone,userID,createDate,updateDate,userID,email,password,roleName,accountStatus,jobType
                           FROM  staft_tb
                           ";
-                        var memberValue = await dbConnection.QueryAsync<Staft_Authentication_tb>(sql);
+                        var memberValue = dbConnection.Query<Staft_Authentication_tb>(sql);
 
                         // Check if any reservations were found
                         if (memberValue != null && memberValue.Any())
@@ -499,9 +448,10 @@ namespace japanese_resturant_project.services.implement
                 }
 
             }
-           return response;
+           return Task.FromResult(response); ;
         }
 
+        //logoutStaft
 
     }
 }

@@ -10,6 +10,8 @@ using Azure.Core;
 using Azure;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Net.WebSockets;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using System.Collections.Generic;
 
 namespace japanese_resturant_project.services.implement
 {
@@ -632,35 +634,59 @@ namespace japanese_resturant_project.services.implement
             return Task.FromResult(Response);
         }
 
-        public async Task<CustomerResponse> DeleteOrder(Guid cartID)
+        public async Task<CustomerResponse> CancleOrder(string orderID) //ถ้าลบของใน stock ก็ต้องกลับมาจำนวนเท่าเดิม
         {
             var response = new CustomerResponse();
             try
             {
-                using (var dbConnection = CreateSQLConnection()) // Establish database connection
+                using (var dbConnection = CreateSQLConnection())
                 {
-                    var sql = @"DELETE FROM Cart_tb WHERE cartID = @cartID";
+                    var sqlorder = @"UPDATE order_tb
+                                   SET orderStatus = @orderStatus,
+                                   confirmOrder = @confirmOrder
+                                   WHERE orderID = @orderID";
+                    var sqlorderDetail = @"UPDATE orderDetail_tb 
+                                           SET orderDetailStatus = @orderDetailStatus
+                                           WHERE orderID = @orderID";
+                    var selectmenufromorderDetail = @"SELECT menuID,quantity FROM orderDetail_tb WHERE orderID = @orderID";
 
-                    // Use parameterized query to prevent SQL injection
+                    var updateMenuQuantity = @"UPDATE menu_tb
+                                            SET stockQuantity = stockQuantity + @quantity
+                                            WHERE menuID = @menuID";
+                    //menuID ไปดึงมาจาก ตาราง orderDETAIL
                     var parameters = new
                     {
-                        cartID = cartID,
+                        orderID = orderID,
+                        orderStatus = "รายการถูกยกเลิก",
+                        confirmOrder = "ยกเลิกรายการสั่งนี้"
                     };
-
-                    // Execute the query
-                    int rowsAffected = await dbConnection.ExecuteAsync(sql, parameters);
-
-                    // Check if the delete was successful
+                    int rowsAffected = await dbConnection.ExecuteAsync(sqlorder, parameters);
                     if (rowsAffected > 0)
                     {
-                        response.message = "Delete successful.";
+                        var showOrderDetailvalue = await dbConnection.QueryAsync(selectmenufromorderDetail,new {orderID = orderID });
+                        foreach (var detail in showOrderDetailvalue)
+                        {
+                            await dbConnection.ExecuteAsync(updateMenuQuantity, new
+                            {
+                                quantity = detail.quantity,
+                                menuID = detail.menuID
+                            });
+                        Console.WriteLine("quantity : "+detail.quantity+ "menuID :" +detail.menuID);
+                        }
+
+                        var parameter2 = new
+                        {
+                            orderID = orderID,
+                            orderDetailStatus = "รายการถูกยกเลิก"
+                        };
+                        var deleteOrderDetail = await dbConnection.ExecuteAsync( sqlorderDetail, parameter2);
+                        response.message = "ลบรายการสำเร็จ";
                         response.success = true;
 
                     }
                     else
                     {
-                        // Handle the case where no rows were affected (e.g., reservation not found)
-                        response.message = "Delete failed: CartItem not found.";
+                        response.message = "ลบรายการไม่สำเร็จ เนื่องจากไม่พบ เลขหมายรายการดักล่าว";
                         response.success = false;
 
                     }
@@ -668,12 +694,13 @@ namespace japanese_resturant_project.services.implement
             }
             catch (Exception ex)
             {
-                // Handle exceptions
                 response.message = $"Delete failed: {ex.Message}";
             }
 
             return response;
         }
+
+        //ชำระเงิน ชำระในทุกๆ order ที่มีหมายเลขโต๊ะเดียวกัน
 
     }
 }

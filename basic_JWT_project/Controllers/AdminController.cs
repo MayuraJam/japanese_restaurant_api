@@ -38,7 +38,7 @@ namespace japanese_resturant_project.Controllers
         }
 
 
-        [HttpPost("register")]
+        [HttpPost("registerTest")]
         public ActionResult<User> RegiterHash(UserRequestModel request)
        // public async Task<IActionResult> RegiterPost1(UserRequestModel request)
         {
@@ -53,7 +53,7 @@ namespace japanese_resturant_project.Controllers
             return Ok(user);
         }
 
-        [HttpPost("login")]
+        [HttpPost("loginTest")]
        public ActionResult<User> RegiterJWT(UserRequestModel request)
         {
             try
@@ -115,7 +115,19 @@ namespace japanese_resturant_project.Controllers
                 throw new ApplicationException("An error occurred while creating JWT token", ex);
             }
 
-
+            //ทดสอบการใช้งานการเข้ารหัส
+        }
+        [HttpGet("GetStaftData")]
+        public async Task<IActionResult> GetStaftProfile(string staftID)
+        {
+            var response = await _service.AdminService().GetStaftProfile(staftID);
+            return Ok(response);
+        }
+        [HttpPut("UpdateStaftData")]
+        public async Task<IActionResult> UpdateStaftProfile(UpdateStaftProfileRequest request)
+        {
+            var response = await _service.AdminService().UpdateStaftProfile(request);
+            return Ok(response);
         }
         [HttpGet("OptionGet")]
         public async Task<IActionResult> GetOptionList()
@@ -208,6 +220,17 @@ namespace japanese_resturant_project.Controllers
             var response = await _service.AdminService().ConfirmOrder(request);
             return response;
         }
-
+        [HttpGet("GetOrderStatus")]
+        public async Task<IActionResult> GetOrderDetail()
+        {
+            var response = await _service.AdminService().GetOrderDetail();
+            return Ok(response);
+        }
+        [HttpPut("UpdateOrderStatus")]
+        public async Task<IActionResult> updateOrderStatus(UpdateOrderStatusRequest request)
+        {
+            var response = await _service.AdminService().updateOrderStatus(request);
+            return Ok(response);
+        }
     }
 }

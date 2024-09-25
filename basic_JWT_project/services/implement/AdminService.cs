@@ -14,12 +14,111 @@ using Microsoft.Extensions.Options;
 using Azure.Core;
 using japanese_resturant_project.model.response.customerResponse;
 using japanese_resturant_project.model.request.customerRequest;
+using Azure;
 
 namespace japanese_resturant_project.services.implement
 {
     public class AdminService : Bases, IAdmin
     {
 
+        //get staftProfile
+
+        public async Task<AdminResponse> GetStaftProfile(string staftID)
+        {
+            var response = new AdminResponse();
+            try
+            {
+                using (var dbConnection = CreateSQLConnection()) // Establish database connection
+                {
+                    var sql = @"
+                SELECT *
+                 FROM  staft_tb 
+                WHERE staftID = @staftID
+                 ";
+                    var staftValue = await dbConnection.QueryFirstOrDefaultAsync<Staft_Authentication_tb>(sql, new {staftID=staftID});
+
+                    // Check if any reservations were found
+                    if (staftValue != null)
+                    {
+                        // Populate the booking response with the reservations
+                        response.staftItem = staftValue;
+                        response.message = "successfully.";
+                        response.success = true;
+
+                    }
+                    else
+                    {
+                        // Handle case where no reservations were found
+                        response.message = "Not found data 404.";
+                        response.success = false;
+
+                    }
+                }
+            }
+            catch (Exception ex) { 
+               
+            }
+            return response;
+        }
+        //editStaftData
+        public async Task<AdminResponse> UpdateStaftProfile(UpdateStaftProfileRequest request)
+        {
+            var response = new AdminResponse();
+            try
+            {
+                using (var dbConnection = CreateSQLConnection()) // Establish database connection
+                {
+                    var sql = @"
+                UPDATE staft_tb
+                SET firstName =@firstName,lastName = @lastName,phone=@phone,updateDate=@updateDate,email=@email,jobType=@jobType
+                 FROM  staft_tb 
+                WHERE staftID = @staftID
+                 ";
+                    var parameter = new
+                    {
+                        staftID = request.staftID,
+                        firstName = request.firstName,
+                        lastName = request.lastName,
+                        phone = request.phone,
+                        email = request.email,
+                        jobType = request.jobType,
+                        updateDate = DateTime.Now,
+                    };
+                    var staftValue = await dbConnection.ExecuteAsync(sql,parameter);
+
+
+                    if (staftValue != null)
+                    {
+                        response.staftItem = new Staft_Authentication_tb()
+                        {
+                            staftID = request.staftID,
+                            firstName = request.firstName,
+                            lastName = request.lastName,
+                            phone = request.phone,
+                            email = request.email,
+                            jobType = request.jobType,
+                            updateDate = DateTime.Now,
+                        };
+                        response.message = "แก้ไขเรียบร้อย";
+                        response.success = true;
+
+                    }
+                    else
+                    {
+
+                        response.message = "ไม่สามารถแก้ไขข้อมูลได้";
+                        response.success = false;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                response.message = ex.Message;
+                response.success = false;
+            }
+            return response;
+        }
 
         //optionGet
         public async Task<AdminResponse> GetOptionList()
@@ -843,8 +942,6 @@ namespace japanese_resturant_project.services.implement
         //chef confirm cooking
         public async Task<AdminResponse> ConfirmOrder(ConfirmRequest request)
         {
-            
-            //string genOrderDetailID = "ODT" + randomID.ToString();
             var response = new AdminResponse();
             try
             {
@@ -926,6 +1023,115 @@ namespace japanese_resturant_project.services.implement
 
             }
             return response;
+        }
+        public async Task<AdminResponse> GetOrderDetail()
+        {
+            var Response = new AdminResponse()
+            {
+                orderList = new List<OrderDetail_tb>()
+            };
+            try
+            {
+                using (var dbConnection = CreateSQLConnection()) // Establish database connection
+                {
+                    var sql = @"
+                SELECT 
+                 od.orderID,
+                 od.menuID,
+                 od.orderDetailStatus,
+                 od.quantity,
+                 od.optionValue,
+                 od.netprice,
+                 m.menuName,
+                 m.unitPrice,
+                 m.imageName,
+                 m.stockQuantity,
+                 m.categoryName,
+                 o.orderDate,
+                 o.tableID
+                 FROM  orderDetail_tb od
+                 LEFT JOIN 
+                   menu_tb m ON m.menuID = od.menuID 
+                 LEFT JOIN order_tb o ON od.orderID = o.orderID
+                 ORDER BY  od.orderDetailStatus
+                 ";
+
+                    var Value = await dbConnection.QueryAsync<OrderDetail_tb>(sql);
+                    if (Value != null && Value.Any())
+                    {
+
+                        Response.orderList = Value.ToList();
+                        Response.message = "successfully.";
+                        Response.success = true;
+
+                    }
+                    else
+                    {
+                        Response.message = "ไม่พบรายการสั่งของโต๊ะนี้";
+                        Response.success = false;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"An error occurred: {ex.Message}");
+
+                Response.message = $"{ex.Message}";
+                Response.success = false;
+            }
+
+            return Response;
+        }
+        //ทำการเปลี่ยนแปลงสถานะของการประกอบอาหาร
+        public async Task<AdminResponse> updateOrderStatus(UpdateOrderStatusRequest request)
+        {
+            var Response = new AdminResponse();
+            
+            try
+            {
+                using (var dbConnection = CreateSQLConnection()) // Establish database connection
+                {
+                    var sql = @"
+                UPDATE orderDetail_tb
+                SET orderDetailStatus = @orderDetailStatus
+                WHERE orderID = @orderID AND menuID = @menuID 
+                 ";
+                    var cartValue = await dbConnection.ExecuteAsync(sql, new { orderID = request.orderID, orderDetailStatus = request.orderDetailStatus,menuID = request.menuID });
+
+                    if (cartValue > 0)
+                    {
+
+
+                        Response.orderOne = new OrderDetail_tb()
+                        {
+                            orderID = request.orderID,
+                            orderDetailStatus = request.orderDetailStatus,
+                            menuID = request.menuID
+                        };
+                        Response.message = "เปลี่ยนสถานะสำเร็จ.";
+                        Response.success = true;
+
+                    }
+                    else
+                    {
+                        Response.message = "ไม่พบรายการสั่ง";
+                        Response.success = false;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"An error occurred: {ex.Message}");
+
+                Response.message = $"{ex.Message}";
+                Response.success = false;
+            }
+
+            return Response;
         }
         //QAF answer
     }

@@ -52,5 +52,21 @@ namespace japanese_resturant_project.model.request
         public Guid? staftID { get; set; }
 
     }
+    public class UpdateOrderStatusRequest
+    {
+        public string orderID { get; set; }
+        public string menuID { get; set; }
+        public string orderDetailStatus { get; set; }
+
+    }
+    public class UpdateStaftProfileRequest
+    {
+        public string staftID { get; set; }
+        public string? firstName { get; set; }
+        public string? lastName { get; set; }
+        public string? phone { get; set; }
+        public string? email { get; set; }
+        public string? jobType { get; set; }
+    }
 }
 
