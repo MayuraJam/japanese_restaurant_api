@@ -276,16 +276,16 @@ namespace japanese_resturant_project.services.implement
                 {
                     var sql = @"DELETE FROM option_tb WHERE optionID = @optionID";
 
-                    // Use parameterized query to prevent SQL injection
+
                     var parameters = new
                     {
                         optionID = optionID,
                     };
 
-                    // Execute the query
+   
                     int rowsAffected = await dbConnection.ExecuteAsync(sql, parameters);
 
-                    // Check if the delete was successful
+           
                     if (rowsAffected > 0)
                     {
                         response.message = "Delete successful.";
@@ -294,7 +294,7 @@ namespace japanese_resturant_project.services.implement
                     }
                     else
                     {
-                        // Handle the case where no rows were affected (e.g., reservation not found)
+          
                         response.message = "Delete failed: Reservation not found.";
                         response.success = false;
 
@@ -410,7 +410,7 @@ namespace japanese_resturant_project.services.implement
                     {
                         var menuValue2 = await dbConnection.QueryAsync(sql2);
 
-                        // Handle case where no reservations were found
+     
                         Response.menuList = menuValue2.Select(x => new Menu_tb()
                         {
                             menuID = x.menuID,
@@ -437,9 +437,9 @@ namespace japanese_resturant_project.services.implement
             }
             catch (Exception ex)
             {
-                // Handle exceptions here, e.g., log the error
+   
                 Console.WriteLine($"An error occurred: {ex.Message}");
-                // Set error message in the bookingResponse
+
                 Response.message = $"An error occurred while fetching the reservations: {ex.Message}";
                 Response.success = false;
             }
@@ -510,7 +510,7 @@ namespace japanese_resturant_project.services.implement
                     }
                     else
                     {
-                        // Handle case where no reservations were found
+
                         Response.message = "ไม่พบเจอข้อมูลอาหาร";
                         Response.success = false;
 
@@ -519,8 +519,7 @@ namespace japanese_resturant_project.services.implement
             }
             catch (Exception ex)
             {
-                // Handle exceptions here, e.g., log the error
-                // Set error message in the bookingResponse
+
                 Response.message = $"{ex.Message}";
                 Response.success = false;
             }
@@ -546,7 +545,7 @@ namespace japanese_resturant_project.services.implement
                 {
                     Directory.CreateDirectory(directoryPath);
                 }
-                // Rename the file to avoid conflicts
+
                 var fileName = $"{Guid.NewGuid()}_{request.imageFile.FileName}";
                 var filePath = Path.Combine(directoryPath, fileName);
 
@@ -626,7 +625,7 @@ namespace japanese_resturant_project.services.implement
             }
             try
             {
-                using (var dbConnection = CreateSQLConnection()) // Establish database connection
+                using (var dbConnection = CreateSQLConnection()) 
                 {
                     var sql = @"UPDATE menu_tb
                         SET menuName=@menuName,
@@ -640,7 +639,7 @@ namespace japanese_resturant_project.services.implement
                             stockQuantity= stockQuantity + @stockQuantity
                         WHERE menuID = @menuID";
 
-                    // Use parameterized query to prevent SQL injection
+    
                     var parameters = new
                     {
                         menuID = request.menuID,
@@ -655,10 +654,8 @@ namespace japanese_resturant_project.services.implement
                         stockQuantity = request.stockQuantity,
                     };
 
-                    // Execute the query
                     int menuValue = await dbConnection.ExecuteAsync(sql, parameters);
 
-                    // Check if the update was successful
                     if (menuValue > 0)
                     {
                         response.message = "success";
@@ -666,7 +663,7 @@ namespace japanese_resturant_project.services.implement
                     }
                     else
                     {
-                        // Handle the case where no rows were affected (e.g., reservation not found)
+
                         response.message = "Update failed: opject not found.";
 
                         response.success = false;
@@ -675,7 +672,7 @@ namespace japanese_resturant_project.services.implement
             }
             catch (Exception ex)
             {
-                // Handle exceptions
+
                 response.message = $"Update failed: {ex.Message}";
                 response.success = false;
             }
@@ -687,20 +684,19 @@ namespace japanese_resturant_project.services.implement
             var response = new AdminResponse();
             try
             {
-                using (var dbConnection = CreateSQLConnection()) // Establish database connection
+                using (var dbConnection = CreateSQLConnection())
                 {
                     var sql = @"DELETE FROM menu_tb WHERE menuID = @menuID";
 
-                    // Use parameterized query to prevent SQL injection
                     var parameters = new
                     {
                         menuID = menuID,
                     };
 
-                    // Execute the query
+
                     int menuValue = await dbConnection.ExecuteAsync(sql, parameters);
 
-                    // Check if the delete was successful
+
                     if (menuValue > 0)
                     {
                         response.message = "Delete successful.";
@@ -709,7 +705,7 @@ namespace japanese_resturant_project.services.implement
                     }
                     else
                     {
-                        // Handle the case where no rows were affected (e.g., reservation not found)
+
                         response.message = "Delete failed: Reservation not found.";
                         response.success = false;
 
@@ -736,7 +732,7 @@ namespace japanese_resturant_project.services.implement
 
             try
             {
-                using (var dbConnection = CreateSQLConnection()) // Establish database connection
+                using (var dbConnection = CreateSQLConnection()) 
                 {
                     var sql = @"
                 SELECT *
@@ -744,10 +740,10 @@ namespace japanese_resturant_project.services.implement
                  ";
                     var tablenum = await dbConnection.QueryAsync<Table_tb>(sql);
 
-                    // Check if any reservations were found
+
                     if (tablenum != null)
                     {
-                        // Populate the booking response with the reservations
+
                         Response.tableList = tablenum.ToList();
                         Response.message = "successfully.";
                         Response.success = true;
@@ -755,7 +751,7 @@ namespace japanese_resturant_project.services.implement
                     }
                     else
                     {
-                        // Handle case where no reservations were found
+
                         Response.message = "Not found data 404.";
                         Response.success = false;
 
@@ -764,9 +760,9 @@ namespace japanese_resturant_project.services.implement
             }
             catch (Exception ex)
             {
-                // Handle exceptions here, e.g., log the error
+
                 Console.WriteLine($"An error occurred: {ex.Message}");
-                // Set error message in the bookingResponse
+
                 Response.message = $"{ex.Message}";
                 Response.success = false;
             }
@@ -782,7 +778,7 @@ namespace japanese_resturant_project.services.implement
             };
             try
             {
-                using (var dbConnection = CreateSQLConnection()) // Establish database connection
+                using (var dbConnection = CreateSQLConnection()) 
                 {
                     var sql = @"
                 SELECT 
@@ -863,7 +859,7 @@ namespace japanese_resturant_project.services.implement
             
             try
             {
-                using (var dbConnection = CreateSQLConnection()) // Establish database connection
+                using (var dbConnection = CreateSQLConnection()) 
                 {
                     var sql = @"
                 SELECT 
@@ -954,7 +950,7 @@ namespace japanese_resturant_project.services.implement
                 var upadateorderDetailSQL = @"UPDATE orderDetail_tb
                         SET orderDetailStatus = @orderDetailStatus
                         WHERE orderID = @orderID";
-                using (var dbConnection = CreateSQLConnection()) // Establish database connection
+                using (var dbConnection = CreateSQLConnection()) 
                 {
                     var parameters = new
                     {
@@ -1101,7 +1097,7 @@ namespace japanese_resturant_project.services.implement
 
             try
             {   
-                using (var dbConnection = CreateSQLConnection()) // Establish database connection
+                using (var dbConnection = CreateSQLConnection()) 
                 {
                     var sql = @"
                 UPDATE orderDetail_tb
@@ -1151,6 +1147,132 @@ namespace japanese_resturant_project.services.implement
 
             return Response;
         }
-        //QAF answer
+        //Show notification
+        public async Task<AdminResponse> GetNotification()
+        {
+            var Response = new AdminResponse()
+            {
+                notiList = new List<Notification_tb>()
+            };
+            try
+            {
+                using (var dbConnection = CreateSQLConnection())
+                {
+                    var sql = @"
+                SELECT 
+                   notificationID,title,message,createDate,tableID,isRead
+                 FROM  notification_tb
+                 ORDER BY  createDate DESC
+                 ";
+
+                    var Value = await dbConnection.QueryAsync<Notification_tb>(sql);
+                    if (Value != null && Value.Any())
+                    {
+
+                        Response.notiList = Value.ToList();
+                        Response.message = "successfully.";
+                        Response.success = true;
+
+                    }
+                    else
+                    {
+                        Response.message = "ไม่พบรายการการแจ้งเตือน";
+                        Response.success = false;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"An error occurred: {ex.Message}");
+
+                Response.message = $"{ex.Message}";
+                Response.success = false;
+            }
+
+            return Response;
+        }
+        public async Task<AdminResponse> Readable(string notificationID)
+        {
+            var response = new AdminResponse();
+            try
+            {
+                using (var dbConnection = CreateSQLConnection()) 
+                {
+                    var sql = @"UPDATE notification_tb
+                        SET isRead = @isRead,
+                        WHERE notificationID = @notificationID";
+
+
+                    var parameters = new
+                    {
+                        notificationID = notificationID,
+                        isRead = true
+                    };
+
+
+                    int optionValue = await dbConnection.ExecuteAsync(sql, parameters);
+
+
+                    if (optionValue > 0)
+                    {
+
+                        response.notiItem = new Notification_tb
+                        {
+                            notificationID = notificationID,
+                            isRead = "อ่านแล้ว"
+                        };
+                        response.message = "Update success";
+                        response.success = true;
+                    }
+                    else
+                    {
+                        response.message = "Update failed: opject not found.";
+
+                        response.success = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                response.message = $"Update failed: {ex.Message}";
+                response.success = false;
+            }
+            return response;
+        }
+        public async Task<AdminResponse> DeleteNotification(string notificationID)
+        {
+            var response = new AdminResponse();
+            try
+            {
+                using (var dbConnection = CreateSQLConnection()) 
+                {
+                    var sql = @"DELETE FROM notification_tb WHERE notificationID = @notificationID";
+
+                    int Value = await dbConnection.ExecuteAsync(sql, new { notificationID  = notificationID});
+
+                    if (Value > 0)
+                    {
+                        response.message = "Delete successful.";
+                        response.success = true;
+
+                    }
+                    else
+                    {
+                        response.message = "Delete failed: Data not found.";
+                        response.success = false;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                response.message = $"Delete failed: {ex.Message}";
+            }
+
+            return response;
+        }
     }
 }

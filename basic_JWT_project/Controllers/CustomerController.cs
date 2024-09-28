@@ -95,5 +95,11 @@ namespace japanese_resturant_project.Controllers
             var response = await _service.CustomerService().AddPayment(request);
             return Ok(response);
         }
+        [HttpPost("AddNotification")]
+        public async Task<IActionResult> AddNotification(NotificationRequest request)
+        {
+            var response = await _service.CustomerService().AddNotification(request);
+            return Ok(response);
+        }
     }
 }

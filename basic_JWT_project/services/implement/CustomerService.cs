@@ -719,8 +719,8 @@ namespace japanese_resturant_project.services.implement
             {
                 using (var dbConnection = CreateSQLConnection())
                 {
-                    var paySQL = @"INSERT INTO receipt_tb (receiptID,tableID,paymentStatus,paymentType,totalAmount,totalTax,cash,change,staffID,orderID,netTotalAmount,confirmPay,payDatetime)
-                        VALUES (@receiptID,@tableID,@paymentStatus,@paymentType,@totalAmount,@totalTax,@cash,@change,@staffID,@orderID,@netTotalAmount,@confirmPay,@payDatetime)";
+                    var paySQL = @"INSERT INTO receipt_tb (receiptID,tableID,paymentStatus,paymentType,totalAmount,totalTax,cash,change,staffID,orderID,netTotalAmount,payDatetime)
+                        VALUES (@receiptID,@tableID,@paymentStatus,@paymentType,@totalAmount,@totalTax,@cash,@change,@staffID,@orderID,@netTotalAmount,@payDatetime)";
                     
                     var revenueSQL = @"INSERT INTO revenue_tb (revenueID,createDate,revenueDescritption,orderID,totalAmount,tax,netAmount)
                         VALUES (@revenueID,@createDate,@revenueDescritption,@orderID,@totalAmount,@tax,@netAmount)";
@@ -739,7 +739,6 @@ namespace japanese_resturant_project.services.implement
                         staffID = request.staffID,
                         orderID =request.orderID,
                         netTotalAmount = request.netTotalAmount,
-                        confirmPay = "ยังไม่อนุมัติ",
                         payDatetime = DateTime.Now
                     };
                     var parameter2 = new
@@ -769,7 +768,6 @@ namespace japanese_resturant_project.services.implement
                             staffID = request.staffID,
                             orderID = request.orderID,
                             netTotalAmount = request.netTotalAmount,
-                            confirmPay = "ยังไม่อนุมัติ",
                             payDatetime = DateTime.Now
                         };
 
@@ -794,6 +792,64 @@ namespace japanese_resturant_project.services.implement
             return response;
         }
 
+        //AddNotification
+        public async Task<CustomerResponse> AddNotification(NotificationRequest request)
+        {
+            Random random = new Random();
+            int randomID = random.Next(0, 999999);
+            string genNotiID = "NO" + randomID.ToString();
+
+            //string genOrderDetailID = "ODT" + randomID.ToString();
+            var response = new CustomerResponse();
+            try
+            {
+                using (var dbConnection = CreateSQLConnection())
+                {
+                    var notiSQL = @"INSERT INTO notification_tb (notificationID,title,message,createDate,tableID,isRead)
+                        VALUES (@notificationID,@title,@message,@createDate,@tableID,@isRead)";
+
+                    
+                    var parameter = new
+                    {
+                        notificationID = genNotiID,
+                        title = request.title,
+                        message =request.message,
+                        createDate = DateTime.Now,
+                        tableID = request.tableID,
+                        isRead = false
+                    };
+                    
+
+                    var payValue = await dbConnection.ExecuteAsync(notiSQL, parameter);
+                    if (payValue > 0)
+                    {
+                        response.notiItem = new Notification_tb()
+                        {
+                            notificationID = genNotiID,
+                            title = request.title,
+                            message = request.message,
+                            createDate = DateTime.Now,
+                            tableID = request.tableID,
+                            isRead = "ยังไมได้อ่าน"
+                        };
+                        response.message = "ทำรายการสำเร็จ";
+                        response.success = true;
+                    }
+                    else
+                    {
+                        response.message = "ทำรายการไม่สำเร็จ";
+                        response.success = false;
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                response.message = $"{ex}";
+            }
+            return response;
+        }
 
     }
 }

@@ -232,5 +232,24 @@ namespace japanese_resturant_project.Controllers
             var response = await _service.AdminService().updateOrderStatus(request);
             return Ok(response);
         }
+        [HttpGet("GetNotification")]
+        public async Task<IActionResult> GetNotification()
+        {
+            var response = await _service.AdminService().GetNotification();
+            return Ok(response);
+        }
+
+        [HttpPut("ReableNotification/{notificationID}")]
+        public async Task<IActionResult> Readable(string notificationID)
+        {
+            var response = await _service.AdminService().Readable(notificationID);
+            return Ok(response);
+        }
+        [HttpDelete("DeleteNotification/{notificationID}")]
+        public async Task<IActionResult> DeleteNotification(string notificationID)
+        {
+            var response = await _service.AdminService().DeleteNotification(notificationID);
+            return Ok(response);
+        }
     }
 }

@@ -105,6 +105,22 @@
   },
   {
     "ContainingType": "japanese_resturant_project.Controllers.AdminController",
+    "Method": "DeleteNotification",
+    "RelativePath": "api/Admin/DeleteNotification/{notificationID}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "notificationID",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "japanese_resturant_project.Controllers.AdminController",
     "Method": "DeleteOption",
     "RelativePath": "api/Admin/DeleteOption",
     "HttpMethod": "DELETE",
@@ -160,6 +176,16 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "japanese_resturant_project.Controllers.AdminController",
+    "Method": "GetNotification",
+    "RelativePath": "api/Admin/GetNotification",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "japanese_resturant_project.Controllers.AdminController",
@@ -257,6 +283,22 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "japanese_resturant_project.Controllers.AdminController",
+    "Method": "Readable",
+    "RelativePath": "api/Admin/ReableNotification/{notificationID}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "notificationID",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -459,6 +501,22 @@
       {
         "Name": "request",
         "Type": "japanese_resturant_project.model.request.customerRequest.AddCartRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "japanese_resturant_project.Controllers.CustomerController",
+    "Method": "AddNotification",
+    "RelativePath": "api/Customer/AddNotification",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "japanese_resturant_project.model.request.customerRequest.NotificationRequest",
         "IsRequired": true
       }
     ],

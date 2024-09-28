@@ -9,9 +9,9 @@ namespace japanese_resturant_project.model.request
     }
     public class OptionRequest
     {
-         public string? optionName { get; set; }
-         public string? value { get; set; }
-     }
+        public string? optionName { get; set; }
+        public string? value { get; set; }
+    }
     public class MenuRequest
     {
         public string? menuName { get; set; }
@@ -68,6 +68,4 @@ namespace japanese_resturant_project.model.request
         public string? email { get; set; }
         public string? jobType { get; set; }
     }
-
 }
-

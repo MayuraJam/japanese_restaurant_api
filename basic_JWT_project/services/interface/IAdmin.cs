@@ -25,6 +25,10 @@ namespace japanese_resturant_project.services
         public Task<AdminResponse> ConfirmOrder(ConfirmRequest request);
         public Task<AdminResponse> GetOrderDetail();
         public Task<AdminResponse> updateOrderStatus(UpdateOrderStatusRequest request);
+        public Task<AdminResponse> GetNotification();
+        public Task<AdminResponse> Readable(string notificationID);
+        public Task<AdminResponse> DeleteNotification(string notificationID);
+
 
 
 

@@ -42,4 +42,13 @@ namespace japanese_resturant_project.model.request.customerRequest
         public string? staffID { get; set; }
 
     }
+
+    public class NotificationRequest
+    {
+        public string title { get; set; }
+        public string message { get; set; }
+        public string tableID { get; set; }
+
+
+    }
 }
