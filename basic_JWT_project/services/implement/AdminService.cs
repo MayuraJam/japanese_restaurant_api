@@ -922,6 +922,7 @@ namespace japanese_resturant_project.services.implement
                     }
                     else
                     {
+
                         Response.message = "ไม่พบรายการสั่งของโต๊ะนี้";
                         Response.success = false;
 
@@ -1088,9 +1089,18 @@ namespace japanese_resturant_project.services.implement
         public async Task<AdminResponse> updateOrderStatus(UpdateOrderStatusRequest request)
         {
             var Response = new AdminResponse();
-            
+
+            var updateOrderStatus = @"UPDATE order_tb SET orderStatus = @orderStatus WHERE orderID=@orderID";
+
+            var OrderDetailsql = @"
+                SELECT 
+                 COUNT (*)
+                FROM orderDetail_tb
+                WHERE orderID = @orderID AND orderDetailStatus != 'เสริฟแล้ว'
+                 ";
+
             try
-            {
+            {   
                 using (var dbConnection = CreateSQLConnection()) // Establish database connection
                 {
                     var sql = @"
@@ -1098,6 +1108,8 @@ namespace japanese_resturant_project.services.implement
                 SET orderDetailStatus = @orderDetailStatus
                 WHERE orderID = @orderID AND menuID = @menuID 
                  ";
+
+                    
                     var cartValue = await dbConnection.ExecuteAsync(sql, new { orderID = request.orderID, orderDetailStatus = request.orderDetailStatus,menuID = request.menuID });
 
                     if (cartValue > 0)
@@ -1110,6 +1122,12 @@ namespace japanese_resturant_project.services.implement
                             orderDetailStatus = request.orderDetailStatus,
                             menuID = request.menuID
                         };
+
+                        var orderStatusValue = await dbConnection.ExecuteScalarAsync<int>(OrderDetailsql,new {orderID = request.orderID});
+                        if(orderStatusValue == 0)
+                        {
+                            await dbConnection.ExecuteAsync(updateOrderStatus, new { orderStatus = "ดำเนินรายการสำเร็จ", orderID = request.orderID});
+                        }
                         Response.message = "เปลี่ยนสถานะสำเร็จ.";
                         Response.success = true;
 

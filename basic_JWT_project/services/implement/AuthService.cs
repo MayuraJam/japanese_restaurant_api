@@ -70,8 +70,8 @@ namespace japanese_resturant_project.services.implement
 
                     if (request.roleName == "ลูกค้า")
                     {
-                        var sqlCustomer = @"INSERT INTO customer_tb (memberID, firstName,lastName, phone,userID,email,password,roleName)
-                        VALUES (@memberID,@firstName,@lastName, @phone,@userID,@email,@password,@roleName)";
+                        var sqlCustomer = @"INSERT INTO customer_tb (memberID, firstName,lastName, phone,userID,email,password,roleName,totalPoint)
+                        VALUES (@memberID,@firstName,@lastName, @phone,@userID,@email,@password,@roleName,@totalPoint)";
                         var parameterCustomer = new
                         {
                             memberID = memberID,
@@ -82,6 +82,7 @@ namespace japanese_resturant_project.services.implement
                             email = request.email,
                             password = request.password,
                             roleName = request.roleName,
+                            totalPoint = 10
 
                         };
                        var customer =  dbConnection.Execute(sqlCustomer,parameterCustomer); //นำค่าใส่ตารางลูกค้า
@@ -172,21 +173,33 @@ namespace japanese_resturant_project.services.implement
             string pointID = "P" + randomID.ToString();
             //เข้าผ่านของ customer 
             //var SqlAutn = @"SELECT * FROM Authentication_tb WHERE email = @email AND password = @password";
-            var sqlCustomer = @"SELECT * FROM customer_tb WHERE email = @email AND password = @password AND roleName = @roleName";
+            var sqlCustomer = @"SELECT 
+                          c.memberID,c.firstName,c.lastName,c.phone,c.userID,c.email,c.password,c.roleName,c.userID,c.totalPoint,p.pointID,p.currentPoint,p.description,p.createDate
+                          FROM  customer_tb c
+                          LEFT JOIN
+                          point_tb p ON p.memberID = c.memberID WHERE c.email = @email AND c.password = @password AND c.roleName = @roleName";
             //ส่วนแสดงข้อมูลของ ตาราง AUthentication 
             using (var dbConnection = CreateSQLConnection())
             {
+                var paramLogin = new
+                {
+                    email = request.email,
+                    password = request.password,
+                    roleName = request.roleName
+                };
                 try
                 {
-                var authValue = await dbConnection.QueryFirstOrDefaultAsync<Customer_tb>(sqlCustomer, new { email = request.email, password = request.password, roleName = request.roleName });
+                var authValue = await dbConnection.QueryFirstOrDefaultAsync<Customer_tb>(sqlCustomer, paramLogin);
                 if (authValue != null)
                 {
 
-                    //
+                    
+                  if (request.pointType == "เพิ่มคะแนน")
+                  {
                     var sqlPoint = @"
                                             INSERT INTO point_tb (pointID, currentPoint,description,createDate,memberID)
                                             VALUES (@pointID, @currentPoint,@description,@createDate,@memberID);";
-
+                    var UpdatecustomerSQL = @"UPDATE customer_tb SET totalPoint = totalPoint + @currentPoint WHERE memberID = @memberID";
                     //อัปเดตในส่วนของลูกค้า
                     var parameterpoint = new
                     {
@@ -202,8 +215,37 @@ namespace japanese_resturant_project.services.implement
 
                     if (pointValue > 0)
                     {
-                        // response.pointitem = pointValue;
-                        response.message = "เพิ่มข้อมูลสำเร็จ";
+                        await dbConnection.ExecuteAsync(UpdatecustomerSQL, new { currentPoint = parameterpoint.currentPoint, memberID =parameterpoint.memberID});
+
+                                var memberValue = dbConnection.Query<Customer_tb, Point_tb, Customer_tb>(sqlCustomer, (customer, point) =>
+                                {
+                                    customer.pointlList = customer.pointlList ?? new List<Point_tb>();
+                                    if (point != null)
+                                    {
+                                        customer.pointlList.Add(point);
+                                    }
+                                    return customer;
+                                }, paramLogin, splitOn: "pointID").GroupBy(o => o.memberID).Select(g =>
+                                {
+                                    var groupPointList = g.First();
+                                    groupPointList.pointlList = g.SelectMany(o => o.pointlList).ToList();
+                                    groupPointList.countOfPoint = g.Count();
+                                    return groupPointList;
+                                }).ToList();
+                                if (memberValue != null && memberValue.Any())
+                                {
+                                    response.customerList = memberValue.ToList();
+                                    response.message = "successfully.";
+                                    response.success = true;
+                                }
+                                else
+                                {
+                                    response.message = "Not found data 404.";
+                                    response.success = false;
+
+                                }
+
+                                response.message = "เพิ่มข้อมูลสำเร็จ";
                         response.success = true;
                     }
                     else
@@ -211,6 +253,80 @@ namespace japanese_resturant_project.services.implement
                         response.message = "เพิ่มข้อมูลไม่สำเร็จ";
                         response.success = false;
                     }
+                  }
+                 else if (request.pointType == "ลดคะแนน")
+                        {
+
+                            if(authValue.totalPoint >= request.totalPrice)
+                            {
+                            var sqlPoint = @"
+                                            INSERT INTO point_tb (pointID, currentPoint,description,createDate,memberID)
+                                            VALUES (@pointID, @currentPoint,@description,@createDate,@memberID);";
+                            var UpdatecustomerSQL = @"UPDATE customer_tb SET totalPoint = totalPoint - @currentPoint WHERE memberID = @memberID";
+                            //อัปเดตในส่วนของลูกค้า
+                            var parameterpoint = new
+                            {
+                                email = request.email,
+                                password = request.password,
+                                pointID = pointID,
+                                memberID = authValue.memberID,
+                                currentPoint = request.totalPrice,
+                                description = "ใช้แต้มในการชำระสินค้า",
+                                createDate = DateTime.Now,
+                            };
+
+                            var pointValue = await dbConnection.ExecuteAsync(sqlPoint, parameterpoint);
+
+                            if (pointValue > 0)
+                            {
+                                    await dbConnection.ExecuteAsync(UpdatecustomerSQL, new { currentPoint = parameterpoint.currentPoint, memberID = parameterpoint.memberID });
+                                    var memberValue = dbConnection.Query<Customer_tb, Point_tb, Customer_tb>(sqlCustomer, (customer, point) =>
+                                    {
+                                        customer.pointlList = customer.pointlList ?? new List<Point_tb>();
+                                        if (point != null)
+                                        {
+                                            customer.pointlList.Add(point);
+                                        }
+                                        return customer;
+                                    },paramLogin, splitOn: "pointID").GroupBy(o => o.memberID).Select(g =>
+                                    {
+                                        var groupPointList = g.First();
+                                        groupPointList.pointlList = g.SelectMany(o => o.pointlList).ToList();
+                                        groupPointList.countOfPoint = g.Count();
+                                        return groupPointList;
+                                    }).ToList();
+                                    if (memberValue != null && memberValue.Any())
+                                    {
+                                        response.customerList = memberValue.ToList();
+                                        response.message = "successfully.";
+                                        response.success = true;
+                                    }
+                                    else
+                                    {
+                                        response.message = "Not found data 404.";
+                                        response.success = false;
+
+                                    }
+                                   
+
+
+                                response.message = "เพิ่มข้อมูลสำเร็จ";
+                                response.success = true;
+                            }
+                            else
+                            {
+                                response.message = "เพิ่มข้อมูลไม่สำเร็จ";
+                                response.success = false;
+                            }
+
+                            }
+                            else
+                            {
+                                response.message = $"แต้มคะแนนไม่เพียงพอ";
+                                response.success = false;
+                                response.pesentpoint = authValue.totalPoint;
+                            }
+                        }
 
                 }
                 else
@@ -358,7 +474,7 @@ namespace japanese_resturant_project.services.implement
                     {
                         var sql = @"
                           SELECT 
-                          c.memberID,c.firstName,c.lastName,c.phone,c.userID,c.email,c.password,c.roleName,p.pointID,p.currentPoint,p.description,p.createDate,c.userID
+                          c.memberID,c.firstName,c.lastName,c.phone,c.userID,c.email,c.password,c.roleName,c.userID,c.totalPoint,p.pointID,p.currentPoint,p.description,p.createDate
                           FROM  customer_tb c
                           LEFT JOIN
                           point_tb p ON p.memberID = c.memberID
@@ -383,7 +499,6 @@ namespace japanese_resturant_project.services.implement
                             response.customerList = memberValue.ToList();
                             response.message = "successfully.";
                             response.success = true;
-
                         }
                         else
                         {
@@ -453,5 +568,6 @@ namespace japanese_resturant_project.services.implement
 
         //logoutStaft
 
+        //เข้าสู่ระบบสะสมแต้ม เพื่อทำการดึงคะแนนรวมของแต้ม โดยค่าที่ส่งไปคือ ราคารวมสินค้า+ภาษีแล้ว email , password , roleName แสดงผลออกมาเป็น ผลรวมแต้มที่โดนหัก ต้องเชื่อมตารางลูกค้ากับคะแนน
     }
 }

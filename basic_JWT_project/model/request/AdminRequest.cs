@@ -49,7 +49,7 @@ namespace japanese_resturant_project.model.request
     {
         public string confirm { get; set; }
         public string orderID { get; set; }
-        public Guid? staftID { get; set; }
+        public string? staftID { get; set; }
 
     }
     public class UpdateOrderStatusRequest
@@ -68,5 +68,6 @@ namespace japanese_resturant_project.model.request
         public string? email { get; set; }
         public string? jobType { get; set; }
     }
+
 }
 

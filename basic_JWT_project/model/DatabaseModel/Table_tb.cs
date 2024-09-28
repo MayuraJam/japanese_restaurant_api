@@ -5,5 +5,7 @@
         public string tableID { get; set; }
         public string tableStatus { get; set; }
         public int seat {get; set; }
+        public string seatType { get; set; }
+
     }
 }

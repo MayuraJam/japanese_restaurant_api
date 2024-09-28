@@ -89,5 +89,11 @@ namespace japanese_resturant_project.Controllers
             var response = await _service.CustomerService().CancleOrder(orderID);
             return Ok(response);
         }
+        [HttpPost("AddPayment")]
+        public async Task<IActionResult> AddPayment(PaymentRequest request)
+        {
+            var response = await _service.CustomerService().AddPayment(request);
+            return Ok(response);
+        }
     }
 }

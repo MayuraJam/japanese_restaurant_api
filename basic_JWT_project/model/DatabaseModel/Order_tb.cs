@@ -3,7 +3,7 @@
     public class Order_tb
     {
         public string orderID { get; set; }
-        public Guid? staftID { get; set; }
+        public string? staftID { get; set; }
         public string orderStatus { get; set; }
         public DateTime orderDate { get; set; }
         public decimal totalPrice { get; set; } 

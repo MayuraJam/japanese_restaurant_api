@@ -17,6 +17,7 @@
         public string password { set; get; }
         public string roleName {  set; get; }
         public decimal? totalPrice { set; get; }
+        public string pointType { set; get; }
 
     }
 

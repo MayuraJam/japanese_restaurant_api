@@ -10,6 +10,7 @@
         public string email { get; set; }
         public string password { get; set; }
         public string roleName { get; set; }
+        public decimal totalPoint { get; set; }
         public int countOfPoint { get; set; }
         public ICollection<Point_tb> pointlList { get; set; } //เป็นคำสั่งที่หมายถึง ตาราง Orderr เป็นตารางแม่ที่มีคำสั่งซื้อ orderdetail หลายรายการ
 

@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Net.WebSockets;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using System.Collections.Generic;
+using System.Security.Policy;
 
 namespace japanese_resturant_project.services.implement
 {
@@ -583,6 +584,7 @@ namespace japanese_resturant_project.services.implement
                  LEFT JOIN 
                    menu_tb m ON m.menuID = od.menuID 
                 WHERE o.tableID = @tableID
+                ORDER BY o.orderDate DESC
                  ";
                     var parameter = new
                     {
@@ -594,6 +596,7 @@ namespace japanese_resturant_project.services.implement
                         if (orderDatail != null)
                         {
                             orderDatail.imageSrc = String.Format("https://localhost:7202/Image/{0}", orderDatail.imageName);
+                           
                             order.OrderDetailList.Add(orderDatail);
                         }
                         return order;
@@ -700,7 +703,97 @@ namespace japanese_resturant_project.services.implement
             return response;
         }
 
-        //ชำระเงิน ชำระในทุกๆ order ที่มีหมายเลขโต๊ะเดียวกัน
+        //ชำระเงิน ตามหมายเลข order
+
+
+        public async Task<CustomerResponse> AddPayment(PaymentRequest request)
+        {
+            Random random = new Random();
+            int randomID = random.Next(0, 999999);
+            string genPayID = "P" + randomID.ToString();
+            string genRevenueID = "R"+randomID.ToString();
+
+            //string genOrderDetailID = "ODT" + randomID.ToString();
+            var response = new CustomerResponse();
+            try
+            {
+                using (var dbConnection = CreateSQLConnection())
+                {
+                    var paySQL = @"INSERT INTO receipt_tb (receiptID,tableID,paymentStatus,paymentType,totalAmount,totalTax,cash,change,staffID,orderID,netTotalAmount,confirmPay,payDatetime)
+                        VALUES (@receiptID,@tableID,@paymentStatus,@paymentType,@totalAmount,@totalTax,@cash,@change,@staffID,@orderID,@netTotalAmount,@confirmPay,@payDatetime)";
+                    
+                    var revenueSQL = @"INSERT INTO revenue_tb (revenueID,createDate,revenueDescritption,orderID,totalAmount,tax,netAmount)
+                        VALUES (@revenueID,@createDate,@revenueDescritption,@orderID,@totalAmount,@tax,@netAmount)";
+
+                    var updatePayStatus = @"UPDATE order_tb SET paymentStatus = 'ชำระเงินสำเร็จ' WHERE orderID = @orderID";
+                    var parameter = new
+                    {
+                        receiptID = genPayID,
+                        tableID = request.tableID,
+                        paymentStatus = "ชำระรายการแล้ว",
+                        paymentType = request.paymentType,
+                        totalAmount = request.totalAmount,
+                        totalTax = request.totalFee,
+                        cash =request.cash,
+                        change = request.change,
+                        staffID = request.staffID,
+                        orderID =request.orderID,
+                        netTotalAmount = request.netTotalAmount,
+                        confirmPay = "ยังไม่อนุมัติ",
+                        payDatetime = DateTime.Now
+                    };
+                    var parameter2 = new
+                    {
+                        revenueID = genRevenueID,
+                        createDate = DateTime.Now,
+                        revenueDescritption = "รายได้จากการชำระค่าอาหารและเครื่องดื่ม",
+                        orderID = request.orderID,
+                        totalAmount = request.totalAmount,
+                        tax = request.totalFee,
+                        netAmount = request.netTotalAmount
+                    };
+
+                    var payValue  = await dbConnection.ExecuteAsync(paySQL,parameter);
+                    if(payValue > 0)
+                    {
+                        response.payItem = new Payment_tb()
+                        {
+                            receiptID = genPayID,
+                            tableID = request.tableID,
+                            paymentStatus = "ชำระรายการแล้ว",
+                            paymentType = request.paymentType,
+                            totalAmount = request.totalAmount,
+                            totalTax = request.totalFee,
+                            cash = request.cash,
+                            change = request.change,
+                            staffID = request.staffID,
+                            orderID = request.orderID,
+                            netTotalAmount = request.netTotalAmount,
+                            confirmPay = "ยังไม่อนุมัติ",
+                            payDatetime = DateTime.Now
+                        };
+
+                        await dbConnection.ExecuteAsync(revenueSQL, parameter2);
+                        await dbConnection.ExecuteAsync(updatePayStatus, new { orderID = request.orderID });
+                        response.message = "ทำรายการสำเร็จ";
+                        response.success = true;
+                    }
+                    else
+                    {
+                        response.message = "ทำรายการไม่สำเร็จ";
+                        response.success = false;
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                response.message = $"{ex}";
+            }
+            return response;
+        }
+
 
     }
 }

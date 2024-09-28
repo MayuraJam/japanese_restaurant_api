@@ -11,6 +11,8 @@ namespace japanese_resturant_project.model.response.customerResponse
         public Order_tb orderItem {get;set;}
         public List<OrderDetail_tb> orderList { get; set; }
         public List<Order_tb> orders { get; set; } 
+        public List<Payment_tb> payList { get; set; }
+        public Payment_tb payItem { get; set; }
 
     }
 
