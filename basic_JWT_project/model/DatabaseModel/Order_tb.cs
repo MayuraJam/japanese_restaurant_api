@@ -12,6 +12,8 @@
         //รายการใน order
         public string tableID { get; set; }
         public string paymentStatus { get; set; }
+        public string customerID { get; set; }
+
         public ICollection<OrderDetail_tb>OrderDetailList { get; set; } //เป็นคำสั่งที่หมายถึง ตาราง Orderr เป็นตารางแม่ที่มีคำสั่งซื้อ orderdetail หลายรายการ
         
   

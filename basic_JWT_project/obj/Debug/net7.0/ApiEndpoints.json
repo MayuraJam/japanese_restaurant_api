@@ -621,13 +621,13 @@
   {
     "ContainingType": "japanese_resturant_project.Controllers.CustomerController",
     "Method": "GetOrder",
-    "RelativePath": "api/Customer/GetOrder/{tableID}",
+    "RelativePath": "api/Customer/GetOrder/{customerID}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "tableID",
+        "Name": "customerID",
         "Type": "System.String",
         "IsRequired": true
       }
@@ -648,6 +648,32 @@
     "ContainingType": "japanese_resturant_project.Controllers.CustomerController",
     "Method": "GetOrderDetail",
     "RelativePath": "api/Customer/GetOrderDetail/{orderID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderID",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "japanese_resturant_project.model.response.customerResponse.CustomerResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "japanese_resturant_project.Controllers.CustomerController",
+    "Method": "GetPayment",
+    "RelativePath": "api/Customer/GetPyment/{orderID}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

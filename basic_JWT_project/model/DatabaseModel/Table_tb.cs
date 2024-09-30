@@ -6,6 +6,8 @@
         public string tableStatus { get; set; }
         public int seat {get; set; }
         public string seatType { get; set; }
+        public string customerID { get; set; }
+
 
     }
 }

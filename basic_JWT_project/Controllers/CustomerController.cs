@@ -77,10 +77,10 @@ namespace japanese_resturant_project.Controllers
             return response;
         }
 
-        [HttpGet("GetOrder/{tableID}")]
-        public async Task<CustomerResponse> GetOrder(string tableID)
+        [HttpGet("GetOrder/{customerID}")]
+        public async Task<CustomerResponse> GetOrder(string customerID)
         {
-            var response = await _service.CustomerService().GetOrder(tableID);
+            var response = await _service.CustomerService().GetOrder(customerID);
             return response;
         }
         [HttpPut("CancleOrder/{orderID}")]
@@ -100,6 +100,12 @@ namespace japanese_resturant_project.Controllers
         {
             var response = await _service.CustomerService().AddNotification(request);
             return Ok(response);
+        }
+        [HttpGet("GetPyment/{orderID}")]
+        public async Task<CustomerResponse> GetPayment(string orderID)
+        {
+            var response = await _service.CustomerService().GetPayment(orderID);
+            return response;
         }
     }
 }

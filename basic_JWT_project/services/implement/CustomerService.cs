@@ -18,36 +18,39 @@ namespace japanese_resturant_project.services.implement
 {
     public class CustomerService : Bases,ICustomer
     {
-        //เปิดโต๊ะ
+        //เปิดโต๊ะ เปลี่ยน
         public async Task<CustomerResponse> OpenTable(OpenTableRequest request)
         {
             var openResponse = new CustomerResponse();
+            Random random = new Random();
+            int randomID = random.Next(0, 999999);
+            string genCustomerID = "CUS" + randomID.ToString();
             try
             {
                 using (var dbConnection = CreateSQLConnection()) // Establish database connection
                 {
                     var sql = @"UPDATE table_tb
-                        SET tableStatus = @tableStatus
+                        SET tableStatus = @tableStatus,customerID = @customerID
                         WHERE tableID = @tableID AND tableStatus = 'ว่าง'";
 
                     // Use parameterized query to prevent SQL injection
                     var parameters = new
                     {
                        tableID = request.tableID,
-                       tableStatus = "จองแล้ว"
-                     };
+                       tableStatus = "จองแล้ว",
+                       customerID = genCustomerID
+                    };
 
                     // Execute the query
                     int rowsAffected = await dbConnection.ExecuteAsync(sql, parameters);
 
-                    // Check if the update was successful
                     if (rowsAffected > 0)
                     {
-                        // Populate the booking response with the updated reservation
                         openResponse.table = new Table_tb
                         {
                             tableID = request.tableID,
-                            tableStatus = "มีลูกค้า"
+                            tableStatus = "มีลูกค้า",
+                            customerID = genCustomerID
                         };
 
                         openResponse.success = true;
@@ -55,7 +58,7 @@ namespace japanese_resturant_project.services.implement
                     else
                     {
                         // Handle the case where no rows were affected (e.g., reservation not found)
-                        openResponse.message = "Update failed: Reservation not found beacuse this table is booking.";
+                        openResponse.message = "Update failed: Data not found beacuse this table is booking.";
 
                         openResponse.success = false;
                     }
@@ -125,7 +128,7 @@ namespace japanese_resturant_project.services.implement
 
             return openResponse;
         }
-        
+        //เปลี่ยน
         public async Task<CustomerResponse> GetCartBytableID(string tableID)
         {
             var Response = new CustomerResponse()
@@ -146,13 +149,14 @@ namespace japanese_resturant_project.services.implement
                  c.tableID,
                  c.quantity,
                  c.optionValue,
-                 c.netprice
+                 c.netprice,
+                 c.customerID
                  FROM  Cart_tb c
                  LEFT JOIN
                    menu_tb m ON m.menuID = c.menuID 
                 WHERE c.tableID = @tableID
                  ";
-                    var cartValue = await dbConnection.QueryAsync(sql,new { tableID = tableID});
+                    var cartValue = await dbConnection.QueryAsync(sql,new { tableID = tableID });
 
                     if (cartValue != null && cartValue.Any())
                     {
@@ -168,7 +172,8 @@ namespace japanese_resturant_project.services.implement
                             tableID = x.tableID,
                             quantity = x.quantity,
                             optionValue = x.optionValue,
-                            netprice = x.unitPrice * x.quantity
+                            netprice = x.unitPrice * x.quantity,
+                            customerID = x.customerID,
 
                         }).ToList();
 
@@ -196,14 +201,14 @@ namespace japanese_resturant_project.services.implement
             return Response;
         }
 
-        //AddCart
+        //AddCart เปลี่ยน
         public async Task<CustomerResponse> AddCart(AddCartRequest request)
         {
             var response = new CustomerResponse();
             var cardID = Guid.NewGuid();
             //ฐานข้อมูลเข้าแล้ว
-            var sql = @"INSERT INTO Cart_tb (cartID,menuID,tableID,quantity,optionValue,netprice)
-                        VALUES (@cartID,@menuID,@tableID,@quantity,@optionValue,@netprice)";
+            var sql = @"INSERT INTO Cart_tb (cartID,menuID,tableID,quantity,optionValue,netprice,customerID)
+                        VALUES (@cartID,@menuID,@tableID,@quantity,@optionValue,@netprice,@customerID)";
             try
             {
                 using (var dbConnection = CreateSQLConnection())
@@ -215,7 +220,8 @@ namespace japanese_resturant_project.services.implement
                         tableID = request.tableID,
                         quantity = 1,
                         optionValue = request.optionValue,
-                        netprice = request.unitPrice
+                        netprice = request.unitPrice,
+                        customerID = request.customerID,
 
                     };
                     var menuValue = await dbConnection.ExecuteAsync(sql, parameters);
@@ -229,8 +235,8 @@ namespace japanese_resturant_project.services.implement
                             tableID = request.tableID,
                             quantity = 1,
                             optionValue = request.optionValue,
-                            netprice = request.unitPrice
-
+                            netprice = request.unitPrice,
+                            customerID = request.customerID,
 
                         };
                         response.message = "เพิ่มข้อมูลสำเร็จ";
@@ -352,7 +358,7 @@ namespace japanese_resturant_project.services.implement
             return response;
         }
 
-        //AddNeworder
+        //AddNeworder เปลี่ยน
         public async Task<CustomerResponse> AddOrder(AddOrderRequest request)
         {
             Random random = new Random();
@@ -363,8 +369,8 @@ namespace japanese_resturant_project.services.implement
             var response = new CustomerResponse();
             try
             {
-                var orderSQL = @"INSERT INTO order_tb (orderID,tableID,staftID,orderStatus,orderDate,totalPrice,confirmOrder,paymentStatus)
-                        VALUES (@orderID,@tableID,@staftID,@orderStatus,@orderDate,@totalPrice,@confirmOrder,@paymentStatus)";
+                var orderSQL = @"INSERT INTO order_tb (orderID,tableID,staftID,orderStatus,orderDate,totalPrice,confirmOrder,paymentStatus,customerID)
+                        VALUES (@orderID,@tableID,@staftID,@orderStatus,@orderDate,@totalPrice,@confirmOrder,@paymentStatus,@customerID)";
                 var cartSQL = @"SELECT 
                  c.cartID,
                  c.menuID,
@@ -374,19 +380,22 @@ namespace japanese_resturant_project.services.implement
                  c.tableID,
                  c.quantity,
                  c.optionValue,
-                 c.netprice
+                 c.netprice,
+                 c.customerID
                  FROM  Cart_tb c
                  LEFT JOIN
                    menu_tb m ON m.menuID = c.menuID 
-                WHERE c.tableID = @tableID";
+                WHERE c.customerID = @customerID";
 
                 var orderDetailSQL = @"INSERT INTO orderDetail_tb (orderID,menuID,orderDetailStatus,quantity,optionValue,netprice)
                         VALUES (@orderID,@menuID,@orderDetailStatus,@quantity,@optionValue,@netprice)";
 
-                var deletecartSQL = @"DELETE FROM Cart_tb WHERE tableID = @tableID";
+                var deletecartSQL = @"DELETE FROM Cart_tb WHERE customerID = @customerID";
+
                 var updateMenuSQL = @"UPDATE menu_tb
                         SET stockQuantity = stockQuantity - @quantity
                         WHERE menuID = @menuID";
+
                 var showOrderDetailSQL = @" SELECT * FROM  orderDetail_tb WHERE orderID = @orderID";
                 using (var dbConnection = CreateSQLConnection()) // Establish database connection
                 {
@@ -399,7 +408,8 @@ namespace japanese_resturant_project.services.implement
                         orderDate = DateTime.Now,
                         totalPrice = request.totalPrice,
                         confirmOrder = "ยังไม่อนุมัติ",
-                        paymentStatus = "ยังไม่ได้ชำระ"
+                        paymentStatus = "ยังไม่ได้ชำระ",
+                        customerID = request.customerID,
                     };
                     var orderValue = await dbConnection.ExecuteAsync(orderSQL, parameters);
 
@@ -414,10 +424,11 @@ namespace japanese_resturant_project.services.implement
                             orderDate = DateTime.Now,
                             totalPrice = request.totalPrice,
                             confirmOrder = "ยังไม่อนุมัติ",
-                            paymentStatus = "ยังไม่ได้ชำระ"
+                            paymentStatus = "ยังไม่ได้ชำระ",
+                            customerID = request.customerID,
                         };
                               
-                        var cartValue = await dbConnection.QueryAsync<Cart_tb>(cartSQL, new { tableID = request.tableID });
+                        var cartValue = await dbConnection.QueryAsync<Cart_tb>(cartSQL, new { customerID = request.customerID});
                         if (cartValue != null && cartValue.Any()) {
 
                               
@@ -442,7 +453,7 @@ namespace japanese_resturant_project.services.implement
                                 if(orderDetailData > 0)
                                 {
                                     response.message = "เพิ่มข้อมูลลงในรายการการสั่งซื้อสำเร็จ";
-                                    var deletecartData = await dbConnection.ExecuteAsync(deletecartSQL, new { tableID = request.tableID });
+                                    var deletecartData = await dbConnection.ExecuteAsync(deletecartSQL, new { customerID = request.customerID });
                                     if (deletecartData == 0)
                                     {
                                         response.message = "ลบข้อมูลในตะกร้าสำเร็จ";
@@ -490,7 +501,6 @@ namespace japanese_resturant_project.services.implement
                 {
                     var sql = @"
                 SELECT 
-                 
                  od.orderID,
                  od.menuID,
                  od.orderDetailStatus,
@@ -549,8 +559,8 @@ namespace japanese_resturant_project.services.implement
 
             return Response;
         }
-
-        public  Task<CustomerResponse> GetOrder(string tableID)
+        //เปลี่ยน
+        public  Task<CustomerResponse> GetOrder(string customerID)
         {
             var Response = new CustomerResponse()
             {
@@ -570,6 +580,7 @@ namespace japanese_resturant_project.services.implement
                  o.totalPrice,
                  o.confirmOrder,
                  o.paymentStatus,
+                 o.customerID,
                  od.menuID,
                  od.orderDetailStatus,
                  od.quantity,
@@ -583,12 +594,12 @@ namespace japanese_resturant_project.services.implement
                    orderDetail_tb od ON od.orderID = o.orderID 
                  LEFT JOIN 
                    menu_tb m ON m.menuID = od.menuID 
-                WHERE o.tableID = @tableID
+                WHERE o.customerID = @customerID
                 ORDER BY o.orderDate DESC
                  ";
                     var parameter = new
                     {
-                        tableID = tableID
+                        customerID = customerID
                     };
                     var Value = dbConnection.Query<Order_tb, OrderDetail_tb, Order_tb>(sql, (order, orderDatail) =>
                     {
@@ -648,9 +659,11 @@ namespace japanese_resturant_project.services.implement
                                    SET orderStatus = @orderStatus,
                                    confirmOrder = @confirmOrder
                                    WHERE orderID = @orderID";
+
                     var sqlorderDetail = @"UPDATE orderDetail_tb 
                                            SET orderDetailStatus = @orderDetailStatus
                                            WHERE orderID = @orderID";
+
                     var selectmenufromorderDetail = @"SELECT menuID,quantity FROM orderDetail_tb WHERE orderID = @orderID";
 
                     var updateMenuQuantity = @"UPDATE menu_tb
@@ -703,7 +716,7 @@ namespace japanese_resturant_project.services.implement
             return response;
         }
 
-        //ชำระเงิน ตามหมายเลข order
+        //ชำระเงิน ตามหมายเลข order แก้ไข
 
 
         public async Task<CustomerResponse> AddPayment(PaymentRequest request)
@@ -719,8 +732,8 @@ namespace japanese_resturant_project.services.implement
             {
                 using (var dbConnection = CreateSQLConnection())
                 {
-                    var paySQL = @"INSERT INTO receipt_tb (receiptID,tableID,paymentStatus,paymentType,totalAmount,totalTax,cash,change,staffID,orderID,netTotalAmount,payDatetime)
-                        VALUES (@receiptID,@tableID,@paymentStatus,@paymentType,@totalAmount,@totalTax,@cash,@change,@staffID,@orderID,@netTotalAmount,@payDatetime)";
+                    var paySQL = @"INSERT INTO receipt_tb (receiptID,tableID,paymentStatus,paymentType,totalAmount,totalTax,cash,change,staffID,orderID,netTotalAmount,payDatetime,customerID)
+                        VALUES (@receiptID,@tableID,@paymentStatus,@paymentType,@totalAmount,@totalTax,@cash,@change,@staffID,@orderID,@netTotalAmount,@payDatetime,@customerID)";
                     
                     var revenueSQL = @"INSERT INTO revenue_tb (revenueID,createDate,revenueDescritption,orderID,totalAmount,tax,netAmount)
                         VALUES (@revenueID,@createDate,@revenueDescritption,@orderID,@totalAmount,@tax,@netAmount)";
@@ -739,7 +752,8 @@ namespace japanese_resturant_project.services.implement
                         staffID = request.staffID,
                         orderID =request.orderID,
                         netTotalAmount = request.netTotalAmount,
-                        payDatetime = DateTime.Now
+                        payDatetime = DateTime.Now,
+                        customerID = request.customerID
                     };
                     var parameter2 = new
                     {
@@ -768,7 +782,8 @@ namespace japanese_resturant_project.services.implement
                             staffID = request.staffID,
                             orderID = request.orderID,
                             netTotalAmount = request.netTotalAmount,
-                            payDatetime = DateTime.Now
+                            payDatetime = DateTime.Now,
+                            customerID = request.customerID
                         };
 
                         await dbConnection.ExecuteAsync(revenueSQL, parameter2);
@@ -790,6 +805,68 @@ namespace japanese_resturant_project.services.implement
                 response.message = $"{ex}";
             }
             return response;
+        }
+
+        public async Task<CustomerResponse> GetPayment(string orderID)
+        {
+            var Response = new CustomerResponse();
+            
+            try
+            {
+                using (var dbConnection = CreateSQLConnection()) // Establish database connection
+                {
+                    var sql = @"
+                SELECT 
+                 receiptID,tableID,paymentStatus,paymentType,totalAmount,totalTax,cash,change,staffID,orderID,netTotalAmount,payDatetime,customerID
+                 FROM  receipt_tb
+                WHERE orderID = @orderID
+                 ";
+                    var cartValue = await dbConnection.QueryFirstOrDefaultAsync<Payment_tb>(sql, new { orderID = orderID });
+
+                    if (cartValue != null)
+                    {
+                        Response.payItem = cartValue;
+                        Response.message = "successfully.";
+                        Response.success = true;
+
+                    }
+                    else
+                    {
+                        Response.payItem = new Payment_tb();
+                        //Response.payItem = new Payment_tb()
+                        //{
+                        //   cash = 0,
+                        //   customerID = "",
+                        //    change = 0,
+                        //     netTotalAmount = 0,
+                        //       orderID = "",
+                        //        OrderDetailList = {},
+                        //         payDatetime = DateTime.Now,
+                        //          paymentStatus = "",
+                        //           paymentType = "",
+                        //            receiptID = "",
+                        //             staffID = "",
+                        //              tableID = "",
+                        //                totalAmount = 0,
+                        //                 totalTax = 0
+
+                        //};
+                        Response.message = "ไม่พบรายการการชำระเงินของหมายเลขรายการนี้";
+                        Response.success = false;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"An error occurred: {ex.Message}");
+
+                Response.message = $"{ex.Message}";
+                Response.success = false;
+            }
+
+            return Response;
         }
 
         //AddNotification

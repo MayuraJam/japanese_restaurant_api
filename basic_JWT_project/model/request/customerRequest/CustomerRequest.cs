@@ -13,6 +13,8 @@ namespace japanese_resturant_project.model.request.customerRequest
         //public int quantity { get; set; }
         public string? optionValue { get; set; }
         public decimal unitPrice { get; set; }
+        public string customerID { get; set; }
+
     }
     public class UpdateCartRequest
     {
@@ -27,6 +29,7 @@ namespace japanese_resturant_project.model.request.customerRequest
         public string tableID { get; set; } //เปรียบเสมือน customerID
         public decimal totalPrice { get; set; }
         public string? staftID { get; set; }
+        public string customerID { get; set; }
 
     }
     public class PaymentRequest
@@ -40,6 +43,7 @@ namespace japanese_resturant_project.model.request.customerRequest
         public decimal change { get; set; }
         public decimal netTotalAmount { get; set; }
         public string? staffID { get; set; }
+        public string customerID { get; set; }
 
     }
 

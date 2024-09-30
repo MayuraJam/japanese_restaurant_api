@@ -13,6 +13,8 @@
         public decimal cash { get; set; }
         public decimal change { get; set; }
         public decimal netTotalAmount {  get; set; }
+        public string customerID { get; set; }
+
 
         public DateTime payDatetime { get; set; }
 

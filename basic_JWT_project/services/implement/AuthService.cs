@@ -70,7 +70,7 @@ namespace japanese_resturant_project.services.implement
 
                     if (request.roleName == "ลูกค้า")
                     {
-                        var sqlCustomer = @"INSERT INTO customer_tb (memberID, firstName,lastName, phone,userID,email,password,roleName,totalPoint)
+                        var sqlCustomer = @"INSERT INTO member_tb (memberID, firstName,lastName, phone,userID,email,password,roleName,totalPoint)
                         VALUES (@memberID,@firstName,@lastName, @phone,@userID,@email,@password,@roleName,@totalPoint)";
                         var parameterCustomer = new
                         {
@@ -119,7 +119,7 @@ namespace japanese_resturant_project.services.implement
 
                         var sqlAdmin = @"INSERT INTO staft_tb (staftID,firstName,lastName, phone,createDate,updateDate,userID,email,password,roleName,accountStatus,jobType)
                         VALUES (@staftID, @firstName,@lastName, @phone,@createDate,@updateDate,@userID,@email,@password,@roleName,@accountStatus,@jobType)";
-                        // Use parameterized query to prevent SQL injection
+
                         response.account = new Staft_Authentication_tb
                         {
                             staftID = staftID,
@@ -175,7 +175,7 @@ namespace japanese_resturant_project.services.implement
             //var SqlAutn = @"SELECT * FROM Authentication_tb WHERE email = @email AND password = @password";
             var sqlCustomer = @"SELECT 
                           c.memberID,c.firstName,c.lastName,c.phone,c.userID,c.email,c.password,c.roleName,c.userID,c.totalPoint,p.pointID,p.currentPoint,p.description,p.createDate
-                          FROM  customer_tb c
+                          FROM  member_tb c
                           LEFT JOIN
                           point_tb p ON p.memberID = c.memberID WHERE c.email = @email AND c.password = @password AND c.roleName = @roleName";
             //ส่วนแสดงข้อมูลของ ตาราง AUthentication 
@@ -199,7 +199,8 @@ namespace japanese_resturant_project.services.implement
                     var sqlPoint = @"
                                             INSERT INTO point_tb (pointID, currentPoint,description,createDate,memberID)
                                             VALUES (@pointID, @currentPoint,@description,@createDate,@memberID);";
-                    var UpdatecustomerSQL = @"UPDATE customer_tb SET totalPoint = totalPoint + @currentPoint WHERE memberID = @memberID";
+
+                    var UpdatecustomerSQL = @"UPDATE member_tb SET totalPoint = totalPoint + @currentPoint WHERE memberID = @memberID";
                     //อัปเดตในส่วนของลูกค้า
                     var parameterpoint = new
                     {
@@ -240,6 +241,7 @@ namespace japanese_resturant_project.services.implement
                                 }
                                 else
                                 {
+                                    response.customerList = new List<Customer_tb>();
                                     response.message = "Not found data 404.";
                                     response.success = false;
 
@@ -262,7 +264,7 @@ namespace japanese_resturant_project.services.implement
                             var sqlPoint = @"
                                             INSERT INTO point_tb (pointID, currentPoint,description,createDate,memberID)
                                             VALUES (@pointID, @currentPoint,@description,@createDate,@memberID);";
-                            var UpdatecustomerSQL = @"UPDATE customer_tb SET totalPoint = totalPoint - @currentPoint WHERE memberID = @memberID";
+                            var UpdatecustomerSQL = @"UPDATE member_tb SET totalPoint = totalPoint - @currentPoint WHERE memberID = @memberID";
                             //อัปเดตในส่วนของลูกค้า
                             var parameterpoint = new
                             {
@@ -309,7 +311,7 @@ namespace japanese_resturant_project.services.implement
                                     }
                                    
 
-
+     
                                 response.message = "เพิ่มข้อมูลสำเร็จ";
                                 response.success = true;
                             }
@@ -475,7 +477,7 @@ namespace japanese_resturant_project.services.implement
                         var sql = @"
                           SELECT 
                           c.memberID,c.firstName,c.lastName,c.phone,c.userID,c.email,c.password,c.roleName,c.userID,c.totalPoint,p.pointID,p.currentPoint,p.description,p.createDate
-                          FROM  customer_tb c
+                          FROM  member_tb c
                           LEFT JOIN
                           point_tb p ON p.memberID = c.memberID
                           ";

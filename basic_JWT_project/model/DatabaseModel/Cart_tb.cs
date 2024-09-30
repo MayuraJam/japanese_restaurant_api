@@ -14,7 +14,9 @@ namespace japanese_resturant_project.model.DatabaseModel
         public string tableID { get; set; }
         public int quantity { get; set; }
         public string? optionValue {  get; set; }
-        
+        public string customerID { get; set; }
+
+
         [NotMapped]
         public string imageSrc { get; set; }
 

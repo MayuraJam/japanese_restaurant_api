@@ -722,7 +722,7 @@ namespace japanese_resturant_project.services.implement
         }
 
 
-        //getAllTable
+        //getAllTable แก้ไข
         public async Task<AdminResponse> GetTableList()
         {
             var Response = new AdminResponse()
@@ -769,7 +769,7 @@ namespace japanese_resturant_project.services.implement
 
             return Response;
         }
-        //orderConfirm
+        //orderConfirm แก้ไข
         public Task<AdminResponse> GetOrderForAdmin()
         {
             var Response = new AdminResponse()
@@ -790,6 +790,7 @@ namespace japanese_resturant_project.services.implement
                  o.totalPrice,
                  o.confirmOrder,
                  o.paymentStatus,
+                 o.customerID,
                  od.menuID,
                  od.orderDetailStatus,
                  od.quantity,
@@ -853,6 +854,7 @@ namespace japanese_resturant_project.services.implement
             return Task.FromResult(Response);
         }
 
+        //แก้ไข
         public Task<AdminResponse> GetOrderByID(string orderID)
         {
             var Response = new AdminResponse();
@@ -871,6 +873,7 @@ namespace japanese_resturant_project.services.implement
                  o.totalPrice,
                  o.confirmOrder,
                  o.paymentStatus,
+                 o.customerID,
                  od.menuID,
                  od.orderDetailStatus,
                  od.quantity,
@@ -1021,6 +1024,7 @@ namespace japanese_resturant_project.services.implement
             }
             return response;
         }
+        //แก้ไข
         public async Task<AdminResponse> GetOrderDetail()
         {
             var Response = new AdminResponse()
@@ -1045,7 +1049,8 @@ namespace japanese_resturant_project.services.implement
                  m.stockQuantity,
                  m.categoryName,
                  o.orderDate,
-                 o.tableID
+                 o.tableID,
+                 o.customerID
                  FROM  orderDetail_tb od
                  LEFT JOIN 
                    menu_tb m ON m.menuID = od.menuID 
@@ -1201,14 +1206,14 @@ namespace japanese_resturant_project.services.implement
                 using (var dbConnection = CreateSQLConnection()) 
                 {
                     var sql = @"UPDATE notification_tb
-                        SET isRead = @isRead,
+                        SET isRead = @isRead
                         WHERE notificationID = @notificationID";
 
 
                     var parameters = new
                     {
                         notificationID = notificationID,
-                        isRead = true
+                        isRead = "อ่านแล้ว"
                     };
 
 
@@ -1236,7 +1241,6 @@ namespace japanese_resturant_project.services.implement
             }
             catch (Exception ex)
             {
-                // Handle exceptions
                 response.message = $"Update failed: {ex.Message}";
                 response.success = false;
             }
