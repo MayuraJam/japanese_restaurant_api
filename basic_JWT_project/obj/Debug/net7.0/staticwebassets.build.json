@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "mA1v3ZUMOOEuqXX2WsvYZPC52GvqvGGMhTuot4j5p/w=",
+  "Hash": "eOTHWx6+cfwHWe96hadT9UwN+T/BKqCov7tRA/C7dJc=",
   "Source": "japanese_resturant_project",
   "BasePath": "_content/japanese_resturant_project",
   "Mode": "Default",
@@ -112,6 +112,25 @@
       "OriginalItemSpec": "wwwroot\\uploads\\5dea2c47-06c2-4c8b-ac2e-0abbb637a619_4f4a1b304f1dc8f37e0723b0aea0826a.jpg"
     },
     {
+      "Identity": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\8ce40b66-0a97-4270-92e4-dded255cabb6_4f4a1b304f1dc8f37e0723b0aea0826a.jpg",
+      "SourceId": "japanese_resturant_project",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\",
+      "BasePath": "_content/japanese_resturant_project",
+      "RelativePath": "uploads/8ce40b66-0a97-4270-92e4-dded255cabb6_4f4a1b304f1dc8f37e0723b0aea0826a.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\8ce40b66-0a97-4270-92e4-dded255cabb6_4f4a1b304f1dc8f37e0723b0aea0826a.jpg"
+    },
+    {
       "Identity": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\a3ff723e-7509-4830-91ec-1cd0b4111bb4_23d7159c86112d8a5c2f53ab7aa3acb1.jpg",
       "SourceId": "japanese_resturant_project",
       "SourceType": "Discovered",
@@ -129,6 +148,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\a3ff723e-7509-4830-91ec-1cd0b4111bb4_23d7159c86112d8a5c2f53ab7aa3acb1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\dbd00ff0-03d2-448c-987f-91d4c324a737_568ef32bb28815f8183143eef4adcfa3.jpg",
+      "SourceId": "japanese_resturant_project",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\",
+      "BasePath": "_content/japanese_resturant_project",
+      "RelativePath": "uploads/dbd00ff0-03d2-448c-987f-91d4c324a737_568ef32bb28815f8183143eef4adcfa3.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\dbd00ff0-03d2-448c-987f-91d4c324a737_568ef32bb28815f8183143eef4adcfa3.jpg"
     }
   ]
 }

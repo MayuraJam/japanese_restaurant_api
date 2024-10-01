@@ -17,10 +17,10 @@ namespace japanese_resturant_project.services
         public Task<AdminResponse> GetMenuList2(SearchRequest request); //ลองสร้างใน controller ก่อน
         public Task<AdminResponse> GetMenuByID(string menuID);
         public Task<AdminResponse> AddMenu([FromForm] MenuRequest request);
-        public Task<AdminResponse> UpdateMenu([FromForm] MenuUpdate request);
+        public Task<AdminResponse> UpdateMenu(MenuUpdate request);
         public Task<AdminResponse> DeleteMenu(string menuID);
         public Task<AdminResponse> GetTableList();
-        public Task<AdminResponse> GetOrderForAdmin();
+        public Task<AdminResponse> GetOrderForAdmin(SearchOrderRequest request);
         public Task<AdminResponse> GetOrderByID(string orderID);
         public Task<AdminResponse> ConfirmOrder(ConfirmRequest request);
         public Task<AdminResponse> GetOrderDetail();

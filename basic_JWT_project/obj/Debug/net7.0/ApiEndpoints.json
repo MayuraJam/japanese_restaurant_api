@@ -29,7 +29,7 @@
       },
       {
         "Name": "optionID",
-        "Type": "System.Nullable\u00601[[System.Guid, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -191,10 +191,16 @@
     "ContainingType": "japanese_resturant_project.Controllers.AdminController",
     "Method": "GetOrderForAdmin",
     "RelativePath": "api/Admin/GetOrder",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "japanese_resturant_project.model.request.SearchOrderRequest",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -329,6 +335,22 @@
   },
   {
     "ContainingType": "japanese_resturant_project.Controllers.AdminController",
+    "Method": "UpdateMenu",
+    "RelativePath": "api/Admin/UpdateMenu",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "japanese_resturant_project.model.request.MenuUpdate",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "japanese_resturant_project.Controllers.AdminController",
     "Method": "updateOrderStatus",
     "RelativePath": "api/Admin/UpdateOrderStatus",
     "HttpMethod": "PUT",
@@ -355,57 +377,6 @@
         "Name": "request",
         "Type": "japanese_resturant_project.model.request.UpdateStaftProfileRequest",
         "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "japanese_resturant_project.Controllers.AdminController",
-    "Method": "UpdateMenu",
-    "RelativePath": "api/Admin/UptionMenu",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "menuID",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "menuName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "menuDescription",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "unitPrice",
-        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "categoryName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "optionID",
-        "Type": "System.Nullable\u00601[[System.Guid, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "imageFile",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
-        "IsRequired": false
-      },
-      {
-        "Name": "stockQuantity",
-        "Type": "System.Int32",
-        "IsRequired": false
       }
     ],
     "ReturnTypes": []

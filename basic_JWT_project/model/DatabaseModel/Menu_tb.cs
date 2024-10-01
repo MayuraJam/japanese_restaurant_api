@@ -11,7 +11,7 @@ namespace japanese_resturant_project.model.DatabaseModel
         public string? menuDescription { get; set; }
         public decimal? unitPrice { get; set; }
         public string categoryName { get; set; }
-        public Guid? optionID { get; set; }
+        public string? optionID { get; set; }
         public DateTime createDate { get; set; }
         public DateTime updateDate { get; set; }
         public double rating { get; set; }

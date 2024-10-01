@@ -170,8 +170,11 @@ namespace japanese_resturant_project.services.implement
         //optionAdd
         public async Task<AdminResponse> AddOption(OptionRequest request)
         {
+            Random random = new Random();
+            int randomID = random.Next(0, 99999);
+            string genOptionID = "OP" + randomID.ToString();
+
             var response = new AdminResponse();
-            var optiionID = Guid.NewGuid();
             var sql = @"INSERT INTO option_tb (optionID,optionName,value)
                         VALUES (@optionID,@optionName,@value)";
             try
@@ -180,7 +183,7 @@ namespace japanese_resturant_project.services.implement
                 {
                     response.optionitem = new Option_tb_
                     {
-                        optionID = optiionID,
+                        optionID = genOptionID,
                         optionName = request.optionName,
                         value = request.value,
                     };
@@ -344,7 +347,9 @@ namespace japanese_resturant_project.services.implement
                  FROM  menu_tb m
                  LEFT JOIN
                    option_tb o ON o.optionID = m.optionID
-                 WHERE (@menuName = '' OR m.menuName LIKE '%' + @menuName + '%'OR m.categoryName LIKE '%' + @menuName + '%');
+                 WHERE (@menuName = '' OR m.menuName LIKE '%' + @menuName + '%'OR m.categoryName LIKE '%' + @menuName + '%')
+                 ORDER BY m.menuID ASC
+                 ;
                  ";
 
                     var sql2 = @"
@@ -531,7 +536,6 @@ namespace japanese_resturant_project.services.implement
         public async Task<AdminResponse> AddMenu([FromForm] MenuRequest request)
         {
             var response = new AdminResponse();
-            //var menuID = Guid.NewGuid();
 
             Random random = new Random();
             int randomID = random.Next(0, 99999);
@@ -601,28 +605,10 @@ namespace japanese_resturant_project.services.implement
             return response;
         }
         //memuUpdate
-        public async Task<AdminResponse> UpdateMenu([FromForm] MenuUpdate request)
+        public async Task<AdminResponse> UpdateMenu( MenuUpdate request)
         {
             var response = new AdminResponse();
-            string? relativeFilePath = null;
-            if (request.imageFile != null)
-            {
-                var directoryPath = Path.Combine("wwwroot", "uploads");
-                if (!Directory.Exists(directoryPath))
-                {
-                    Directory.CreateDirectory(directoryPath);
-                }
-                // Rename the file to avoid conflicts
-                var fileName = $"{Guid.NewGuid()}_{request.imageFile.FileName}";
-                var filePath = Path.Combine(directoryPath, fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await request.imageFile.CopyToAsync(stream);
-                }
-                relativeFilePath = Path.Combine(fileName);
-
-            }
+           
             try
             {
                 using (var dbConnection = CreateSQLConnection()) 
@@ -635,7 +621,6 @@ namespace japanese_resturant_project.services.implement
                             optionID=@optionID,
                             updateDate=@updateDate,
                             rating = @rating,
-                            imageName = @imageName,
                             stockQuantity= stockQuantity + @stockQuantity
                         WHERE menuID = @menuID";
 
@@ -649,7 +634,6 @@ namespace japanese_resturant_project.services.implement
                         categoryName = request.categoryName,
                         updateDate = DateTime.Now,
                         optionID = request.optionID,
-                        imageName = relativeFilePath, //ชื่อไฟล์
                         rating = 0,//ต้องอิงตามค่าที่ได้ทำการกดให้คะแนนตามจำนวนลูกค้า
                         stockQuantity = request.stockQuantity,
                     };
@@ -770,8 +754,10 @@ namespace japanese_resturant_project.services.implement
             return Response;
         }
         //orderConfirm แก้ไข
-        public Task<AdminResponse> GetOrderForAdmin()
+        public Task<AdminResponse> GetOrderForAdmin(SearchOrderRequest request)
         {
+            
+
             var Response = new AdminResponse()
             {
                 orders = new List<Order_tb>()
@@ -804,11 +790,21 @@ namespace japanese_resturant_project.services.implement
                    orderDetail_tb od ON od.orderID = o.orderID 
                  LEFT JOIN 
                    menu_tb m ON m.menuID = od.menuID 
+                 WHERE (@orderID IS NULL OR @orderID = '' OR o.orderID LIKE '%' + @orderID + '%'
+                       OR o.orderStatus LIKE '%' + @orderID + '%')
                  ORDER BY 
-                  CASE WHEN o.confirmOrder = 'ยังไม่อนุมัติ' THEN 0 ELSE 1 END
+                  CASE WHEN o.confirmOrder = 'ยังไม่อนุมัติ' THEN 0 ELSE 1 END;
                  ";
-                   
-                    var Value = dbConnection.Query<Order_tb, OrderDetail_tb, Order_tb>(sql, (order, orderDatail) =>
+
+                    var searchParameter = new
+                    {
+                        orderID = string.IsNullOrEmpty(request.orderID) ? string.Empty : request.orderID,
+                    };
+
+                  
+
+
+                    var Value = dbConnection.Query<Order_tb, OrderDetail_tb, Order_tb>(sql,(order, orderDatail) =>
                     {
                         order.OrderDetailList = order.OrderDetailList ?? new List<OrderDetail_tb>();
                         if (orderDatail != null)
@@ -817,13 +813,14 @@ namespace japanese_resturant_project.services.implement
                             order.OrderDetailList.Add(orderDatail);
                         }
                         return order;
-                    },splitOn: "menuID").GroupBy(o => o.orderID).Select(g =>
+                    }, searchParameter, splitOn: "menuID").GroupBy(o => o.orderID).Select(g =>
                     {
                         var groupOrderList = g.First();
                         groupOrderList.OrderDetailList = g.SelectMany(o => o.OrderDetailList).ToList();
                         return groupOrderList;
                     }).ToList();
 
+                  
 
 
                     if (Value != null && Value.Any())
@@ -836,6 +833,7 @@ namespace japanese_resturant_project.services.implement
                     }
                     else
                     {
+                       
                         Response.message = "ไม่พบรายการสั่งของโต๊ะนี้";
                         Response.success = false;
 

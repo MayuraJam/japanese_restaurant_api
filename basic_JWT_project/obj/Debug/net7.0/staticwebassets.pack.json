@@ -21,8 +21,16 @@
       "PackagePath": "staticwebassets\\uploads\\5dea2c47-06c2-4c8b-ac2e-0abbb637a619_4f4a1b304f1dc8f37e0723b0aea0826a.jpg"
     },
     {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\8ce40b66-0a97-4270-92e4-dded255cabb6_4f4a1b304f1dc8f37e0723b0aea0826a.jpg",
+      "PackagePath": "staticwebassets\\uploads\\8ce40b66-0a97-4270-92e4-dded255cabb6_4f4a1b304f1dc8f37e0723b0aea0826a.jpg"
+    },
+    {
       "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\a3ff723e-7509-4830-91ec-1cd0b4111bb4_23d7159c86112d8a5c2f53ab7aa3acb1.jpg",
       "PackagePath": "staticwebassets\\uploads\\a3ff723e-7509-4830-91ec-1cd0b4111bb4_23d7159c86112d8a5c2f53ab7aa3acb1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\dbd00ff0-03d2-448c-987f-91d4c324a737_568ef32bb28815f8183143eef4adcfa3.jpg",
+      "PackagePath": "staticwebassets\\uploads\\dbd00ff0-03d2-448c-987f-91d4c324a737_568ef32bb28815f8183143eef4adcfa3.jpg"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.japanese_resturant_project.props",

@@ -172,8 +172,8 @@ namespace japanese_resturant_project.Controllers
             var response = await _service.AdminService().AddMenu(request);
             return Ok(response);
         }
-        [HttpPut("UptionMenu")]
-        public async Task<IActionResult> UpdateMenu([FromForm] MenuUpdate request)
+        [HttpPut("UpdateMenu")]
+        public async Task<IActionResult> UpdateMenu(MenuUpdate request)
         {
             var response = await _service.AdminService().UpdateMenu(request);
             return Ok(response);
@@ -202,10 +202,10 @@ namespace japanese_resturant_project.Controllers
             return Ok(response);
         }
 
-        [HttpGet("GetOrder")]
-        public async Task<IActionResult> GetOrderForAdmin()
+        [HttpPost("GetOrder")]
+        public async Task<IActionResult> GetOrderForAdmin(SearchOrderRequest request)
         {
-            var response = await _service.AdminService().GetOrderForAdmin();
+            var response = await _service.AdminService().GetOrderForAdmin(request);
             return Ok(response);
         }
         [HttpGet("GetOrderByID/{orderID}")]

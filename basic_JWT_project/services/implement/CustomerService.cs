@@ -832,25 +832,25 @@ namespace japanese_resturant_project.services.implement
                     }
                     else
                     {
-                        Response.payItem = new Payment_tb();
-                        //Response.payItem = new Payment_tb()
-                        //{
-                        //   cash = 0,
-                        //   customerID = "",
-                        //    change = 0,
-                        //     netTotalAmount = 0,
-                        //       orderID = "",
-                        //        OrderDetailList = {},
-                        //         payDatetime = DateTime.Now,
-                        //          paymentStatus = "",
-                        //           paymentType = "",
-                        //            receiptID = "",
-                        //             staffID = "",
-                        //              tableID = "",
-                        //                totalAmount = 0,
-                        //                 totalTax = 0
+                        //Response.payItem = new Payment_tb();
+                        Response.payItem = new Payment_tb()
+                        {
+                            cash = 0,
+                            customerID = "",
+                            change = 0,
+                            netTotalAmount = 0,
+                            orderID = "",
+                            OrderDetailList = { },
+                            payDatetime = DateTime.Now,
+                            paymentStatus = "ยังไม่ได้ชำระค่าสินค้า",
+                            paymentType = "ยังไม่ได้ชำระค่าสินค้า",
+                            receiptID = "",
+                            staffID = "",
+                            tableID = "",
+                            totalAmount = 0,
+                            totalTax = 0
 
-                        //};
+                        };
                         Response.message = "ไม่พบรายการการชำระเงินของหมายเลขรายการนี้";
                         Response.success = false;
 

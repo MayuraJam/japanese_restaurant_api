@@ -19,7 +19,7 @@ namespace japanese_resturant_project.model.request
 
         public decimal? unitPrice { get; set; }
         public string? categoryName { get; set; }
-        public Guid? optionID { get; set; }
+        public string? optionID { get; set; }
         //public string imageName { get; set; }
 
         [NotMapped]
@@ -37,13 +37,17 @@ namespace japanese_resturant_project.model.request
         public Guid? optionID { get; set; }
         //public byte[]? image { get; set; }
         [NotMapped]
-        public IFormFile imageFile { get; set; }
+       // public IFormFile imageFile { get; set; }
         public int stockQuantity { get; set; }
 
     }
     public class SearchRequest
     {
         public string? menuName { get; set; }
+    }
+    public class SearchOrderRequest
+    {
+        public string? orderID { get; set; }
     }
     public class ConfirmRequest
     {
