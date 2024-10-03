@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "eOTHWx6+cfwHWe96hadT9UwN+T/BKqCov7tRA/C7dJc=",
+  "Hash": "DrBPBhm+RS2xQPOkVCCGOaJgsf2SRAXyTpVImJTbLMA=",
   "Source": "japanese_resturant_project",
   "BasePath": "_content/japanese_resturant_project",
   "Mode": "Default",
@@ -129,6 +129,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\8ce40b66-0a97-4270-92e4-dded255cabb6_4f4a1b304f1dc8f37e0723b0aea0826a.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\93077dae-7197-4854-bfb3-b7536e1f6280_setTempura.jpg",
+      "SourceId": "japanese_resturant_project",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\",
+      "BasePath": "_content/japanese_resturant_project",
+      "RelativePath": "uploads/93077dae-7197-4854-bfb3-b7536e1f6280_setTempura.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\93077dae-7197-4854-bfb3-b7536e1f6280_setTempura.jpg"
     },
     {
       "Identity": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\a3ff723e-7509-4830-91ec-1cd0b4111bb4_23d7159c86112d8a5c2f53ab7aa3acb1.jpg",

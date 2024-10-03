@@ -348,7 +348,7 @@ namespace japanese_resturant_project.services.implement
                  LEFT JOIN
                    option_tb o ON o.optionID = m.optionID
                  WHERE (@menuName = '' OR m.menuName LIKE '%' + @menuName + '%'OR m.categoryName LIKE '%' + @menuName + '%')
-                 ORDER BY m.menuID ASC
+                 ORDER BY m.rating DESC
                  ;
                  ";
 
@@ -369,7 +369,8 @@ namespace japanese_resturant_project.services.implement
                  o.value
                  FROM  menu_tb m
                  LEFT JOIN
-                   option_tb o ON o.optionID = m.optionID;
+                   option_tb o ON o.optionID = m.optionID
+                 ORDER BY m.rating DESC;
                  ";
 
                     var parameter = new
@@ -666,23 +667,31 @@ namespace japanese_resturant_project.services.implement
         public async Task<AdminResponse> DeleteMenu(string menuID)
         {
             var response = new AdminResponse();
+            var menuSql = @"SELECT imageName FROM menu_tb WHERE menuID = @menuID";
+            var sql = @"DELETE FROM menu_tb WHERE menuID = @menuID";
             try
             {
                 using (var dbConnection = CreateSQLConnection())
                 {
-                    var sql = @"DELETE FROM menu_tb WHERE menuID = @menuID";
+
 
                     var parameters = new
                     {
                         menuID = menuID,
                     };
 
+                    var imageValue = dbConnection.QueryFirstOrDefault<string>(menuSql, parameters);
+                    if (imageValue != null) { 
 
-                    int menuValue = await dbConnection.ExecuteAsync(sql, parameters);
-
-
-                    if (menuValue > 0)
+                     var deleteMenu = await dbConnection.ExecuteAsync(sql, parameters);
+                    if (deleteMenu > 0)
                     {
+                        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", imageValue);
+                            if (System.IO.File.Exists(filePath)) {
+                                System.IO.File.Delete(filePath);
+                            }
+                            Console.WriteLine("delet imageFIle success");
+                        
                         response.message = "Delete successful.";
                         response.success = true;
 
@@ -694,6 +703,10 @@ namespace japanese_resturant_project.services.implement
                         response.success = false;
 
                     }
+                      
+                    }else Console.WriteLine("ImageName don't found");
+
+
                 }
             }
             catch (Exception ex)

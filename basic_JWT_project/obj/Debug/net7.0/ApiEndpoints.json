@@ -337,7 +337,7 @@
     "ContainingType": "japanese_resturant_project.Controllers.AdminController",
     "Method": "UpdateMenu",
     "RelativePath": "api/Admin/UpdateMenu",
-    "HttpMethod": "PUT",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -527,6 +527,22 @@
   },
   {
     "ContainingType": "japanese_resturant_project.Controllers.CustomerController",
+    "Method": "AddReview",
+    "RelativePath": "api/Customer/AddReview",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "japanese_resturant_project.model.request.customerRequest.ReviewRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "japanese_resturant_project.Controllers.CustomerController",
     "Method": "CancleOrder",
     "RelativePath": "api/Customer/CancleOrder/{orderID}",
     "HttpMethod": "PUT",
@@ -593,6 +609,32 @@
     "ContainingType": "japanese_resturant_project.Controllers.CustomerController",
     "Method": "GetOrder",
     "RelativePath": "api/Customer/GetOrder/{customerID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerID",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "japanese_resturant_project.model.response.customerResponse.CustomerResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "japanese_resturant_project.Controllers.CustomerController",
+    "Method": "GetOrderAndPayment",
+    "RelativePath": "api/Customer/GetOrderAndPayment/{customerID}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

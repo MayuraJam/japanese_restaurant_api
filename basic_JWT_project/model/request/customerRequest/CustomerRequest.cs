@@ -55,4 +55,10 @@ namespace japanese_resturant_project.model.request.customerRequest
 
 
     }
+    public class ReviewRequest
+    {
+        public int rate { get; set; }
+        public string menuID { get; set; }
+        public string customerID { get; set; }
+    }
 }

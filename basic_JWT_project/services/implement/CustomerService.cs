@@ -928,5 +928,164 @@ namespace japanese_resturant_project.services.implement
             return response;
         }
 
+        public Task<CustomerResponse> GetOrderAndPayment(string customerID)
+        {
+            var Response = new CustomerResponse()
+            {
+                orders = new List<Order_tb>()
+            };
+            try
+            {
+                using (var dbConnection = CreateSQLConnection()) // Establish database connection
+                {
+                    var sql = @"
+                SELECT 
+                 o.orderID,
+                 o.tableID,
+                 o.staftID,
+                 o.orderStatus,
+                 o.orderDate,
+                 o.totalPrice,
+                 o.confirmOrder,
+                 o.paymentStatus,
+                 o.customerID,
+                 od.menuID,
+                 od.orderDetailStatus,
+                 od.quantity,
+                 od.optionValue,
+                 od.netprice,
+                 m.menuName,
+                 m.unitPrice,
+                 m.imageName,
+                 p.receiptID,
+                 p.totalAmount,
+                 p.totalTax,
+                 p.netTotalAmount,
+                 p.paymentType
+                 FROM  order_tb o
+                 LEFT JOIN 
+                   orderDetail_tb od ON od.orderID = o.orderID 
+                 LEFT JOIN 
+                   menu_tb m ON m.menuID = od.menuID 
+                 LEFT JOIN 
+                   receipt_tb p ON p.orderID = o.orderID 
+                WHERE o.customerID = @customerID AND p.receiptID IS NOT NULL
+                ORDER BY o.orderDate DESC
+                 ";
+                    var parameter = new
+                    {
+                        customerID = customerID
+                    };
+                    var Value = dbConnection.Query<Order_tb, OrderDetail_tb, Payment_tb,Order_tb>(sql, (order, orderDatail,payment) =>
+                    {
+                        order.OrderDetailList = order.OrderDetailList ?? new List<OrderDetail_tb>();
+                        if (orderDatail != null)
+                        {
+                            orderDatail.imageSrc = String.Format("https://localhost:7202/Image/{0}", orderDatail.imageName);
+                            order.OrderDetailList.Add(orderDatail);
+                        }
+                        order.PaymentItem = payment;
+                        return order;
+                    }, parameter, splitOn: "menuID,receiptID").GroupBy(o => o.orderID).Select(g =>
+                    {
+                        var groupOrderList = g.First();
+                        groupOrderList.OrderDetailList = g.SelectMany(o => o.OrderDetailList).ToList();
+                        return groupOrderList;
+                    }).ToList();
+
+
+
+                    if (Value != null && Value.Any())
+                    {
+
+                        Response.orders = Value.ToList();
+                        Response.message = "successfully.";
+                        Response.success = true;
+
+                    }
+                    else
+                    {
+                        Response.message = "ไม่พบรายการสั่งของโต๊ะนี้";
+                        Response.success = false;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"An error occurred: {ex.Message}");
+
+                Response.message = $"{ex.Message}";
+                Response.success = false;
+            }
+
+            return Task.FromResult(Response);
+        }
+
+        public async Task<CustomerResponse> AddReview(ReviewRequest request)
+        {
+            //1.งานที่ต้องทำของ function นี้
+            //2.ทำการเพิ่มรายการรีวิวใหม่ /
+            //3.แสดงข้อมูล reviwe ที่มี id ตรงกับที่ request มา / 
+            //4.ทำการคำนวนค่าเฉลี่ยน rating โดยการหาผลรวม rateting ทั้งหมดที่มี menuID นั้น และนับจำนวนที่มีการรีวิวทั้งหมด 
+            //5.นำค่ารีวิวนั้นไปใส่ยังตาราง menu ที่มี menuID ตรงกันเท่านั้น
+            var response = new CustomerResponse();
+
+            Random random = new Random();
+            int randomID = random.Next(0, 999999);
+            string genReviewID = "RV" + randomID.ToString();
+            //ฐานข้อมูลเข้าแล้ว
+            var sql = @"INSERT INTO review_tb (reviewID,rate,menuID,isReview,customerID)
+                        VALUES (@reviewID,@rate,@menuID,@isReview,@customerID)";
+
+            var selectReviewSql = @"SELECT reviewID,rate,menuID,isReview,customerID FROM review_tb WHERE menuID = @menuID";
+            var addRateValueSql = @"UPDATE menu_tb SET rating =@rating WHERE menuID = @menuID";
+
+            try
+            {
+                using (var dbConnection = CreateSQLConnection())
+                {
+                    var parameters = new
+                    {
+                        reviewID = genReviewID,
+                        rate = request.rate,
+                        menuID = request.menuID,
+                        isReview = "รีวิวเรียบร้อยแล้ว",
+                        customerID = request.customerID
+
+                    };
+                    var reviewValue = await dbConnection.ExecuteAsync(sql, parameters);
+                    if (reviewValue > 0)
+                    {
+                        var selectReviewData = await dbConnection.QueryAsync<Review_tb>(selectReviewSql, new {menuID = request.menuID});
+                        int sum=0;
+                        int count = 0;
+                        foreach(var item in selectReviewData)
+                        {
+                            sum += item.rate;
+                            count++;
+                        }
+                        double avg = count > 0? (double)sum /count:0; //ได้รับค่าเฉลี่ยแล้ว
+                        await dbConnection.ExecuteAsync(addRateValueSql, new { rating = avg, menuID = request.menuID });
+                        
+                        response.message = "เพิ่มข้อมูลสำเร็จ";
+                        response.success = true;
+                    }
+                    else
+                    {
+                        response.message = "เพิ่มข้อมูลไม่สำเร็จ";
+                        response.success = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                {
+                    response.message = ex.Message;
+                }
+            }
+            return response;
+        }
     }
 }

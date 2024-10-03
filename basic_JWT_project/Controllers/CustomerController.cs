@@ -107,5 +107,18 @@ namespace japanese_resturant_project.Controllers
             var response = await _service.CustomerService().GetPayment(orderID);
             return response;
         }
+
+        [HttpGet("GetOrderAndPayment/{customerID}")]
+        public async Task<CustomerResponse> GetOrderAndPayment(string customerID)
+        {
+            var response = await _service.CustomerService().GetOrderAndPayment(customerID);
+            return response;
+        }
+        [HttpPost("AddReview")]
+        public async Task<IActionResult> AddReview(ReviewRequest request)
+        {
+            var response = await _service.CustomerService().AddReview(request);
+            return Ok(response);
+        }
     }
 }

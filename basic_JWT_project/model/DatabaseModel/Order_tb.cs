@@ -1,6 +1,6 @@
 ﻿namespace japanese_resturant_project.model.DatabaseModel
 {
-    public class Order_tb
+    public class Order_tb 
     {
         public string orderID { get; set; }
         public string? staftID { get; set; }
@@ -14,10 +14,7 @@
         public string paymentStatus { get; set; }
         public string customerID { get; set; }
 
-        public ICollection<OrderDetail_tb>OrderDetailList { get; set; } //เป็นคำสั่งที่หมายถึง ตาราง Orderr เป็นตารางแม่ที่มีคำสั่งซื้อ orderdetail หลายรายการ
-        
-  
-
-
+        public ICollection<OrderDetail_tb>OrderDetailList { get; set; } 
+        public Payment_tb PaymentItem { get; set; } 
     }
 }

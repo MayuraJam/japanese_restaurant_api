@@ -34,11 +34,11 @@ namespace japanese_resturant_project.model.request
 
         public decimal? unitPrice { get; set; }
         public string? categoryName { get; set; }
-        public Guid? optionID { get; set; }
+        public string? optionID { get; set; }
         //public byte[]? image { get; set; }
-        [NotMapped]
-       // public IFormFile imageFile { get; set; }
         public int stockQuantity { get; set; }
+
+       // public IFormFile imageFile { get; set; }
 
     }
     public class SearchRequest

@@ -172,7 +172,7 @@ namespace japanese_resturant_project.Controllers
             var response = await _service.AdminService().AddMenu(request);
             return Ok(response);
         }
-        [HttpPut("UpdateMenu")]
+        [HttpPost("UpdateMenu")]
         public async Task<IActionResult> UpdateMenu(MenuUpdate request)
         {
             var response = await _service.AdminService().UpdateMenu(request);
