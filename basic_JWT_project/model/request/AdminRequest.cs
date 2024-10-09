@@ -49,6 +49,10 @@ namespace japanese_resturant_project.model.request
     {
         public string? orderID { get; set; }
     }
+    public class SearchMenuRequest
+    {
+        public int? number { get; set; }
+    }
     public class ConfirmRequest
     {
         public string confirm { get; set; }
@@ -71,5 +75,10 @@ namespace japanese_resturant_project.model.request
         public string? phone { get; set; }
         public string? email { get; set; }
         public string? jobType { get; set; }
+    }
+
+    public class OrderStatusRequest
+    {
+        public string orderStatus { get; set; }
     }
 }

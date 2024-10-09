@@ -165,6 +165,12 @@ namespace japanese_resturant_project.Controllers
             var response = await _service.AdminService().GetMenuByID(menuID);
             return response;
         }
+        [HttpPost("GetBestMenu")]
+        public async Task<IActionResult> GetBestMenu(SearchMenuRequest request)
+        {
+            var response = await _service.AdminService().GetBestMenu(request);
+            return Ok(response);
+        }
 
         [HttpPost("AddMenu")]
         public async Task<IActionResult> AddMenu([FromForm] MenuRequest request)
@@ -220,10 +226,10 @@ namespace japanese_resturant_project.Controllers
             var response = await _service.AdminService().ConfirmOrder(request);
             return response;
         }
-        [HttpGet("GetOrderStatus")]
-        public async Task<IActionResult> GetOrderDetail()
+        [HttpPost("GetOrderStatus")]
+        public async Task<IActionResult> GetOrderDetail(SearchOrderRequest request)
         {
-            var response = await _service.AdminService().GetOrderDetail();
+            var response = await _service.AdminService().GetOrderDetail(request);
             return Ok(response);
         }
         [HttpPut("UpdateOrderStatus")]
@@ -249,6 +255,20 @@ namespace japanese_resturant_project.Controllers
         public async Task<IActionResult> DeleteNotification(string notificationID)
         {
             var response = await _service.AdminService().DeleteNotification(notificationID);
+            return Ok(response);
+        }
+
+        [HttpGet("GetOrderStatusCount")]
+        public async Task<IActionResult> GetOrderDetailStatus()
+        {
+            var response = await _service.AdminService().GetOrderDetailStatus();
+            return Ok(response);
+        }
+
+        [HttpGet("GetRevenue")]
+        public async Task<IActionResult> GetRevenue()
+        {
+            var response = await _service.AdminService().GetRevenue();
             return Ok(response);
         }
     }

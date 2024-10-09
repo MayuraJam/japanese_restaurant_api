@@ -18,6 +18,7 @@ namespace japanese_resturant_project.model.response.adminResponse
         public OrderDetail_tb orderOne { get; set; }
         public List<Notification_tb> notiList { get; set; }
         public Notification_tb notiItem { get; set; }
+        public List<Revenue_tb> revenueList { get; set; }
 
     }
 }

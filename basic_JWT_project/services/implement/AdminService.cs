@@ -532,6 +532,59 @@ namespace japanese_resturant_project.services.implement
 
             return Response;
         }
+
+        public async Task<AdminResponse> GetBestMenu(SearchMenuRequest request)
+        {
+            var Response = new AdminResponse();
+            try
+            {
+                using (var dbConnection = CreateSQLConnection())
+                {
+
+                    //ภาพขึ้นล่ะ ถ้าใช้เป็นformat https://localhost:7202/Image/16aba539-bbd5-472d-bd14-31ab4227c4ec_food.jpg อันนี้เป็นตัวอย่าง
+                    var sql = $@"
+                SELECT TOP {request.number} m.menuID,m.menuName, m.rating,m.imageName
+                 FROM  menu_tb m  
+                 ORDER BY  m.rating DESC
+                 ";
+                    var menuValue = await dbConnection.QueryAsync(sql, new { number= request.number});
+                    //string.IsNullOrEmpty(request.menuName) ? string.Empty : request.menuName
+                    if (menuValue != null)
+                    {
+
+                        Response.menuList = menuValue.Select(x => new Menu_tb()
+                        {
+                            menuID = x.menuID,
+                            menuName = x.menuName,
+                            rating = x.rating,
+                            imageName = x.imageName, 
+                            imageSrc = String.Format("https://localhost:7202/Image/{0}", x.imageName),
+
+                        }).ToList();
+                        //ดึงข้อมูลออกมา
+
+                        Response.message = "successfully.";
+                        Response.success = true;
+
+                    }
+                    else
+                    {
+                        
+                        Response.message = "ไม่พบเจอข้อมูลอาหาร";
+                        Response.success = false;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Response.message = $"{ex.Message}";
+                Response.success = false;
+            }
+
+            return Response;
+        }
         //menuAdd
 
         public async Task<AdminResponse> AddMenu([FromForm] MenuRequest request)
@@ -1036,8 +1089,10 @@ namespace japanese_resturant_project.services.implement
             return response;
         }
         //แก้ไข
-        public async Task<AdminResponse> GetOrderDetail()
+        public async Task<AdminResponse> GetOrderDetail(SearchOrderRequest request)
         {
+          
+
             var Response = new AdminResponse()
             {
                 orderList = new List<OrderDetail_tb>()
@@ -1066,10 +1121,15 @@ namespace japanese_resturant_project.services.implement
                  LEFT JOIN 
                    menu_tb m ON m.menuID = od.menuID 
                  LEFT JOIN order_tb o ON od.orderID = o.orderID
+                 WHERE (@orderID IS NULL OR @orderID = '' OR o.orderID LIKE '%' + @orderID + '%')
                  ORDER BY  od.orderDetailStatus
                  ";
+                    var searchParameter = new
+                    {
+                        orderID = string.IsNullOrEmpty(request.orderID) ? string.Empty : request.orderID,
+                    };
 
-                    var Value = await dbConnection.QueryAsync<OrderDetail_tb>(sql);
+                    var Value = await dbConnection.QueryAsync<OrderDetail_tb>(sql,searchParameter);
                     if (Value != null && Value.Any())
                     {
 
@@ -1288,6 +1348,126 @@ namespace japanese_resturant_project.services.implement
             }
 
             return response;
+        }
+
+        public async Task<CustomerResponse> GetOrderDetailStatus()
+        {
+            var Response = new CustomerResponse()
+            {
+                orderList = new List<OrderDetail_tb>()
+            };
+            try
+            {
+                using (var dbConnection = CreateSQLConnection()) // Establish database connection
+                {
+                    var sql = @"
+                SELECT 
+                 od.orderID,
+                 od.menuID,
+                 od.orderDetailStatus,
+                 od.quantity,
+                 od.optionValue,
+                 od.netprice,
+                 m.menuName,
+                 m.unitPrice,
+                 m.imageName,
+                 m.stockQuantity
+                 FROM  orderDetail_tb od
+                 LEFT JOIN 
+                   menu_tb m ON m.menuID = od.menuID 
+             
+                 ";
+                    var cartValue = await dbConnection.QueryAsync(sql);
+
+                    if (cartValue != null && cartValue.Any())
+                    {
+
+                        Response.orderList = cartValue.Select(x => new OrderDetail_tb()
+                        {
+                            orderID = x.orderID,
+                            menuID = x.menuID,
+                            orderDetailStatus = x.orderDetailStatus,
+                            quantity = x.quantity,
+                            optionValue = x.optionValue,
+                            netprice = x.netprice,
+                            menuName = x.menuName,
+                            unitPrice = x.unitPrice,
+                            imageName = x.imageName,
+                            imageSrc = String.Format("https://localhost:7202/Image/{0}", x.imageName),
+                            stockQuantity = x.stockQuantity,
+                        }).ToList();
+
+                        Response.message = "successfully.";
+                        Response.success = true;
+
+                    }
+                    else
+                    {
+                        Response.message = "ไม่พบรายการสั่ง";
+                        Response.success = false;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"An error occurred: {ex.Message}");
+
+                Response.message = $"{ex.Message}";
+                Response.success = false;
+            }
+
+            return Response;
+        }
+
+        public async Task<AdminResponse> GetRevenue()
+        {
+            var Response = new AdminResponse()
+            {
+               revenueList = new List<Revenue_tb>()
+            };
+            try
+            {
+                using (var dbConnection = CreateSQLConnection()) // Establish database connection
+                {
+                    var sql = @"
+                SELECT 
+                 revenueID,
+                 createDate,
+                 netAmount
+                 FROM revenue_tb 
+             
+                 ";
+                    var cartValue = await dbConnection.QueryAsync<Revenue_tb>(sql);
+
+                    if (cartValue != null && cartValue.Any())
+                    {
+
+                        Response.revenueList = cartValue.ToList();
+
+                        Response.message = "successfully.";
+                        Response.success = true;
+
+                    }
+                    else
+                    {
+                        Response.message = "ไม่พบรายการสั่ง";
+                        Response.success = false;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"An error occurred: {ex.Message}");
+
+                Response.message = $"{ex.Message}";
+                Response.success = false;
+            }
+
+            return Response;
         }
     }
 }

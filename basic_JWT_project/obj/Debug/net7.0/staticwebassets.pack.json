@@ -1,8 +1,40 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\01edbf95-98f9-4304-a677-95c98f62116d_dorayaki.jpg",
+      "PackagePath": "staticwebassets\\uploads\\01edbf95-98f9-4304-a677-95c98f62116d_dorayaki.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\03c106d9-c2ee-42bf-8841-fd1c0e8aa0df_volcanoSashimiRice.jpg",
+      "PackagePath": "staticwebassets\\uploads\\03c106d9-c2ee-42bf-8841-fd1c0e8aa0df_volcanoSashimiRice.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\03e7cc9e-e48e-4451-8542-dc79f0d986b4_hiyayakko.jpg",
+      "PackagePath": "staticwebassets\\uploads\\03e7cc9e-e48e-4451-8542-dc79f0d986b4_hiyayakko.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\053ad8c2-36d7-4a0a-9c7e-a49ffd6b5658_OrionTheDraftBeer500ml.jpg",
+      "PackagePath": "staticwebassets\\uploads\\053ad8c2-36d7-4a0a-9c7e-a49ffd6b5658_OrionTheDraftBeer500ml.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\07c99bfd-7c74-4e07-aea8-cdd725bc0754_korokeCheese.jpg",
+      "PackagePath": "staticwebassets\\uploads\\07c99bfd-7c74-4e07-aea8-cdd725bc0754_korokeCheese.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\0ce23f43-86e6-477f-8de8-56ea84782d1e_CurryStackRice.jpg",
+      "PackagePath": "staticwebassets\\uploads\\0ce23f43-86e6-477f-8de8-56ea84782d1e_CurryStackRice.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\0eab7e4f-cd15-47cd-bc15-58009e42ddfb_tamakoMaki.jpg",
+      "PackagePath": "staticwebassets\\uploads\\0eab7e4f-cd15-47cd-bc15-58009e42ddfb_tamakoMaki.jpg"
+    },
+    {
       "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\11586b33-f638-4bb1-8f5d-f68e88b537bb_Tonkotsu_Ramen.png",
       "PackagePath": "staticwebassets\\uploads\\11586b33-f638-4bb1-8f5d-f68e88b537bb_Tonkotsu_Ramen.png"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\115f7bb7-b171-4012-9686-48edb4156d6a_takoSashimi.jpg",
+      "PackagePath": "staticwebassets\\uploads\\115f7bb7-b171-4012-9686-48edb4156d6a_takoSashimi.jpg"
     },
     {
       "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\16aba539-bbd5-472d-bd14-31ab4227c4ec_food.jpg",
@@ -13,28 +45,344 @@
       "PackagePath": "staticwebassets\\uploads\\1b3cfadb-04ac-42ae-b781-63b8717a44cd_sabaFood.jpg"
     },
     {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\1b5d8bd5-2978-4163-8caa-b9a0d0285ac0_UdonCool.jpg",
+      "PackagePath": "staticwebassets\\uploads\\1b5d8bd5-2978-4163-8caa-b9a0d0285ac0_UdonCool.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\1bc761a0-ff02-4caa-ad9f-3c9a36e1f9cc_somen.jpg",
+      "PackagePath": "staticwebassets\\uploads\\1bc761a0-ff02-4caa-ad9f-3c9a36e1f9cc_somen.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\1e769bf0-4df2-4451-8273-5ba1c0f1ee22_Gyuza.jpg",
+      "PackagePath": "staticwebassets\\uploads\\1e769bf0-4df2-4451-8273-5ba1c0f1ee22_Gyuza.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\20d438de-f24b-4eef-98aa-ef1b4242ec2f_spaghettiBun.jpg",
+      "PackagePath": "staticwebassets\\uploads\\20d438de-f24b-4eef-98aa-ef1b4242ec2f_spaghettiBun.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\287ff741-ba00-4bc6-9f48-99f2ea4f2899_Strawberry-Parfait.jpg",
+      "PackagePath": "staticwebassets\\uploads\\287ff741-ba00-4bc6-9f48-99f2ea4f2899_Strawberry-Parfait.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\2adff96d-818d-4d39-8e20-95900bc60a55_hot-soba.jpg",
+      "PackagePath": "staticwebassets\\uploads\\2adff96d-818d-4d39-8e20-95900bc60a55_hot-soba.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\2b66a91d-f05c-45ac-903f-92e2e4415e3f_Miso-Soup.jpg",
+      "PackagePath": "staticwebassets\\uploads\\2b66a91d-f05c-45ac-903f-92e2e4415e3f_Miso-Soup.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\2c7d94ec-afa6-4e67-92e5-dd613d1357a6_edamame.jpg",
+      "PackagePath": "staticwebassets\\uploads\\2c7d94ec-afa6-4e67-92e5-dd613d1357a6_edamame.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\2e881e21-7f12-4591-a9f6-ec0d1a2d6849_lemon-soda.jpg",
+      "PackagePath": "staticwebassets\\uploads\\2e881e21-7f12-4591-a9f6-ec0d1a2d6849_lemon-soda.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\2f50385b-0f61-43e0-9439-5ba0160f001f_TonkatsuBurger.jpg",
+      "PackagePath": "staticwebassets\\uploads\\2f50385b-0f61-43e0-9439-5ba0160f001f_TonkatsuBurger.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\33484ae9-34f3-4efb-b0ae-75a4127422bf_k_Edit_2023-01-Yakisoba_yakisoba-3.jpg",
+      "PackagePath": "staticwebassets\\uploads\\33484ae9-34f3-4efb-b0ae-75a4127422bf_k_Edit_2023-01-Yakisoba_yakisoba-3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\3a6be5ff-4baa-41cb-b61e-61a5e1e06d9c_tempura-udon.jpg",
+      "PackagePath": "staticwebassets\\uploads\\3a6be5ff-4baa-41cb-b61e-61a5e1e06d9c_tempura-udon.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\3af200d2-5b81-42b3-a690-109cda46c4fd_Zaru-Soba.jpg",
+      "PackagePath": "staticwebassets\\uploads\\3af200d2-5b81-42b3-a690-109cda46c4fd_Zaru-Soba.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\3b130e4a-76f6-4271-bba8-01a431b68375_Lemon-juice.jpg",
+      "PackagePath": "staticwebassets\\uploads\\3b130e4a-76f6-4271-bba8-01a431b68375_Lemon-juice.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\3ef52e46-dbb2-407b-bdfa-b5b041362a0a_MatchaTea.jpg",
+      "PackagePath": "staticwebassets\\uploads\\3ef52e46-dbb2-407b-bdfa-b5b041362a0a_MatchaTea.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\3f7e2f99-8df5-4da7-8a3d-847dd8436ee5_Kitsune-Udon.jpg",
+      "PackagePath": "staticwebassets\\uploads\\3f7e2f99-8df5-4da7-8a3d-847dd8436ee5_Kitsune-Udon.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\46ede311-2d99-4607-8097-4f956e3d7ebb_hotate-sashimi.jpg",
+      "PackagePath": "staticwebassets\\uploads\\46ede311-2d99-4607-8097-4f956e3d7ebb_hotate-sashimi.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\526a029a-86b9-4687-a3ea-d412e11dd627_Takoyaki-octopus.jpg",
+      "PackagePath": "staticwebassets\\uploads\\526a029a-86b9-4687-a3ea-d412e11dd627_Takoyaki-octopus.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\52d97c1b-26a8-471d-ad30-b1436b134774_KaiWan.jpg",
+      "PackagePath": "staticwebassets\\uploads\\52d97c1b-26a8-471d-ad30-b1436b134774_KaiWan.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\554a958e-4252-4aff-a7b6-01452e50febc_karake.jpg",
+      "PackagePath": "staticwebassets\\uploads\\554a958e-4252-4aff-a7b6-01452e50febc_karake.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\55658a3b-00f5-450f-909e-f801d429981b_kurume-ramen.jpg",
+      "PackagePath": "staticwebassets\\uploads\\55658a3b-00f5-450f-909e-f801d429981b_kurume-ramen.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\58e74870-213d-4bf2-a5d1-5310eca0235f_salmonToroSashimi.png",
+      "PackagePath": "staticwebassets\\uploads\\58e74870-213d-4bf2-a5d1-5310eca0235f_salmonToroSashimi.png"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\5a137b8b-4450-4601-98e2-6249281078fe_KirinIchibanCan.jpg",
+      "PackagePath": "staticwebassets\\uploads\\5a137b8b-4450-4601-98e2-6249281078fe_KirinIchibanCan.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\5c46eb24-328e-43df-8ec9-14153e69c6f6_ChickAndEggRice.jpg",
+      "PackagePath": "staticwebassets\\uploads\\5c46eb24-328e-43df-8ec9-14153e69c6f6_ChickAndEggRice.jpg"
+    },
+    {
       "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\5cb79ee3-0bc5-464b-8595-346f3098a1e8_d9b95ec5a76022f292e5d50524ec57e6.jpg",
       "PackagePath": "staticwebassets\\uploads\\5cb79ee3-0bc5-464b-8595-346f3098a1e8_d9b95ec5a76022f292e5d50524ec57e6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\5d475b77-43f3-4ead-9e31-9ec81fba88d1_stackBeefRice.jpg",
+      "PackagePath": "staticwebassets\\uploads\\5d475b77-43f3-4ead-9e31-9ec81fba88d1_stackBeefRice.jpg"
     },
     {
       "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\5dea2c47-06c2-4c8b-ac2e-0abbb637a619_4f4a1b304f1dc8f37e0723b0aea0826a.jpg",
       "PackagePath": "staticwebassets\\uploads\\5dea2c47-06c2-4c8b-ac2e-0abbb637a619_4f4a1b304f1dc8f37e0723b0aea0826a.jpg"
     },
     {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\64e383db-4e1e-4696-9285-a51691f420f2_salmonSashimi.jpg",
+      "PackagePath": "staticwebassets\\uploads\\64e383db-4e1e-4696-9285-a51691f420f2_salmonSashimi.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\6939ea29-ffea-437b-a4c3-abcfbac775c7_porkRice.jpg",
+      "PackagePath": "staticwebassets\\uploads\\6939ea29-ffea-437b-a4c3-abcfbac775c7_porkRice.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\720e78fd-d6be-42b6-8c57-72d8deb84265_Yokan.jpg",
+      "PackagePath": "staticwebassets\\uploads\\720e78fd-d6be-42b6-8c57-72d8deb84265_Yokan.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\76999904-79a1-4860-97bf-eba407421b97_salmon_futomaki.jpg",
+      "PackagePath": "staticwebassets\\uploads\\76999904-79a1-4860-97bf-eba407421b97_salmon_futomaki.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\7965010e-5b6f-4f26-b84d-26c4a72df8c3_matcharollcake.jpg",
+      "PackagePath": "staticwebassets\\uploads\\7965010e-5b6f-4f26-b84d-26c4a72df8c3_matcharollcake.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\7b36ab10-473d-4758-a4f0-24c1b8bc92aa_BeefRice.jpg",
+      "PackagePath": "staticwebassets\\uploads\\7b36ab10-473d-4758-a4f0-24c1b8bc92aa_BeefRice.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\7f084afc-fc96-482f-be42-18398b6810db_taiyaki.jpg",
+      "PackagePath": "staticwebassets\\uploads\\7f084afc-fc96-482f-be42-18398b6810db_taiyaki.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\81689e17-386c-4522-8202-20879b1e9731_Unadon-Eel-Rice.jpg",
+      "PackagePath": "staticwebassets\\uploads\\81689e17-386c-4522-8202-20879b1e9731_Unadon-Eel-Rice.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\863f2263-edd0-44a3-81f7-39d7c4782d54_tiger-330-ml.png",
+      "PackagePath": "staticwebassets\\uploads\\863f2263-edd0-44a3-81f7-39d7c4782d54_tiger-330-ml.png"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\87424f64-4407-4e7d-a614-8fc6494677ee_kushikatsu.jpg",
+      "PackagePath": "staticwebassets\\uploads\\87424f64-4407-4e7d-a614-8fc6494677ee_kushikatsu.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\8af2150a-642d-4c8f-b36d-dd2791cacc82_senbei.jpg",
+      "PackagePath": "staticwebassets\\uploads\\8af2150a-642d-4c8f-b36d-dd2791cacc82_senbei.jpg"
+    },
+    {
       "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\8ce40b66-0a97-4270-92e4-dded255cabb6_4f4a1b304f1dc8f37e0723b0aea0826a.jpg",
       "PackagePath": "staticwebassets\\uploads\\8ce40b66-0a97-4270-92e4-dded255cabb6_4f4a1b304f1dc8f37e0723b0aea0826a.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\9092f74f-cc99-41b3-9308-d410dc80acba_singBeer320ml.jpg",
+      "PackagePath": "staticwebassets\\uploads\\9092f74f-cc99-41b3-9308-d410dc80acba_singBeer320ml.jpg"
     },
     {
       "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\93077dae-7197-4854-bfb3-b7536e1f6280_setTempura.jpg",
       "PackagePath": "staticwebassets\\uploads\\93077dae-7197-4854-bfb3-b7536e1f6280_setTempura.jpg"
     },
     {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\9a7e0b70-351c-4faa-9cf8-9e4102dea623_houjicha.jpg",
+      "PackagePath": "staticwebassets\\uploads\\9a7e0b70-351c-4faa-9cf8-9e4102dea623_houjicha.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\9b3021a1-cc00-4c50-8f0c-77b89c02cdf6_valcanoBeefRice.jpg",
+      "PackagePath": "staticwebassets\\uploads\\9b3021a1-cc00-4c50-8f0c-77b89c02cdf6_valcanoBeefRice.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\9d162322-372c-4a13-bde8-86f58f1e9909_Dango.jpg",
+      "PackagePath": "staticwebassets\\uploads\\9d162322-372c-4a13-bde8-86f58f1e9909_Dango.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\9f17fd95-ea15-4fd8-be09-b1dfb511c7c6_sencha.jpg",
+      "PackagePath": "staticwebassets\\uploads\\9f17fd95-ea15-4fd8-be09-b1dfb511c7c6_sencha.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\a3566a74-da0b-4355-951a-e8910e86a6f0_PorkBallTeriyakiRIce.jpg",
+      "PackagePath": "staticwebassets\\uploads\\a3566a74-da0b-4355-951a-e8910e86a6f0_PorkBallTeriyakiRIce.jpg"
+    },
+    {
       "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\a3ff723e-7509-4830-91ec-1cd0b4111bb4_23d7159c86112d8a5c2f53ab7aa3acb1.jpg",
       "PackagePath": "staticwebassets\\uploads\\a3ff723e-7509-4830-91ec-1cd0b4111bb4_23d7159c86112d8a5c2f53ab7aa3acb1.jpg"
     },
     {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\a8fa781f-9e0a-4b5b-9d74-996a4e25cffd_abura-soba.jpg",
+      "PackagePath": "staticwebassets\\uploads\\a8fa781f-9e0a-4b5b-9d74-996a4e25cffd_abura-soba.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\ac5f87ad-679c-4f31-a36e-fbf9f678c2fc_CurryChickenRice.jpg",
+      "PackagePath": "staticwebassets\\uploads\\ac5f87ad-679c-4f31-a36e-fbf9f678c2fc_CurryChickenRice.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\ae560758-17fc-45ca-9b66-d2213c2ad786_HamburgRice.png",
+      "PackagePath": "staticwebassets\\uploads\\ae560758-17fc-45ca-9b66-d2213c2ad786_HamburgRice.png"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\b2e859e5-50f8-4915-a898-ee984aa50810_hokkaido_spicy_ramen.jpg",
+      "PackagePath": "staticwebassets\\uploads\\b2e859e5-50f8-4915-a898-ee984aa50810_hokkaido_spicy_ramen.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\b3506184-80f4-4c02-b8df-7d3110503887_redLemonSoda.jpg",
+      "PackagePath": "staticwebassets\\uploads\\b3506184-80f4-4c02-b8df-7d3110503887_redLemonSoda.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\b3d1e6d1-e000-4da2-add3-2e5fa690d542_Mugicha.jpg",
+      "PackagePath": "staticwebassets\\uploads\\b3d1e6d1-e000-4da2-add3-2e5fa690d542_Mugicha.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\b8e0a2a6-8090-4d17-b3b7-19980b84b0f4_salmonAndTunaSashimi.jpg",
+      "PackagePath": "staticwebassets\\uploads\\b8e0a2a6-8090-4d17-b3b7-19980b84b0f4_salmonAndTunaSashimi.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\b9719c17-a847-4f70-8d7d-bbd32a23c6f1_JPPudding.jpg",
+      "PackagePath": "staticwebassets\\uploads\\b9719c17-a847-4f70-8d7d-bbd32a23c6f1_JPPudding.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\c0ff4efd-2c81-4293-9ae6-2b915d8268d8_Teriyaki-Salmon.jpg",
+      "PackagePath": "staticwebassets\\uploads\\c0ff4efd-2c81-4293-9ae6-2b915d8268d8_Teriyaki-Salmon.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\c20cc785-27b6-4ed7-9bde-96f0ee60585c_Asahi-330ml-Can.jpg",
+      "PackagePath": "staticwebassets\\uploads\\c20cc785-27b6-4ed7-9bde-96f0ee60585c_Asahi-330ml-Can.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\c2166ea1-4b87-4336-99f9-83ae4af3c396_ShogunRice.jpg",
+      "PackagePath": "staticwebassets\\uploads\\c2166ea1-4b87-4336-99f9-83ae4af3c396_ShogunRice.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\c25257d0-07e1-4366-9fad-ae6046a7372b_CastellaCake.jpg",
+      "PackagePath": "staticwebassets\\uploads\\c25257d0-07e1-4366-9fad-ae6046a7372b_CastellaCake.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\cb5d55fe-d318-4ee5-ade1-6964c9b14ffe_tempura2.jpg",
+      "PackagePath": "staticwebassets\\uploads\\cb5d55fe-d318-4ee5-ade1-6964c9b14ffe_tempura2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\cddd9a56-8bb6-430d-a9e2-2caf38afa353_hakata-ramen.jpg",
+      "PackagePath": "staticwebassets\\uploads\\cddd9a56-8bb6-430d-a9e2-2caf38afa353_hakata-ramen.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\cf1bb1f7-26d4-4ef3-a89f-20d59949f13f_italian-soda.jpg",
+      "PackagePath": "staticwebassets\\uploads\\cf1bb1f7-26d4-4ef3-a89f-20d59949f13f_italian-soda.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\d0ddfda6-0842-4098-926d-d5df62e0532a_parfeiMatcha.jpg",
+      "PackagePath": "staticwebassets\\uploads\\d0ddfda6-0842-4098-926d-d5df62e0532a_parfeiMatcha.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\d6ae8494-80ff-4b61-ac27-931eae919e96_tsukemen-ramen-noodles.jpg",
+      "PackagePath": "staticwebassets\\uploads\\d6ae8494-80ff-4b61-ac27-931eae919e96_tsukemen-ramen-noodles.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\d82f4cb0-246a-493c-8afd-c83237f9b7a2_yakisobapan.jpg",
+      "PackagePath": "staticwebassets\\uploads\\d82f4cb0-246a-493c-8afd-c83237f9b7a2_yakisobapan.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\d84c18ea-2019-457f-acb2-3bfb593c8e9f_yuzu_ramen.jpg",
+      "PackagePath": "staticwebassets\\uploads\\d84c18ea-2019-457f-acb2-3bfb593c8e9f_yuzu_ramen.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\d93ec1f4-704d-4a17-94b1-52dec379a231_Hamburg.jpg",
+      "PackagePath": "staticwebassets\\uploads\\d93ec1f4-704d-4a17-94b1-52dec379a231_Hamburg.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\da95c1be-daf7-4546-964c-5ab17f5975f5_Zuwai_claws.jpg",
+      "PackagePath": "staticwebassets\\uploads\\da95c1be-daf7-4546-964c-5ab17f5975f5_Zuwai_claws.jpg"
+    },
+    {
       "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\dbd00ff0-03d2-448c-987f-91d4c324a737_568ef32bb28815f8183143eef4adcfa3.jpg",
       "PackagePath": "staticwebassets\\uploads\\dbd00ff0-03d2-448c-987f-91d4c324a737_568ef32bb28815f8183143eef4adcfa3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\ddedea1d-8ae7-4ba6-89eb-405309782f90_Tempura-Somen.jpg",
+      "PackagePath": "staticwebassets\\uploads\\ddedea1d-8ae7-4ba6-89eb-405309782f90_Tempura-Somen.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\de735e74-2ad0-442f-97ed-1d30d72aaee3_tinaUramaki.jpg",
+      "PackagePath": "staticwebassets\\uploads\\de735e74-2ad0-442f-97ed-1d30d72aaee3_tinaUramaki.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\deba1bba-c4e8-40e8-bd60-be866b025ca9_sashimi-special.jpg",
+      "PackagePath": "staticwebassets\\uploads\\deba1bba-c4e8-40e8-bd60-be866b025ca9_sashimi-special.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\df8afa3f-48f2-4127-b6bb-5be984da4f54_sakuraMoji.jpg",
+      "PackagePath": "staticwebassets\\uploads\\df8afa3f-48f2-4127-b6bb-5be984da4f54_sakuraMoji.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\dfcaa8db-2469-4d1c-95d2-e6f08ac4fbe2_TunaBernRice.jpg",
+      "PackagePath": "staticwebassets\\uploads\\dfcaa8db-2469-4d1c-95d2-e6f08ac4fbe2_TunaBernRice.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\e0c547fa-a2f4-4ca4-8537-560dc8a7b24f_waterglass.jpg",
+      "PackagePath": "staticwebassets\\uploads\\e0c547fa-a2f4-4ca4-8537-560dc8a7b24f_waterglass.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\e1d43f8a-7f35-496d-a3fe-dbe4879b2a27_Coke_can_325ml.jpg",
+      "PackagePath": "staticwebassets\\uploads\\e1d43f8a-7f35-496d-a3fe-dbe4879b2a27_Coke_can_325ml.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\e1d566ff-b2e0-462c-aec5-6d2b06635b8c_yebisu-premium-all-malt-beer.jpg",
+      "PackagePath": "staticwebassets\\uploads\\e1d566ff-b2e0-462c-aec5-6d2b06635b8c_yebisu-premium-all-malt-beer.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\e2c32721-ec3f-4acb-8e71-617da8da45ba_kare-ramen.jpg",
+      "PackagePath": "staticwebassets\\uploads\\e2c32721-ec3f-4acb-8e71-617da8da45ba_kare-ramen.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\e3487a4c-d124-47f3-b34f-0364bc0bbef3_negitoro_sushi.jpg",
+      "PackagePath": "staticwebassets\\uploads\\e3487a4c-d124-47f3-b34f-0364bc0bbef3_negitoro_sushi.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\e4f4e35f-e08a-48ff-a028-077db8bde88f_Supagetti-Napolitan.jpg",
+      "PackagePath": "staticwebassets\\uploads\\e4f4e35f-e08a-48ff-a028-077db8bde88f_Supagetti-Napolitan.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\e90d4fd3-a2d3-479e-93db-7f856c37ee6d_NumbangRice.jpg",
+      "PackagePath": "staticwebassets\\uploads\\e90d4fd3-a2d3-479e-93db-7f856c37ee6d_NumbangRice.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\e9129a2a-0e99-4dbf-8d1f-ffade0647997_Suntory_kinmugi_35cl.jpg",
+      "PackagePath": "staticwebassets\\uploads\\e9129a2a-0e99-4dbf-8d1f-ffade0647997_Suntory_kinmugi_35cl.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\f090213c-af1b-4683-ad3a-e03513cd8b35_Daifuku.jpg",
+      "PackagePath": "staticwebassets\\uploads\\f090213c-af1b-4683-ad3a-e03513cd8b35_Daifuku.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\f6e9def9-9113-490d-a137-2620b8f04708_thaitea.jpg",
+      "PackagePath": "staticwebassets\\uploads\\f6e9def9-9113-490d-a137-2620b8f04708_thaitea.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HOME\\Desktop\\4.1\\workshop_2\\project_backend_C#\\japanese_resturant_api\\basic_JWT_project\\wwwroot\\uploads\\f6fcdf8e-7206-4807-8fe2-04be7e3fd839_punch.jpg",
+      "PackagePath": "staticwebassets\\uploads\\f6fcdf8e-7206-4807-8fe2-04be7e3fd839_punch.jpg"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.japanese_resturant_project.props",
