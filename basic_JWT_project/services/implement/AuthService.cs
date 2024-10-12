@@ -1,21 +1,9 @@
 ﻿using japanese_resturant_project.services.Interfaces;
 using japanese_resturant_project.model.response;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using japanese_resturant_project.Controllers;
 using japanese_resturant_project.model.request;
 using Dapper;
 using japanese_resturant_project.model.DatabaseModel;
-using Microsoft.Data.SqlClient;
-using System.Data.Common;
-using Azure;
-using japanese_resturant_project.model.response.adminResponse;
-using System.Reflection.Metadata.Ecma335;
-using System.Reflection.Metadata;
 
 
 namespace japanese_resturant_project.services.implement
@@ -177,14 +165,16 @@ namespace japanese_resturant_project.services.implement
                           c.memberID,c.firstName,c.lastName,c.phone,c.userID,c.email,c.password,c.roleName,c.userID,c.totalPoint,p.pointID,p.currentPoint,p.description,p.createDate
                           FROM  member_tb c
                           LEFT JOIN
-                          point_tb p ON p.memberID = c.memberID WHERE c.email = @email AND c.password = @password AND c.roleName = @roleName";
+                          point_tb p ON p.memberID = c.memberID 
+                          WHERE c.phone = @phone AND c.roleName = @roleName 
+                          ORDER BY p.createDate DESC;
+                         ";
             //ส่วนแสดงข้อมูลของ ตาราง AUthentication 
             using (var dbConnection = CreateSQLConnection())
             {
                 var paramLogin = new
                 {
-                    email = request.email,
-                    password = request.password,
+                    phone = request.phone,
                     roleName = request.roleName
                 };
                 try
@@ -204,11 +194,9 @@ namespace japanese_resturant_project.services.implement
                     //อัปเดตในส่วนของลูกค้า
                     var parameterpoint = new
                     {
-                        email = request.email,
-                        password = request.password,
                         pointID = pointID,
                         memberID = authValue.memberID,
-                        currentPoint = 20,
+                        currentPoint = calculatePoint(request.totalPrice),
                         description = "ได้รับแต้ม",
                         createDate = DateTime.Now,
                     };
@@ -223,6 +211,7 @@ namespace japanese_resturant_project.services.implement
                                     customer.pointlList = customer.pointlList ?? new List<Point_tb>();
                                     if (point != null)
                                     {
+
                                         customer.pointlList.Add(point);
                                     }
                                     return customer;
@@ -268,8 +257,6 @@ namespace japanese_resturant_project.services.implement
                             //อัปเดตในส่วนของลูกค้า
                             var parameterpoint = new
                             {
-                                email = request.email,
-                                password = request.password,
                                 pointID = pointID,
                                 memberID = authValue.memberID,
                                 currentPoint = request.totalPrice,
@@ -347,28 +334,30 @@ namespace japanese_resturant_project.services.implement
             }
         }
 
-        /* static int calculatePoint(decimal totalPrice)
+        public int calculatePoint(decimal? totalPrice)
         {
-         int point;
-         if(totalPrice >= 200 && totalPrice <=300)
-         {
-             point = 150;
-         }
-         else if(totalPrice  >= 301 && totalPrice <= 400)
-         {
-             point = 200;
-         }
-         else if(totalPrice >= 401 && totalPrice <= 500)
-         {
-             point = 250;
-         }
-         else if (totalPrice >= 501)
-         {
-             point = 300;
-         }
-         return point;
-        }*/
-       
+            if (totalPrice <= 80)
+            {
+                return 0; // ไม่มีแต้มสำหรับราคารวมต่ำกว่า 81 บาท
+            }
+            else if (totalPrice > 80 && totalPrice <= 150)
+            {
+                return (int)((double)totalPrice * 0.05); // 5% สำหรับราคาระหว่าง 81-150 บาท
+            }
+            else if (totalPrice > 150 && totalPrice <= 300)
+            {
+                return (int)((double)totalPrice * 0.1); // 7% สำหรับราคาระหว่าง 151-300 บาท
+            }
+            else if (totalPrice > 300 && totalPrice <= 600)
+            {
+                return (int)((double)totalPrice * 0.15); // 10% สำหรับราคาระหว่าง 301-600 บาท
+            }
+            else // ครอบคลุมกรณีที่มากกว่า 600 บาท
+            {
+                return (int)((double)totalPrice * 0.20); // 15% สำหรับราคาที่เกิน 600 บาท
+            }
+        }
+
         public async Task<UserResponseModel> LoginStaft(LoginStaftRequestModel request)
         {
             var response = new UserResponseModel();
@@ -568,7 +557,54 @@ namespace japanese_resturant_project.services.implement
            return Task.FromResult(response); ;
         }
 
-        //logoutStaft
+        //logoutStaft ตรวจสอบด้วยรหัสพนักงาน
+        public async Task<UserResponseModel> LogoutStaft(string staftID)
+        {
+            var response = new UserResponseModel();
+
+            using (var dbConnection = CreateSQLConnection())
+            {
+
+
+                    try
+                    {
+                       
+                            var sql2 = @"UPDATE staft_tb
+                            SET accountStatus = @accountStatus
+                            WHERE staftID = @staftID
+                          ";
+                            var parameterStaft = new
+                            {
+                                staftID = staftID,
+                                accountStatus = "ออกจากระบบ"
+                            };
+
+                            var memberValue = await dbConnection.ExecuteAsync(sql2, parameterStaft);
+                            if (memberValue > 0)
+                            {
+                                response.success = true;
+                                response.message = "ออกจากระบบสำเร็จ";
+                            }
+                            else
+                            {
+                                response.success = false;
+                                response.message = "ออกจากระบบไม่สำเร็จ";
+                            }
+                        
+                       
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle case where no reservations were found
+                        response.message = $"{ex}";
+                        response.success = false;
+
+                    }
+            }
+
+            return response;
+        }
 
         //เข้าสู่ระบบสะสมแต้ม เพื่อทำการดึงคะแนนรวมของแต้ม โดยค่าที่ส่งไปคือ ราคารวมสินค้า+ภาษีแล้ว email , password , roleName แสดงผลออกมาเป็น ผลรวมแต้มที่โดนหัก ต้องเชื่อมตารางลูกค้ากับคะแนน
     }

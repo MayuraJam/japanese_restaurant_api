@@ -1,19 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
 using Microsoft.AspNetCore.Mvc;
-using BCrypt.Net;
-using Microsoft.AspNetCore.Authentication.OAuth.Claims;
-using System.Security.Claims;
-using System.Linq;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using System.IdentityModel.Tokens.Jwt;
-using japanese_resturant_project.model.response;
 using japanese_resturant_project.services;
-using Dapper;
-
-using Microsoft.AspNetCore.Mvc;
 using japanese_resturant_project.model.request;
-using Azure.Core;
 
 namespace japanese_resturant_project.Controllers
 {
@@ -53,6 +41,12 @@ namespace japanese_resturant_project.Controllers
             var reponse = await _service.AuthService().LoginStaft(request);
             return Ok(reponse);
         }
+        [HttpPut("LogoutStaft/{staftID}")]
+        public async Task<IActionResult> LogoutStaft(string staftID)
 
+        {
+            var reponse = await _service.AuthService().LogoutStaft(staftID);
+            return Ok(reponse);
+        }
     }
 }

@@ -1236,7 +1236,7 @@ namespace japanese_resturant_project.services.implement
                 {
                     var sql = @"
                 SELECT 
-                   notificationID,title,message,createDate,tableID,isRead
+                   notificationID,title,message,createDate,tableID,isRead,sentBy
                  FROM  notification_tb
                  ORDER BY  createDate DESC
                  ";

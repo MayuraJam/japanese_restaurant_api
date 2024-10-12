@@ -7,6 +7,8 @@
         public string menuID { get; set; }
         public string isReview { get; set; }
         public string customerID { get; set; }
+        public string? massage { get; set; }
+
 
     }
 }

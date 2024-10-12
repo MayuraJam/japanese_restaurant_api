@@ -489,6 +489,22 @@
   },
   {
     "ContainingType": "japanese_resturant_project.Controllers.AuthController",
+    "Method": "LogoutStaft",
+    "RelativePath": "api/Auth/LogoutStaft/{staftID}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "staftID",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "japanese_resturant_project.Controllers.AuthController",
     "Method": "AddRegister",
     "RelativePath": "api/Auth/Register",
     "HttpMethod": "POST",

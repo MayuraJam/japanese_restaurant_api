@@ -1,18 +1,8 @@
-﻿using japanese_resturant_project.services;
+﻿
 using japanese_resturant_project.model.DatabaseModel;
 using japanese_resturant_project.model.request.customerRequest;
 using japanese_resturant_project.model.response.customerResponse;
 using Dapper;
-using japanese_resturant_project.model.response.adminResponse;
-using Microsoft.AspNetCore.Mvc;
-using japanese_resturant_project.model.request;
-using Azure.Core;
-using Azure;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.Net.WebSockets;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-using System.Collections.Generic;
-using System.Security.Policy;
 
 namespace japanese_resturant_project.services.implement
 {
@@ -882,8 +872,8 @@ namespace japanese_resturant_project.services.implement
             {
                 using (var dbConnection = CreateSQLConnection())
                 {
-                    var notiSQL = @"INSERT INTO notification_tb (notificationID,title,message,createDate,tableID,isRead)
-                        VALUES (@notificationID,@title,@message,@createDate,@tableID,@isRead)";
+                    var notiSQL = @"INSERT INTO notification_tb (notificationID,title,message,createDate,tableID,isRead,sentBy)
+                        VALUES (@notificationID,@title,@message,@createDate,@tableID,@isRead,@sentBy)";
 
                     
                     var parameter = new
@@ -893,7 +883,8 @@ namespace japanese_resturant_project.services.implement
                         message =request.message,
                         createDate = DateTime.Now,
                         tableID = request.tableID,
-                        isRead = false
+                        isRead = false,
+                        sentBy = request.sentBy
                     };
                     
 
@@ -907,7 +898,8 @@ namespace japanese_resturant_project.services.implement
                             message = request.message,
                             createDate = DateTime.Now,
                             tableID = request.tableID,
-                            isRead = "ยังไมได้อ่าน"
+                            isRead = "ยังไมได้อ่าน",
+                            sentBy = request.sentBy
                         };
                         response.message = "ทำรายการสำเร็จ";
                         response.success = true;
@@ -1036,10 +1028,10 @@ namespace japanese_resturant_project.services.implement
             int randomID = random.Next(0, 999999);
             string genReviewID = "RV" + randomID.ToString();
             //ฐานข้อมูลเข้าแล้ว
-            var sql = @"INSERT INTO review_tb (reviewID,rate,menuID,isReview,customerID)
-                        VALUES (@reviewID,@rate,@menuID,@isReview,@customerID)";
+            var sql = @"INSERT INTO review_tb (reviewID,rate,menuID,isReview,customerID,massage)
+                        VALUES (@reviewID,@rate,@menuID,@isReview,@customerID,@massage)";
 
-            var selectReviewSql = @"SELECT reviewID,rate,menuID,isReview,customerID FROM review_tb WHERE menuID = @menuID";
+            var selectReviewSql = @"SELECT reviewID,rate,menuID,isReview,customerID,massage FROM review_tb WHERE menuID = @menuID";
             var addRateValueSql = @"UPDATE menu_tb SET rating =@rating WHERE menuID = @menuID";
 
             try
@@ -1052,7 +1044,8 @@ namespace japanese_resturant_project.services.implement
                         rate = request.rate,
                         menuID = request.menuID,
                         isReview = "รีวิวเรียบร้อยแล้ว",
-                        customerID = request.customerID
+                        customerID = request.customerID,
+                        massage = request.massage
 
                     };
                     var reviewValue = await dbConnection.ExecuteAsync(sql, parameters);

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using japanese_resturant_project.model.request;
 //using japanese_resturant_project.model.request;
@@ -12,7 +12,6 @@ using japanese_resturant_project.services;
 using Dapper;
 using japanese_resturant_project.model.response.adminResponse;
 using japanese_resturant_project.model.DatabaseModel;
-using Microsoft.Data.SqlClient;
 
 namespace japanese_resturant_project.Controllers
 {

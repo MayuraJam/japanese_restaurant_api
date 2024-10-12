@@ -13,8 +13,9 @@
     }
     public class Login
     {
-        public string email { set; get; }
-        public string password { set; get; }
+        //public string email { set; get; }
+       // public string password { set; get; }
+        public string phone { set; get; }
         public string roleName {  set; get; }
         public decimal? totalPrice { set; get; }
         public string pointType { set; get; }

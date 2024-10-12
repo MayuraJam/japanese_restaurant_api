@@ -8,6 +8,7 @@
         public string tableID { get; set; }
         public DateTime createDate { get; set; }
         public string isRead { get; set; }
+        public string sentBy { get; set; }
 
     }
 }
