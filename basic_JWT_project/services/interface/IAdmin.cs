@@ -27,7 +27,6 @@ namespace japanese_resturant_project.services
         public Task<AdminResponse> updateOrderStatus(UpdateOrderStatusRequest request);
         public Task<AdminResponse> GetNotification();
         public Task<AdminResponse> Readable(string notificationID);
-        public Task<AdminResponse> DeleteNotification(string notificationID);
         public Task<AdminResponse> GetBestMenu(SearchMenuRequest request);
         public Task<CustomerResponse> GetOrderDetailStatus();
         public Task<AdminResponse> GetRevenue();

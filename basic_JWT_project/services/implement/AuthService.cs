@@ -452,7 +452,7 @@ namespace japanese_resturant_project.services.implement
 
                 return response;
         }
-        public Task<UserResponseModel> GetMember([FromBody] string roleName)
+        public Task<UserResponseModel> GetMember(string roleName)
         {
 
             var response = new UserResponseModel();

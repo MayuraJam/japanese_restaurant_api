@@ -105,22 +105,6 @@
   },
   {
     "ContainingType": "japanese_resturant_project.Controllers.AdminController",
-    "Method": "DeleteNotification",
-    "RelativePath": "api/Admin/DeleteNotification/{notificationID}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "notificationID",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "japanese_resturant_project.Controllers.AdminController",
     "Method": "DeleteOption",
     "RelativePath": "api/Admin/DeleteOption",
     "HttpMethod": "DELETE",
@@ -442,8 +426,8 @@
   {
     "ContainingType": "japanese_resturant_project.Controllers.AuthController",
     "Method": "GetMember",
-    "RelativePath": "api/Auth/GetMember",
-    "HttpMethod": "POST",
+    "RelativePath": "api/Auth/GetMember/{roleName}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [

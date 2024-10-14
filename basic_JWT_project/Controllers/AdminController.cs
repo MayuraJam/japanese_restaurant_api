@@ -250,12 +250,6 @@ namespace japanese_resturant_project.Controllers
             var response = await _service.AdminService().Readable(notificationID);
             return Ok(response);
         }
-        [HttpDelete("DeleteNotification/{notificationID}")]
-        public async Task<IActionResult> DeleteNotification(string notificationID)
-        {
-            var response = await _service.AdminService().DeleteNotification(notificationID);
-            return Ok(response);
-        }
 
         [HttpGet("GetOrderStatusCount")]
         public async Task<IActionResult> GetOrderDetailStatus()

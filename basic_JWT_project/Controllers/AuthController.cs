@@ -22,8 +22,8 @@ namespace japanese_resturant_project.Controllers
             var reponse = await _service.AuthService().AddRegister(request);
             return Ok(reponse);
         }
-        [HttpPost("GetMember")]
-        public async Task<IActionResult> GetMember([FromBody] string roleName)
+        [HttpGet("GetMember/{roleName}")]
+        public async Task<IActionResult> GetMember(string roleName)
         {
             var reponse = await _service.AuthService().GetMember(roleName);
             return Ok(reponse);

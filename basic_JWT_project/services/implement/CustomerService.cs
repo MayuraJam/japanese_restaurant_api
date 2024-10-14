@@ -883,7 +883,7 @@ namespace japanese_resturant_project.services.implement
                         message =request.message,
                         createDate = DateTime.Now,
                         tableID = request.tableID,
-                        isRead = false,
+                        isRead = "ยังไม่ได้อ่าน",
                         sentBy = request.sentBy
                     };
                     
@@ -1064,6 +1064,8 @@ namespace japanese_resturant_project.services.implement
                         
                         response.message = "เพิ่มข้อมูลสำเร็จ";
                         response.success = true;
+
+
                     }
                     else
                     {

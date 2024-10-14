@@ -1299,8 +1299,23 @@ namespace japanese_resturant_project.services.implement
                             notificationID = notificationID,
                             isRead = "อ่านแล้ว"
                         };
-                        response.message = "Update success";
-                        response.success = true;
+
+                        var sqlDelete = @"DELETE FROM notification_tb WHERE notificationID = @notificationID";
+
+                        int Value = await dbConnection.ExecuteAsync(sqlDelete, new { notificationID = notificationID });
+
+                        if (Value > 0)
+                        {
+                            response.message = "Delete successful.";
+                            response.success = true;
+
+                        }
+                        else
+                        {
+                            response.message = "Delete failed: Data not found.";
+                            response.success = false;
+
+                        }
                     }
                     else
                     {
@@ -1317,38 +1332,7 @@ namespace japanese_resturant_project.services.implement
             }
             return response;
         }
-        public async Task<AdminResponse> DeleteNotification(string notificationID)
-        {
-            var response = new AdminResponse();
-            try
-            {
-                using (var dbConnection = CreateSQLConnection()) 
-                {
-                    var sql = @"DELETE FROM notification_tb WHERE notificationID = @notificationID";
-
-                    int Value = await dbConnection.ExecuteAsync(sql, new { notificationID  = notificationID});
-
-                    if (Value > 0)
-                    {
-                        response.message = "Delete successful.";
-                        response.success = true;
-
-                    }
-                    else
-                    {
-                        response.message = "Delete failed: Data not found.";
-                        response.success = false;
-
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                response.message = $"Delete failed: {ex.Message}";
-            }
-
-            return response;
-        }
+        
 
         public async Task<CustomerResponse> GetOrderDetailStatus()
         {
