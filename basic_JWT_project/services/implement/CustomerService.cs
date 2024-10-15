@@ -23,11 +23,12 @@ namespace japanese_resturant_project.services.implement
                         SET tableStatus = @tableStatus,customerID = @customerID
                         WHERE tableID = @tableID AND tableStatus = 'ว่าง'";
 
-                    // Use parameterized query to prevent SQL injection
+                    var sqlCustomer = @" INSERT INTO customer_tb (customerID,customerStatus,logInDate,logOutDate)
+                                          VALUES (@customerID,@customerStatus,@logInDate,@logOutDate);";
                     var parameters = new
                     {
                        tableID = request.tableID,
-                       tableStatus = "จองแล้ว",
+                       tableStatus = "มีลูกค้า",
                        customerID = genCustomerID
                     };
 
@@ -36,6 +37,15 @@ namespace japanese_resturant_project.services.implement
 
                     if (rowsAffected > 0)
                     {
+                        var parameters2 = new
+                        {
+                            customerID = genCustomerID,
+                            customerStatus = "กำลังดำเนินรายการ",
+                            logInDate = DateTime.Now,
+                            logOutDate = DateTime.Now
+                        };
+                        var customerLogin = await dbConnection.ExecuteAsync(sqlCustomer, parameters2);
+
                         openResponse.table = new Table_tb
                         {
                             tableID = request.tableID,
@@ -47,8 +57,7 @@ namespace japanese_resturant_project.services.implement
                     }
                     else
                     {
-                        // Handle the case where no rows were affected (e.g., reservation not found)
-                        openResponse.message = "Update failed: Data not found beacuse this table is booking.";
+                        openResponse.message = "OpenTable fail";
 
                         openResponse.success = false;
                     }
@@ -66,7 +75,7 @@ namespace japanese_resturant_project.services.implement
         }
         //ปิดโต๊ะ
 
-        public async Task<CustomerResponse> CloseTable(OpenTableRequest request)
+        public async Task<CustomerResponse> CloseTable(CloseTableRequest request)
         {
             var openResponse = new CustomerResponse();
             try
@@ -74,9 +83,14 @@ namespace japanese_resturant_project.services.implement
                 using (var dbConnection = CreateSQLConnection()) // Establish database connection
                 {
                     var sql = @"UPDATE table_tb
-                        SET tableStatus = @tableStatus
-                        WHERE tableID = @tableID AND tableStatus = 'จองแล้ว'";
+                        SET tableStatus = @tableStatus,
+                        customerID = NULL 
+                        WHERE tableID = @tableID AND tableStatus = 'มีลูกค้า'";
 
+                    var sqlCustomer = @"UPDATE customer_tb
+                                        SET customerStatus = @customerStatus,
+                                        logOutDate = @logOutDate
+                                        WHERE customerID = @customerID";
                     // Use parameterized query to prevent SQL injection
                     var parameters = new
                     {
@@ -90,6 +104,13 @@ namespace japanese_resturant_project.services.implement
                     // Check if the update was successful
                     if (rowsAffected > 0)
                     {
+                        var parameters2 = new
+                        {
+                            customerStatus = "ออกจากระบบแล้ว",
+                            customerID = request.customerID,
+                            logOutDate = DateTime.Now
+                        };
+                        var customerLogout = await dbConnection.ExecuteAsync(sqlCustomer,parameters2);
                         // Populate the booking response with the updated reservation
                         openResponse.table = new Table_tb
                         {
@@ -215,6 +236,7 @@ namespace japanese_resturant_project.services.implement
 
                     };
                     var menuValue = await dbConnection.ExecuteAsync(sql, parameters);
+                    
                     if (menuValue > 0)
                     {
                         // Set success message
@@ -382,7 +404,7 @@ namespace japanese_resturant_project.services.implement
 
                 var deletecartSQL = @"DELETE FROM Cart_tb WHERE customerID = @customerID";
 
-                var updateMenuSQL = @"UPDATE menu_tb
+                var updateMenuSQL = @"UPDATE  menu_tb
                         SET stockQuantity = stockQuantity - @quantity
                         WHERE menuID = @menuID";
 
@@ -440,6 +462,7 @@ namespace japanese_resturant_project.services.implement
                                 var orderDetailData = await dbConnection.ExecuteAsync(orderDetailSQL, orderDetailInput); //เพิ่มข้อมูลลงในตาราง orderDetail
                                 Console.WriteLine($"Added OrderDetail for MenuID: {item.menuID}, Price: {item.netprice}");
                                 var updateMenuValue = await dbConnection.ExecuteAsync(updateMenuSQL, new { menuID = item.menuID, quantity = item.quantity });
+                                //if()
                                 if(orderDetailData > 0)
                                 {
                                     response.message = "เพิ่มข้อมูลลงในรายการการสั่งซื้อสำเร็จ";

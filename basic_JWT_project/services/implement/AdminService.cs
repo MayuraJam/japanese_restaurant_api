@@ -858,8 +858,7 @@ namespace japanese_resturant_project.services.implement
                    menu_tb m ON m.menuID = od.menuID 
                  WHERE (@orderID IS NULL OR @orderID = '' OR o.orderID LIKE '%' + @orderID + '%'
                        OR o.orderStatus LIKE '%' + @orderID + '%')
-                 ORDER BY 
-                  CASE WHEN o.confirmOrder = 'ยังไม่อนุมัติ' THEN 0 ELSE 1 END;
+                 ORDER BY o.orderDate DESC;
                  ";
 
                     var searchParameter = new
@@ -1116,7 +1115,8 @@ namespace japanese_resturant_project.services.implement
                  m.categoryName,
                  o.orderDate,
                  o.tableID,
-                 o.customerID
+                 o.customerID,
+                 o.Q
                  FROM  orderDetail_tb od
                  LEFT JOIN 
                    menu_tb m ON m.menuID = od.menuID 

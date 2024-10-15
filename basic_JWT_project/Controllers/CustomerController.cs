@@ -33,7 +33,7 @@ namespace japanese_resturant_project.Controllers
         }
 
         [HttpPut("CloseTable")]
-        public async Task<IActionResult> CloseTable(OpenTableRequest request)
+        public async Task<IActionResult> CloseTable(CloseTableRequest request)
         {
             var response = await _service.CustomerService().CloseTable(request);
             return Ok(response);

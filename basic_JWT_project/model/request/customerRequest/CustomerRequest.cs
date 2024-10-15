@@ -5,6 +5,13 @@ namespace japanese_resturant_project.model.request.customerRequest
     public class OpenTableRequest
     {
         public string tableID { get; set; }
+
+    }
+    public class CloseTableRequest
+    {
+        public string tableID { get; set; }
+        public string customerID { get; set; }
+
     }
     public class AddCartRequest
     {

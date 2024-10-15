@@ -17,6 +17,7 @@
         public DateTime orderDate {  get; set; } 
         public string categoryName { get; set; }
         public string tableID { get; set; }
+        public int Q { get; set; }
         public Order_tb orderMain { get; set; } //เชื่อมโยงคำสั่ง 1 รายการต่อ 1 order
     }
 }

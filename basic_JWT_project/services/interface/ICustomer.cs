@@ -5,7 +5,7 @@ namespace japanese_resturant_project.services
     public interface ICustomer
     {
         public Task<CustomerResponse> OpenTable(OpenTableRequest request);
-        public Task<CustomerResponse> CloseTable(OpenTableRequest request);
+        public Task<CustomerResponse> CloseTable(CloseTableRequest request);
         public Task<CustomerResponse> GetCartBytableID(string tableID);
 
         public Task<CustomerResponse> AddCart(AddCartRequest request);

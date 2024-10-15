@@ -609,7 +609,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "japanese_resturant_project.model.request.customerRequest.OpenTableRequest",
+        "Type": "japanese_resturant_project.model.request.customerRequest.CloseTableRequest",
         "IsRequired": true
       }
     ],
