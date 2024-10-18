@@ -12,6 +12,7 @@
         public string imageName { get; set; }
         public string imageSrc { get; set; }
         public decimal? unitPrice { get; set; }
+        public string addReview { get; set; }
         public int stockQuantity { get; set; }
         public decimal netprice { get; set; } //quantity * unitprice
         public DateTime orderDate {  get; set; } 

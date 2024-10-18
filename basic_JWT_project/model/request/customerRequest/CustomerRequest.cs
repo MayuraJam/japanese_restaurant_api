@@ -69,5 +69,7 @@ namespace japanese_resturant_project.model.request.customerRequest
         public string menuID { get; set; }
         public string customerID { get; set; }
         public string? massage { get; set; }
+        public string orderID { get; set; }
+
     }
 }

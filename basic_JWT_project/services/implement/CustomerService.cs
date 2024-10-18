@@ -451,13 +451,15 @@ namespace japanese_resturant_project.services.implement
                                    // orderDetailID = "ODT" + randomID2.ToString(),
                                     orderID = response.orderItem.orderID,
                                     menuID = item.menuID,
-                                    orderDetailStatus = "กำลังรอการอนุมัติ",
+                                    //orderDetailStatus = "กำลังรอการอนุมัติ",
+                                    orderDetailStatus = "รายการกำลังทำการจัดเตรียมวัตถุดิบ",
                                     quantity = item.quantity,
                                     optionValue = item.optionValue,
                                     netprice = item.netprice,
                                     menuName = item.menuName,
                                     imageName = item.imageName,
                                     imageSrc = item.imageSrc,
+                                    addReview = "ยังไม่ได้รีวิว"
                                 };
                                 var orderDetailData = await dbConnection.ExecuteAsync(orderDetailSQL, orderDetailInput); //เพิ่มข้อมูลลงในตาราง orderDetail
                                 Console.WriteLine($"Added OrderDetail for MenuID: {item.menuID}, Price: {item.netprice}");
@@ -969,6 +971,7 @@ namespace japanese_resturant_project.services.implement
                  od.quantity,
                  od.optionValue,
                  od.netprice,
+                 od.addReview,
                  m.menuName,
                  m.unitPrice,
                  m.imageName,
@@ -1056,7 +1059,7 @@ namespace japanese_resturant_project.services.implement
 
             var selectReviewSql = @"SELECT reviewID,rate,menuID,isReview,customerID,massage FROM review_tb WHERE menuID = @menuID";
             var addRateValueSql = @"UPDATE menu_tb SET rating =@rating WHERE menuID = @menuID";
-
+            var editOrderdetailSql = @"UPDATE orderDetail_tb SET addReview = 'รีวิวแล้ว' WHERE menuID = @menuID AND orderID = @orderID"; 
             try
             {
                 using (var dbConnection = CreateSQLConnection())
@@ -1083,8 +1086,8 @@ namespace japanese_resturant_project.services.implement
                             count++;
                         }
                         double avg = count > 0? (double)sum /count:0; //ได้รับค่าเฉลี่ยแล้ว
+                        await dbConnection.ExecuteAsync(editOrderdetailSql,new { menuID = request.menuID,orderID = request.orderID });
                         await dbConnection.ExecuteAsync(addRateValueSql, new { rating = avg, menuID = request.menuID });
-                        
                         response.message = "เพิ่มข้อมูลสำเร็จ";
                         response.success = true;
 

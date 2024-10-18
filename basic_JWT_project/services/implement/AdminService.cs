@@ -848,6 +848,7 @@ namespace japanese_resturant_project.services.implement
                  od.quantity,
                  od.optionValue,
                  od.netprice,
+                 od.addReview,
                  m.menuName,
                  m.unitPrice,
                  m.imageName
@@ -942,6 +943,7 @@ namespace japanese_resturant_project.services.implement
                  od.quantity,
                  od.optionValue,
                  od.netprice,
+                 od.addReview,
                  m.menuName,
                  m.unitPrice,
                  m.imageName
