@@ -60,6 +60,7 @@ namespace japanese_resturant_project.model.request
         public string? staftID { get; set; }
 
     }
+
     public class UpdateOrderStatusRequest
     {
         public string orderID { get; set; }
@@ -81,4 +82,6 @@ namespace japanese_resturant_project.model.request
     {
         public string orderStatus { get; set; }
     }
+
+
 }

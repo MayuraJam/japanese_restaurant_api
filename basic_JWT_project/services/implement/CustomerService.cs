@@ -290,13 +290,13 @@ namespace japanese_resturant_project.services.implement
                         netprice = request.unitPrice * request.quantity
                     };
 
-                    // Execute the query
+       
                     int cartValue = await dbConnection.ExecuteAsync(sql, parameters);
 
-                    // Check if the update was successful
+         
                     if (cartValue > 0)
                     {
-                        // Populate the booking response with the updated reservation
+       
                         response.cartItem = new Cart_tb
 
                         {
@@ -311,7 +311,7 @@ namespace japanese_resturant_project.services.implement
                     }
                     else
                     {
-                        // Handle the case where no rows were affected (e.g., reservation not found)
+            
                         response.message = "Update failed: opject not found.";
 
                         response.success = false;
@@ -320,7 +320,7 @@ namespace japanese_resturant_project.services.implement
             }
             catch (Exception ex)
             {
-                // Handle exceptions
+        
                 response.message = $"Update failed: {ex.Message}";
                 response.success = false;
             }
@@ -336,16 +336,15 @@ namespace japanese_resturant_project.services.implement
                 {
                     var sql = @"DELETE FROM Cart_tb WHERE cartID = @cartID";
 
-                    // Use parameterized query to prevent SQL injection
+                    
                     var parameters = new
                     {
                         cartID = cartID,
                     };
 
-                    // Execute the query
                     int rowsAffected = await dbConnection.ExecuteAsync(sql, parameters);
 
-                    // Check if the delete was successful
+              
                     if (rowsAffected > 0)
                     {
                         response.message = "Delete successful.";
@@ -354,7 +353,7 @@ namespace japanese_resturant_project.services.implement
                     }
                     else
                     {
-                        // Handle the case where no rows were affected (e.g., reservation not found)
+                 
                         response.message = "Delete failed: CartItem not found.";
                         response.success = false;
 
@@ -409,6 +408,7 @@ namespace japanese_resturant_project.services.implement
                         WHERE menuID = @menuID";
 
                 var showOrderDetailSQL = @" SELECT * FROM  orderDetail_tb WHERE orderID = @orderID";
+                
                 using (var dbConnection = CreateSQLConnection()) // Establish database connection
                 {
                     var parameters = new
@@ -445,10 +445,8 @@ namespace japanese_resturant_project.services.implement
 
                               
                             foreach (Cart_tb item in cartValue) {
-                               // var randomID2 = random.Next(0, 99999);
                                 var orderDetailInput = new OrderDetail_tb()
                                 {
-                                   // orderDetailID = "ODT" + randomID2.ToString(),
                                     orderID = response.orderItem.orderID,
                                     menuID = item.menuID,
                                     //orderDetailStatus = "กำลังรอการอนุมัติ",
@@ -468,15 +466,21 @@ namespace japanese_resturant_project.services.implement
                                 if(orderDetailData > 0)
                                 {
                                     response.message = "เพิ่มข้อมูลลงในรายการการสั่งซื้อสำเร็จ";
-                                    var deletecartData = await dbConnection.ExecuteAsync(deletecartSQL, new { customerID = request.customerID });
-                                    if (deletecartData == 0)
-                                    {
+                                   
+                                  
+                                       var deletecartData = await dbConnection.ExecuteAsync(deletecartSQL, new { customerID = request.customerID });
+                                       if (deletecartData == 0)
+                                        {
                                         response.message = "ลบข้อมูลในตะกร้าสำเร็จ";
-                                    }
-                                    else
-                                    {
+                                       }
+                                        else
+                                        {
                                         response.message = "ลบข้อมูลในตะกร้าไม่สำเร็จ";
-                                    }
+                                       }
+
+                                    
+                                    
+
 
                                 }
                                 else

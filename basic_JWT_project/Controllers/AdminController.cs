@@ -225,6 +225,12 @@ namespace japanese_resturant_project.Controllers
             var response = await _service.AdminService().ConfirmOrder(request);
             return response;
         }
+        [HttpPut("CookingOrder")]
+        public async Task<AdminResponse> OrderCooking(ConfirmRequest request)
+        {
+            var response = await _service.AdminService().OrderCooking(request);
+            return response;
+        }
         [HttpPost("GetOrderStatus")]
         public async Task<IActionResult> GetOrderDetail(SearchOrderRequest request)
         {

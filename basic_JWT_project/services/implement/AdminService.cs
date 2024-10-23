@@ -1018,26 +1018,45 @@ namespace japanese_resturant_project.services.implement
                 var upadateorderDetailSQL = @"UPDATE orderDetail_tb
                         SET orderDetailStatus = @orderDetailStatus
                         WHERE orderID = @orderID";
+
+                var showOrderDetailCooking = @"SELECT COUNT(*) FROM orderDetail_tb WHERE orderDetailStatus = 'กำลังปรุง'";
+
+                var showOrderDetail = @"SELECT COUNT(*) FROM orderDetail_tb WHERE orderID = @orderID";
+
+                int totalOrderDetail = 10;
+
                 using (var dbConnection = CreateSQLConnection()) 
                 {
-                    var parameters = new
-                    {
-                        orderID = request.orderID,
-                        confirmOrder = request.confirm,
-                        staftID = request.staftID,
-                    };
-                    var orderValue = await dbConnection.ExecuteAsync(orderSQL, parameters);
+                   
+                        if(request.confirm == "อนุญาติเรียบร้อย")
+                        {
+                        var cookingOrdersCount = await dbConnection.QueryFirstOrDefaultAsync<int>(showOrderDetailCooking);
 
-                    if (orderValue > 0)
-                    {
+                        // คำนวณจำนวนรายการที่เหลือ (ทั้งหมด - กำลังปรุง)
+                        int remainingOrders = totalOrderDetail - cookingOrdersCount;
+
+                        var OrdersCount = await dbConnection.QueryFirstOrDefaultAsync<int>(showOrderDetail,new {orderID = request.orderID});
+
+                        if (OrdersCount > remainingOrders)
+                        {
+                            response.message = "Oven is full";
+                        }
+                        else
+                        {
+                        var parameters = new
+                        {
+                            orderID = request.orderID,
+                            confirmOrder = request.confirm,
+                            staftID = request.staftID,
+                        };
+                        var orderValue = await dbConnection.ExecuteAsync(orderSQL, parameters);
+
                         response.orderItem = new Order_tb()
                         {
                             orderID = request.orderID,
                             confirmOrder = request.confirm,
                             staftID = request.staftID,
                         };
-                        if(request.confirm == "อนุญาติเรียบร้อย")
-                        {
                                 var orderDetailupdate = new 
                                 {
                                     orderID = request.orderID,
@@ -1053,6 +1072,8 @@ namespace japanese_resturant_project.services.implement
                                 {
                                     response.message = "แก้ไขข้อมูลลงในรายการการสั่งซื้อไม่สำเร็จ";
                                 }
+
+                        }
                          }else if (request.confirm == "ยกเลิกรายการสั่งนี้")
                         {
                             var orderDetailupdate = new
@@ -1071,10 +1092,7 @@ namespace japanese_resturant_project.services.implement
                                 response.message = "แก้ไขข้อมูลลงในรายการการสั่งซื้อไม่สำเร็จ";
                             }
                         }
-                     }
-                      
-
-                    
+                     
                     else
                     {
                         response.message = "เพิ่มข้อมูลการสั่งอาหารไม่สำเร็จ";
@@ -1089,6 +1107,98 @@ namespace japanese_resturant_project.services.implement
             }
             return response;
         }
+
+        //การเลื่อนสถานะ order ออร์เดอร์ใหม่
+        public async Task<AdminResponse> OrderCooking(ConfirmRequest request)
+        {
+            var response = new AdminResponse();
+            try
+            {
+                var orderSQL = @"UPDATE order_tb
+                        SET confirmOrder = @confirmOrder,
+                         staftID = @staftID
+                        WHERE orderID = @orderID";
+
+                var upadateOrderDetailSQL = @"UPDATE orderDetail_tb
+                        SET orderDetailStatus = @orderDetailStatus
+                        WHERE orderID = @orderID";
+
+                var showOrderDetailCooking = @"SELECT COUNT(*) FROM orderDetail_tb WHERE orderDetailStatus = 'กำลังปรุง'";
+
+                var showOrderDetail = @"SELECT COUNT(*) FROM orderDetail_tb WHERE order = @order";
+
+                int totalOrderDetail = 10;
+                
+                using (var dbConnection = CreateSQLConnection())
+                {
+                    var cookingOrdersCount = await dbConnection.QueryFirstOrDefaultAsync<int>(showOrderDetailCooking);
+
+                    // คำนวณจำนวนรายการที่เหลือ (ทั้งหมด - กำลังปรุง)
+                    int remainingOrders = totalOrderDetail - cookingOrdersCount;
+
+                    if (request.confirm == "ยังไม่อนุมัติ")
+                    {
+                        var OrdersCount = await dbConnection.QueryFirstOrDefaultAsync<int>(showOrderDetail, new { orderID = request.orderID });
+                        if(OrdersCount > remainingOrders)
+                        {
+                            response.message = "Oven is full";
+                        }
+                        else
+                        {
+                         var parameters = new
+                        {
+                           orderID = request.orderID,
+                           staftID = request.staftID,
+                           confirmOrder = "อนุญาติเรียบร้อย",
+                         };
+                         var orderValue = await dbConnection.ExecuteAsync(orderSQL, parameters);
+
+                          if (orderValue > 0)
+                        {
+                            response.orderItem = new Order_tb()
+                           {
+                            orderID = request.orderID,
+                            confirmOrder = "อนุญาติเรียบร้อย",
+                            staftID = request.staftID,
+                           };
+                           
+                            var orderDetailupdate = new
+                            {
+                                orderID = request.orderID,
+                                orderDetailStatus = "กำลังปรุง"
+                            };
+
+                            var orderDetailData = await dbConnection.ExecuteAsync(upadateOrderDetailSQL, orderDetailupdate);
+
+                            if (orderDetailData > 0)
+                            {
+                                response.message = "แก้ไขข้อมูลลงในรายการการสั่งซื้อสำเร็จ";
+                            }
+                            else
+                            {
+                                response.message = "แก้ไขข้อมูลลงในรายการการสั่งซื้อไม่สำเร็จ";
+                            }
+                          
+                         
+                    }
+                    else
+                    {
+                        response.message = "เพิ่มข้อมูลการสั่งอาหารไม่สำเร็จ";
+                    }
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                response.message = $"{ex}";
+
+            }
+            return response;
+        }
+
         //แก้ไข
         public async Task<AdminResponse> GetOrderDetail(SearchOrderRequest request)
         {
