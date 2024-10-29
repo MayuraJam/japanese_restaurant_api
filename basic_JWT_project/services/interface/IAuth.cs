@@ -12,7 +12,7 @@ namespace japanese_resturant_project.services.Interfaces
         public Task<UserResponseModel> ToLoginCustomer(Login request); //แก้ไข
         public Task<UserResponseModel> LoginStaft(LoginStaftRequestModel request);
         public Task<UserResponseModel> LogoutStaft(string staftID);
-
+        public Task<UserResponseModel> DeleteMemberAccount(Guid memberID);
 
     }
 }

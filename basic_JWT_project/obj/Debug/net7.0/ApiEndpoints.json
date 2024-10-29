@@ -451,6 +451,22 @@
   },
   {
     "ContainingType": "japanese_resturant_project.Controllers.AuthController",
+    "Method": "DeleteMemberAccount",
+    "RelativePath": "api/Auth/DelMemberAccount/{memberID}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "memberID",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "japanese_resturant_project.Controllers.AuthController",
     "Method": "GetMember",
     "RelativePath": "api/Auth/GetMember/{roleName}",
     "HttpMethod": "GET",

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using japanese_resturant_project.model.request;
 using Dapper;
 using japanese_resturant_project.model.DatabaseModel;
+using japanese_resturant_project.model.response.adminResponse;
 
 
 namespace japanese_resturant_project.services.implement
@@ -607,5 +608,50 @@ namespace japanese_resturant_project.services.implement
         }
 
         //เข้าสู่ระบบสะสมแต้ม เพื่อทำการดึงคะแนนรวมของแต้ม โดยค่าที่ส่งไปคือ ราคารวมสินค้า+ภาษีแล้ว email , password , roleName แสดงผลออกมาเป็น ผลรวมแต้มที่โดนหัก ต้องเชื่อมตารางลูกค้ากับคะแนน
+
+        //ลบบัญชีสมาชิก 
+        public async Task<UserResponseModel> DeleteMemberAccount(Guid memberID)
+        {
+            var response = new UserResponseModel();
+            try
+            {
+                using (var dbConnection = CreateSQLConnection()) // Establish database connection
+                {
+                    var sql = @"DELETE FROM member_tb WHERE memberID = @memberID";
+                    var sqlPoint = @"DELETE FROM point_tb WHERE memberID = @memberID";
+
+                    var parameters = new
+                    {
+                        memberID = memberID,
+                    };
+
+
+                    int rowsAffected = await dbConnection.ExecuteAsync(sql, parameters);
+
+
+                    if (rowsAffected > 0)
+                    {
+                        await dbConnection.ExecuteAsync(sqlPoint,parameters); //ลบคะแนนทั้งหมด
+                        response.message = "Delete successful.";
+                        response.success = true;
+
+                    }
+                    else
+                    {
+
+                        response.message = "Delete failed: Reservation not found.";
+                        response.success = false;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                response.message = $"Delete failed: {ex.Message}";
+            }
+
+            return response;
+        }
     }
 }

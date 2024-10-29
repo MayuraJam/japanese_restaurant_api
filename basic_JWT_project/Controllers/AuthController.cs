@@ -48,5 +48,12 @@ namespace japanese_resturant_project.Controllers
             var reponse = await _service.AuthService().LogoutStaft(staftID);
             return Ok(reponse);
         }
+        [HttpDelete("DelMemberAccount/{memberID}")]
+        public async Task<IActionResult> DeleteMemberAccount(Guid memberID)
+
+        {
+            var reponse = await _service.AuthService().DeleteMemberAccount(memberID);
+            return Ok(reponse);
+        }
     }
 }
